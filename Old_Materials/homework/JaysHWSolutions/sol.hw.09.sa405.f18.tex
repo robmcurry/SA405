@@ -1,0 +1,142 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{tikz}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 9 -- solutions}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+\begin{enumerate} 
+\item 13.1: One possible formulation is
+\begin{equation}
+\hat{X} = \left\{ 
+\begin{aligned}
+\bold{x} \in \{0,1\}^5:  3x_1+2x_2+5x_3+4x_4+2x_5 &\le 13 \\
+x_1+x_2+x_3+x_4 &\le 3 \end{aligned} \right\} \nonumber
+\end{equation}
+Note that $\hat{X} \subset X$, which means $\hat{X}$ is a proper subset of $X$, by definition and because we have $(1,1,1,0.75,0) \in X$, but $(1,1,1,0.75,0) \notin \hat{X}$.
+
+\item 13.5: If we add the constraints in $P_2$ together we get the single constraint in $P_1$, which implies that $P_2 \subseteq P_1$.  To show that $P_2 \subset P_1$, note that the solution $(x_1, x_2, x_3, y) = (1,0,0,\frac{1}{3}) \in P_1$, but $(x_1, x_2, x_3, y) = (1,0,0,\frac{1}{3}) \notin P_2$.
+
+\item 13.9: If we multiply the constraint by $\lambda$ and place it into the objective function, we get
+\begin{eqnarray}
+L(\lambda) &=& \max_{\bold{x}\in\{0,1\}^5} 20x_1+16x_2+25x_3+14x_4+9x_5+\lambda (13-(3x_1+2x_2+5x_3+4x_4+2x_5)) \nonumber \\
+&=& 13 \lambda +  \max_{\bold{x}\in\{0,1\}^5} ((20-3\lambda)x_1+(16-2\lambda)x_2+(25-5\lambda)x_3+(14-4\lambda)x_4+(9-2\lambda)x_5)) \nonumber \\
+&=&  \begin{cases} 13\lambda + (84-16\lambda), & 0\le \lambda \le \frac{14}{4} \\ 13\lambda + (70-12\lambda), & \frac{14}{4}\le \lambda \le \frac{9}{2} \\ 13\lambda + (61-10\lambda), & \frac{9}{2}\le \lambda \le 5 \\ 13\lambda + (36-5\lambda), & 5\le \lambda \le \frac{20}{3} \\ 13\lambda + (16-2\lambda), & \frac{20}{3}\le \lambda \le 8 \\ 13\lambda, & \lambda \ge 8. \end{cases} \nonumber
+\end{eqnarray}
+
+\begin{figure}[!h]
+\centering
+\begin{center}
+\includegraphics[width=0.6\textwidth]{Homework_8_Problem_13pt9.png}
+\caption{Graph of $L(\lambda)$}
+\end{center}
+\end{figure}
+
+It is clear from Figure 1 that the optimal solution occurs at $\lambda = \frac{14}{4}$ with value $L(\frac{14}{4}) = 73.5$.
+
+\item 14.6: We start by considering how to solve knapsack LPs. 
+To use the results of Exercise 9.17, we must first re-order the variables so that 
+\begin{equation}
+\frac{c_1}{a_1}\ge \frac{c_2}{a_2} \ge \cdots \ge \frac{c_n}{a_n}. \nonumber
+\end{equation}
+The formulation of the LP-relaxation is then given by
+\begin{alignat}{3}
+\max \quad & 16y_1 +20y_2 +25y_3 + 9 y_4 + 14 y_5 \nonumber \\ 
+\mbox{s.t.} \quad & 2 y_1 + 3 y_2 + 5 y_3 + 2 y_4 + 4 y_5 \le 13 &\qquad&   &\qquad&  \nonumber \\
+& 0\le y_i \le 1, i\in \{1,2,...,5\} \nonumber
+\end{alignat}
+where $y_1=x_2, y_2=x_1, y_3=x_3, y_4=x_5$, and $y_5=x_4$.  This
+corresponds to the node labeled P1 below. 
+
+\paragraph{Problem P1}: Using the results from Exercise 9.17, $r=5$ and we find the solution to the LP-relaxation as follows
+\begin{equation}
+(y_1,y_2,y_3,y_4,y_5) = \left(1,1,1,1,\frac{13-(2+3+5+2)}{4}\right) = (1,1,1,1,\frac{1}{4}), \nonumber
+\end{equation}
+which means $(x_1,x_2,x_3,x_4,x_5)  = (1,1,1,\frac{1}{4},1)$ with
+relaxed value 73.5.  We then form two subproblems, P2a, which
+corresponds to $x_4 \leq 0$, i.e., $x_4 = 0$, and P2b, which
+corresponds to $x_4 \geq 1$, i.e., $x_4 = 1$.
+
+\paragraph{Problem P2a}: Branching on $x_4=0$ means that we can include
+all other items in the knapsack, yielding a relaxed solution of
+$(x_1,x_2,x_3,x_4,x_5)=(1,1,1,0,1)$ with value 70.   
+
+
+\paragraph{Problem P2b}: Branching on $x_4=1$ gives the following formulation for the LP-relaxation (using the same re-ordering as above)
+\begin{alignat}{3}
+\max \quad & 16y_1 +20y_2 +25y_3 + 9 y_4 \nonumber \\ 
+\mbox{s.t.} \quad & 2 y_1 + 3 y_2 + 5 y_3 + 2 y_4  \le 9 &\qquad&   &\qquad&  \nonumber \\
+& 0\le y_i \le 1, i\in \{1,2,...,4\}. \nonumber
+\end{alignat}
+Then, using the results from Exercise 9.17, $r=3$ and we find the solution to the LP-relaxation as follows
+\begin{equation}
+(y_1,y_2,y_3,y_4) = \left(1,1,\frac{9-(2+3)}{5},0 \right) = (1,1,\frac{4}{5},0), \nonumber
+\end{equation}
+which means $(x_1,x_2,x_3,x_4,x_5) = (1,1,\frac{4}{5},1,0)$ with
+relaxed value 70.  However, because the solution from P2a is a
+candidate integer solution with objective value also 70, we do not need to
+branch any further.
+
+
+%This latex requires the tikz package
+\begin{center}
+  \begin{tikzpicture}
+    [font=\scriptsize,
+    node/.style={shape=rectangle,draw=black,minimum width=0.5cm,thick},
+    arc/.style={thick},
+    edge/.style={thick}]
+
+    \node (1) [node] at (0, 3) {P1, objective of $73.5$,$(x_1,x_2,x_3,x_4,x_5)  = (1,1,1,\frac{1}{4},1)$};
+    \node (2) [node] at (-5, 0) {P2a, integer, objective of $70, (x_1,x_2,x_3,x_4,x_5)=(1,1,1,0,1)$};
+    \node (3) [node] at (5, 0) {P2b, objective of $70, (x_1,x_2,x_3,x_4,x_5) = (1,1,\frac{4}{5},1,0)$};
+
+    \draw [arc] (1) -- (2);
+    \draw [arc] (1) -- (3);
+  \end{tikzpicture}
+\end{center}
+
+\end{enumerate}
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -139,25 +139,48 @@
 %% ----- Begin document ----- %%
 \begin{document}
   
-\title{Lesson 9 HW \\ Logical Constraints}
+\title{HW5: Set Covering \& Logical Constraints}
 
 
 \maketitle
 
-The city of Annapolis is rezoning the into 9 separate districts (see the figure below). Based on this rezoning, answer the following questions:
+For this weeks homework, we are going to work on two formulations: set covering and logical constraints. 
+
+\section{Part 1: Set Covering}
+
+The city of Annapolis is rezoning the city into 16 separate districts (see the figure below). Based on this rezoning, answer the following questions:
 
 \begin{center} 
-\includegraphics[width=0.5\textwidth]{set_covering_problem.png}
+\includegraphics[width=0.5\textwidth]{SetCoveringProblemFig.pdf}
 \end{center}
 
-\begin{enumerate}[(a)]
-\item The city wants to build hospitals to service Annapolis. They want to make sure every district either contains a hospital, or is adjacent to another district containing a hospital.  Write constraints in concrete form that enforce this requirement.  Use the binary decision variables, $x_i = 1$ if a hospital is to be built in district $i$, $x_i = 0$ otherwise, for all $i \in \{1,2,\dots, 9\}$.
-\item For every district $i$, it will cost $c_i$ dollars to build the hospital in district $i$.  Annapolis wishes to minimize the cost of building hospitals.  Write an objective function (in concrete or abstract form, your choice) to minimize the cost of the hospital project, and update it as required for parts (c) and (d) below.
-\item  There are two different contractors bidding for the project.  Bay Builders claims that they can complete a hospital in zone $i$ in $b_i$ months, for every zone $i$.  Cape Construction claims that they can build a hospital in zone $i$ $r_i$ months faster than Bay Builders, but since they are in high demand, it will add an extra $P$ dollars to the overall cost of the project if Cape Construction is selected.  The entire project must be completed within $T$ months.  Add constraints to ensure that the deadline is met.  Assume that the hospitals will be constructed sequentially with no time gap between.  Remember to update the objective function in part (b) appropopriately, and define any new decision variable(s) that you introduce.
-\item  Zones 1 and 3 are situated in such a way that a new bridge would need to be constructed to enable traffic between hospitals in those zones.  If both zones 1 and 3 are selected, there will be a  $D$ dollar increase in project cost.  Add a binary decision variable that indicates whether or not both zones 1 and 3 are selected.  Add a constraint that enforces the correct behavior of the new decision variable, and update the objective function in part (b) appropriately.
-\item Convert your concrete constraints from part 1 into abstract form. \emph{Hint: It may be helpful to define some extra sets that aren't directly in the problem}.  What kind of constraints are these?
+\begin{enumerate}
+\item The city wants to build hospitals to service Annapolis. They want to make sure every district either contains a hospital, or is adjacent to another district containing a hospital. Formulate a concrete model that will allow them to make sure every district is serviced by a hospital while building the minimum number of hospitals.
+\item Convert your concrete model from part 1 into an abstract model \emph{Hint: It may be helpful to define some extra sets that aren't directly in the problem or use the adjacency matrix idea from class}.
 \end{enumerate}
 
+\newpage
 
+\section{Part 2: Logical Constraints}
+
+Mazda's is considering opening a new plant in the US. They are considering manufacturing either Mazda3 (clearly the best), Mazda6, or Mazda Miatas. The table below shows the amount of each resource required for each type of car.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+            & \multicolumn{3}{|c|}{Type of Car} \\
+Resource    & Mazda3  & Mazda6 & Mazda Miata \\ \hline
+Steel (tons)& 2       & 3      & 1.5 \\
+Labor hours & 30      & 40     & 25 \\ \hline
+\end{tabular}
+\end{center}
+
+The plant can obtain 6000 tons of steel and 60,000 hours of labor. The profit of a Mazda3 is \$2000, a Mazda6 is \$3000, and a Mazda Miata is \$1500. Suppose the demand of each type of car is unlimited.
+
+\begin{enumerate}[resume]
+\item Formulate a concrete model whose solution will tell Mazda how to produce cars in order to maximize profit.
+\item Suppose that management has decided that it is not worthwhile to produce Mazda Miatas unless you produce at least 1000 of them.	Modify your concrete model to reflect this new constraint. \emph{Hint: Convert this to an either/or constraint in words/math then write it as a constraint}.
+\item Management has found a new machine that reduces the labor hours required for each car as follows: Mazda3 28 hours, Mazda6 35 hours, Mazda Miata 22 hours. The new machine costs \$100,000 if they decide to purchase it. Modify your concrete model to help Mazda decide if they should purchase this new machine.
+\end{enumerate}
 
 \end{document}

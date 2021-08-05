@@ -1,0 +1,278 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Rader 3.2 and 3.3}\\
+  {\sc SA405} \\
+ % {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+
+\noindent{\textbf{3.2}}
+
+\noindent\underline{Indices}
+\begin{tabbing}
+\hspace{.5cm} \= $m\in M$ \hspace{2.5cm} \= machines, $M=\{1,2,3,4,5\}$ \\
+\> $j\in J$ \> jobs, $J=\{1,2,3,4,5\}$\\
+\> $(m,j)\in P$ \> $P=\{(m,j)|m~{\rm can~do~job}~j\}$ \\
+
+\\
+\noindent\underline{Data}\\% [units]\\
+\\
+\> {\it setup}$_{m}$ \> setup time (in minutes) if machine $m$ is used\\
+\> {\it work}$_{m,j}$ \> time to complete job $j$ on machine $m$ (if applicable) \\
+\> {\it additional} \> extra 20 minutes needed if machines 1 and 2 are used \\
+\\
+
+\noindent\underline{Binary Decision Variables}\\% [units]\\
+\\
+\> {\it USE}$_m$ \> 1 if machine $m$ is used, 0 otherwise  \\
+\> {\it OPERATE}$_{m,j}$ \> 1 if machine $m$ is used to do job $j$, 0 otherwise \\
+\> {\it BOTH} \> 1 if both machines 1 and 2 are used, 0 otherwise\\
+\end{tabbing}
+
+
+\noindent\underline{Formulation}
+
+ \[
+    \begin{array}{llll}
+      \displaystyle\min_{ \tiny{\it USE, OPERATE, BOTH}} & \displaystyle\sum_{(m,j)\in P} work_{m,j} OPERATE_{m,j} & + \displaystyle\sum_{m\in M} setup_m USE_m & + additional BOTH \\
+      \mbox{s.t.} & \displaystyle\sum_{\{m|(m,j)\in P\}} OPERATE_{m,j} \ge 1 &  \forall j \in J & {\rm (Job~Completion)}\\
+& \displaystyle\sum_{\{j|(m,j) \in P\}} OPERATE_{m,j} \le 2 &  \forall m \in M & {\rm (Machine~Utilization)}\\
+& \displaystyle\sum_{\{j|(m,j) \in P\}} OPERATE_{m,j} \le 5 USE_m &  \forall m \in M & {\rm (Can't~operate~unless~do~setup)}\\
+& BOTH \le USE_1 & & {\rm (Logical~Constraints~on}~BOTH\\
+& BOTH \le USE_2 & & {\rm to~ensure~} BOTH=1 {\rm ~if~use}\\
+& BOTH +1 \ge USE_1 + USE_2 & & {\rm machines~1~and~2)}\\
+& BOTH,OPERATE_{m,j},USE_m \in \{0,1\} & \forall m\in M, \forall j\in J\\
+    \end{array}
+    \]
+
+\newpage
+
+\noindent{\textbf{3.3}}
+
+\noindent\underline{Indices}
+\begin{tabbing}
+\hspace{.5cm} \= $p\in P$ \hspace{2.5cm} \= products, $P=\{1,2,3\}$ \\
+\> $l\in L$ \> lines, $L=\{1,2,3\}$\\
+\> $\mathbb N$ \> natural numbers (including zero)\\
+
+\\
+\noindent\underline{Data}\\% [units]\\
+\\
+\> {\it setup\_cost}$_{l}$ \> setup cost if line $l$ used in given week\\
+\> {\it worker\_cost}$_{l}$ \> pay per worker on line $l$ \\
+\> {\it production}$_{p,l}$ \> production per worker for product $p$ on line $l$ \\
+\> {\it max\_workers} \> maximum number of workers, 20 in this instance \\
+\> {\it demand}$_{p}$ \> number of product $p$ that must be produced \\
+\\
+
+\noindent\underline{Integer Decision Variables}\\% [units]\\
+\\
+\> {\it WORKERS}$_{p,l}$ \> number of workers assigned to product $p$ on line $l$  \\
+\\
+\noindent\underline{Binary Decision Variables}\\% [units]\\
+\\
+\> {\it OPEN}$_{l}$ \> 1 if line $l$ is open, 0 otherwise  \\
+\end{tabbing}
+
+
+\noindent\underline{Formulation}
+
+ \[
+    \begin{array}{llll}
+      \displaystyle\min_{ \tiny{\it WORKERS, OPEN}} & \displaystyle\sum_{l\in L,p\in P} worker\_cost_{l} WORKERS_{p,l} & + \displaystyle\sum_{l\in L} setup\_cost_l OPEN_l & \\
+      \mbox{s.t.} & \displaystyle\sum_{p\in P} WORKERS_{p,l} \le max\_workers OPEN_l &  \forall l \in L & {\rm (No~workers~unless~line~open)}\\
+& \displaystyle\sum_{l \in L} production_{p,l} WORKERS_{p,l} \ge demand_p &  \forall p \in P & {\rm (Demand~constraint)}\\
+& \displaystyle\sum_{l \in L,p \in P} WORKERS_{p,l} \le max\_workers &  & {\rm (Total~workers~constraint)}\\
+& WORKERS_{p,l} \in {\mathbb N} &\forall p\in P, l \in L  & {\rm (integer~constraint)}\\
+& OPEN_{l} \in \{0,1\} & \forall l\in L & {\rm (binary~constraint)}\\
+    \end{array}
+    \]
+
+
+
+%\newpage
+%
+%{\bf Not to be handed in.}
+%
+%\medskip
+%
+%\begin{enumerate}
+%
+%  \item 3.5: 
+%
+%\noindent\underline{Indices}
+%\begin{tabbing}
+%\hspace{.5cm} \= $i\in I$ \hspace{2.5cm} \= cities (alias $j$), $I=\{AT, BO, CH, DA, LA, NY, OC, PI, RI, SL, SF, SE \}$ \\
+%
+%
+%\\
+%\noindent\underline{Data}\\% [units]\\
+%\\
+%\> {\it served}$_{i,j}$ \> 1 if city $i$ is within 1200 miles of city $j$, 0 otherwise\\
+%\\
+%
+%\noindent\underline{Binary Decision Variables}\\% [units]\\
+%\\
+%\> {\it HUB}$_{i}$ \> 1 if hub is to be located in city $i$, 0 otherwise  \\
+%\end{tabbing}
+%
+%
+%\noindent\underline{Formulation}
+%
+% \[
+%    \begin{array}{llll}
+%      \displaystyle\min_{ \tiny{\it HUB}} & \displaystyle\sum_{i\in I} HUB_i & \\
+%      \mbox{s.t.} & \displaystyle\sum_{i\in I} served_{i,j} HUB_{i} \ge 1 &  \forall j \in I & {\rm (Must~service~all~locations)}\\
+%& HUB_{i} \in \{0,1\} & \forall i\in I & {\rm (binary~constraint)}\\
+%    \end{array}
+%    \]
+%
+%%This was the original published solution, but I don't think it is very elegant 
+%
+%%This is a set covering problem similar to Example 3.3 in the book.  Denote the cities by their two letter abbreviations, and let these be the decision variables.  They are binary decision variables that take a value of 1 if that city is used as a hub, and 0 otherwise.  Then, the formulation is:
+%%    \[
+% %   \begin{array}{lll}
+%  %    \min & AT+BO+CH+DA+LA+NY+OC+PI&+RI+SL+SF+SE \\
+%  %    \mbox{s.t.} & AT+CH+DA+NY+OC+PI+RI & \ge 1   \\
+%%& BO+CH+NY+PI+RI & \ge 1   \\
+%%& AT+BO+CH+DA+NY+OC+PI+RI & \ge 1   \\
+%%& AT+CH+DA+OC & \ge 1   \\
+%%& LA+SL+SF+SE & \ge 1   \\
+%%& AT+BO+CH+NY+PI+RI & \ge 1   \\
+%%& AT+CH+DA+OC+SL & \ge 1   \\
+%%& AT+BO+CH+NY+PI+RI & \ge 1   \\
+%%& AT+BO+CH+NY+PI+RI & \ge 1   \\ %OMIT it is redundant
+%%& LA+OC+SL+SF+SE & \ge 1   \\
+%%& LA+SL+SF+SE & \ge 1   \\      
+%%& LA+SL+SF+SE & \ge 1   \\  %OMIT it is redundant
+% %   \end{array}
+% %   \]
+%%Note that the constraints for $PI$ and $RI$ are the same, as well as the constraints for $SF$ and $SE$.  That is why there are only 10 constraints above instead of 12.
+%
+%\newpage
+%
+%\item 3.8 The formulation below assumes a maximum of 1 TV per location $b$ and $s$.\\
+%
+%\noindent\underline{Indices}
+%\begin{tabbing}
+%\hspace{.5cm} \= $b\in B$ \hspace{2.5cm} \= locations for 100 inch TV's, $B=\{A,B,C,D,E,F\}$ \\
+%\> $s\in S$ \> locations for 32 inch TV's, $S=\{1,2,...,22\}$\\
+%\> $z\in Z$ \> zones, $Z=\{1,2,...,12\}$ \\
+%\> $(b,z)\in P$ \> $P=\{(b,z)| {\rm can~see~100~inch~TV~at~location}~b~{\rm in~zone}~z\}$ \\
+%\> $(s,z)\in Q$ \> $Q=\{(s,z)| {\rm can~see~32~inch~TV~at~location}~s~{\rm in~zone}~z\}$ \\
+%
+%\\
+%\noindent\underline{Data}\\% [units]\\
+%\\
+%\> {\it cost\_big} \> cost of 100 inch TV's, \$5000 in this instance\\
+%\> {\it cost\_small} \> cost of 32 inch TV's, \$750 in this instance\\
+%\> {\it min\_big} \> minimum number of 100 inch TV's to buy, 2 in this instance \\
+%\> {\it min\_small} \> minimum number of 32 inch TV's to buy, 8 in this instance \\
+%\\
+%
+%\noindent\underline{Binary Decision Variables}\\% [units]\\
+%\\
+%\> {\it TV\_BIG}$_{b}$ \> 1 if 100 inch TV at location $b$, 0 otherwise  \\
+%\> {\it TV\_SMALL}$_{s}$ \> 1 if 32 inch TV at location $s$, 0 otherwise \\
+%\> {\it CAN\_SEE}$_z$ \> 1 if can see 100 inch TV in zone $z$, 0 otherwise\\
+%\end{tabbing}
+%
+%
+%\noindent\underline{Formulation}
+%
+% \[
+%    \begin{array}{llll}
+%      \displaystyle\min & \displaystyle\sum_{b\in B} cost\_big TV\_BIG_{b} + \displaystyle\sum_{s\in S} cost\_small TV\_SMALL_{s} & &\\
+%      \mbox{s.t.} & \displaystyle\sum_{\{b|(b,z)\in P\}} TV\_BIG_{b} + \displaystyle\sum_{\{s|(s,z) \in Q\}} TV\_SMALL_{s}\ge 2 CAN\_SEE_z + 3\left(1-CAN\_SEE_z\right) &  \forall z \in Z & \\
+%& CAN\_SEE_z \le \displaystyle\sum_{\{b|(b,z)\in P\}} TV\_BIG_b& \forall z \in Z& \\
+%& CAN\_SEE_z \ge TV\_BIG_b &\forall z\in Z, \forall b|(b,z)\in P& \\
+%& \displaystyle\sum_{s\in S} TV\_SMALL_{s} \ge min\_small &  & \\
+%& \displaystyle\sum_{b\in B} TV\_BIG_{b} \ge min\_big &  & \\
+%& TV\_BIG_b,TV\_SMALL_s,CAN\_SEE_z \in \{0,1\} & \forall b\in B, \forall s\in S, \forall z\in Z\\
+%    \end{array}
+%    \]
+%The first constraint ensures that at least 2 TV's can be seen or at least 3 TV's can be seen if the 100 inch TV is not visible.  The second and third constraints are logical constraints to ensure that {\it CAN\_SEE} takes on a value of 1 only when appropriate.  The fourth constraint ensures that at least 8 of the 32 inch TV's are purchased.  The fifth constraint ensures that at least 2 of the 100 inch TV's are purchased.
+%  
+%\newpage
+%
+%\item 3.8 The formulation below assumes a maximum of 1 TV per location $b$ and $s$.  This is an alternate, but equivalent, form of the formulation provided above.\\
+%
+%\noindent\underline{Indices}
+%\begin{tabbing}
+%\hspace{.5cm} \= $b\in B$ \hspace{2.5cm} \= locations for 100 inch TV's, $B=\{A,B,C,D,E,F\}$ \\
+%\> $s\in S$ \> locations for 32 inch TV's, $S=\{1,2,...,22\}$\\
+%\> $z\in Z$ \> zones, $Z=\{1,2,...,12\}$ \\
+%
+%\\
+%\noindent\underline{Data}\\% [units]\\
+%\\
+%\> {\it view\_big}$_{b,z}$ \> 1 if can see 100 inch TV at location $b$ in zone $z$, 0 otherwise\\
+%\> {\it view\_small}$_{s,z}$ \> 1 if can see 32 inch TV at location $s$ in zone $z$, 0 otherwise\\
+%\> {\it cost\_big} \> cost of 100 inch TV's, \$5000 in this instance\\
+%\> {\it cost\_small} \> cost of 32 inch TV's, \$750 in this instance\\
+%\> {\it min\_big} \> minimum number of 100 inch TV's to buy, 2 in this instance \\
+%\> {\it min\_small} \> minimum number of 32 inch TV's to buy, 8 in this instance \\
+%\\
+%
+%\noindent\underline{Binary Decision Variables}\\% [units]\\
+%\\
+%\> {\it TV\_BIG}$_{b}$ \> 1 if 100 inch TV at location $b$, 0 otherwise  \\
+%\> {\it TV\_SMALL}$_{s}$ \> 1 if 32 inch TV at location $s$, 0 otherwise \\
+%\> {\it CAN\_SEE}$_z$ \> 1 if can see 100 inch TV in zone $z$, 0 otherwise\\
+%\end{tabbing}
+%
+%
+%\noindent\underline{Formulation}
+%
+% \[
+%    \begin{array}{llll}
+%      \displaystyle\min & \displaystyle\sum_{b\in B} cost\_big TV\_BIG_{b} + \displaystyle\sum_{s\in S} cost\_small TV\_SMALL_{s} & &\\
+%      \mbox{s.t.} & \displaystyle\sum_{b \in B} view\_big_{b,z} TV\_BIG_{b} + \displaystyle\sum_{s \in S} view\_small_{s,z} TV\_SMALL_{s}\ge 2 CAN\_SEE_z + 3\left(1-CAN\_SEE_z\right) &  \forall z \in Z & \\
+%& CAN\_SEE_z \le \displaystyle\sum_{b \in B} view\_big_{b,z} TV\_BIG_b& \forall z \in Z& \\
+%& CAN\_SEE_z \ge view\_big_{b,z} TV\_BIG_b &\forall z\in Z, \forall b \in B& \\
+%& \displaystyle\sum_{s\in S} TV\_SMALL_{s} \ge min\_small &  & \\
+%& \displaystyle\sum_{b\in B} TV\_BIG_{b} \ge min\_big &  & \\
+%& TV\_BIG_b,TV\_SMALL_s,CAN\_SEE_z \in \{0,1\} & \forall b\in B, \forall s\in S, \\
+%& & \forall z\in Z \\
+%    \end{array}
+%    \]
+%The first constraint ensures that at least 2 TV's can be seen or at least 3 TV's can be seen if the 100 inch TV is not visible.  The second and third constraints are logical constraints to ensure that {\it CAN\_SEE} takes on a value of 1 only when appropriate.  The fourth constraint ensures that at least 8 of the 32 inch TV's are purchased.  The fifth constraint ensures that at least 2 of the 100 inch TV's are purchased.
+%  
+%\end{enumerate}
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

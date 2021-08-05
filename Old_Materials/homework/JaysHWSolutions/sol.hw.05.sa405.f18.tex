@@ -1,0 +1,132 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 5 -- solutions}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+\begin{enumerate} 
+\item 4.1: NOTE:  Error in book data; distances $c_{25}=c_{52}$ should be 35 instead of 40.  We have a graph $\cG = (\cV,\cE)$ where $\cV =  \{1,2,3,4,5,6,7\}$ and $\cE = \{(i,j) | i < j, i, j \in \cV\}$. Note
+  that the symmetry of the graph means we can treat the graph as being
+  undirected so we assume arc $(i,j)$ always has $i < j$.
+  Let $c_{ij}$ be the distance given in the table for arc $(i,j) \in \cE$ and $d_j$ the
+  delivery requirements for the customers, for $j = 2,\ldots, 7$.
+  For a subset of customer nodes $U \subset \{2,\ldots,7\}$, let
+  \[
+  h(U) = \mbox{minimum number of trucks needed to serve demand in $U$}
+  = \left\lceil \frac{\Sum_{i \in U} d_i}{120} \right\rceil.
+  \]
+  Note that in this instance, $h(U) = 3$.  Let
+  \[
+  x_{ij} = \binvar{if $(i,j)$ is on a route}
+  \]
+  The initial formulation is:
+  \[
+  \begin{array}{llll}
+    \min & \Sum_{(i,j) \in \cE} c_{ij} x_{ij} & & \\
+    \mbox{s.t.} & \Sum_{j=i+1}^7 x_{ij} + \Sum_{j=1}^{i-1} x_{ji} = 2, &
+    i = 2,\ldots,7 & \mbox{(Each non-depot visited by a tour)} \\
+    & \Sum_{j=2,\ldots,7} x_{1j} = 6 & & \mbox{(There are three trucks)}
+    \\
+    & x_{ij} \in \{0,1\}. & & 
+  \end{array}
+  \]
+  After solving this integer problem, the solution must be examined
+  for infeasible routes. Routes are infeasible if (a) the route is a
+  cycle on a set of nodes, $U$, where $1 \not\in U$, or (b) the route
+  is $U \cup \{1\}$ but 
+  \[
+  \Sum_{i \in U} d_i > 120.
+  \]
+  Then, for the $U$ that satisfies (a) or (b), add the constraint
+  \[
+  \Sum_{\{(i,j) \in \cE| i,j \in U\}} x_{ij} \leq |U| - h(U) 
+  \]
+  which assures that there is no subtour on $U$ and that the number of
+  trucks used for $U$ is sufficient.  The initial solution provides the tours 1-2-3-1, 1-4-5-1, and 1-6-7-1.  We note that demand on route 1-2-3-1 is 125, which exceeds the truck capacity.  We add the subtour elimination constraint $x_{23} <= 2 - 2 = 0$ and resolve.  The new solution provides the tours 1-2-4-1, 1-3-5-1, and 1-6-7-1.  We note that demand on route 1-2-4-1 exceeds the truck capacity.  We add the subtour elimination constraint $x_{24} <= 0$ and resolve.  The new solution provides the tours 1-2-7-1, 1-3-5-1, and 1-4-6-1.  None of these tours are infeasible using conditions (a) and (b) above.  This means the solution is feasible, and has a length of 175 miles.
+
+\item 4.2: To solve this, we add another condition to (a) and (b) when
+  introducing constraints, namely: (c) the route is $U \cup \{1\}$ and
+  \[
+  \Sum_{(i,j) \in \cE\}| i,j \in U \cup \{1\}} c_{ij} x_{ij} > 75.
+  \]
+  {If (a) or (b) is satisfied by $U$, or (c) is
+    satisfied by $U$ and $h(U) \geq 2$, then add the constraint}
+  \[
+  \Sum_{\{(i,j) \in \cE| i,j \in U\}} x_{ij} \leq |U| - h(U).
+  \]
+  {If (c) is satisfied and $h(U) = 1$ then add the constraint}
+  \[
+  {\Sum_{\{(i,j) \in \cE| i,j \in U\}} x_{ij} \leq |U| - h(U) - 1 = |U|
+  - 2.}
+  \]
+
+We find that our solution to 4.1 is now infeasible because it violates condition (c); tour 1-2-7-1 is 80 miles in length.  We note that $h(U) = 1$ for tour 1-2-7-1, so we add the constraint $x_{27} <= 2-1-1 = 0$ and resolve.  The new solution provides the tours 1-2-5-1, 1-3-4-1, and 1-6-7-1.  We note that demand on route 1-3-4-1 exceeds the truck capacity.  We add the subtour elimination constraint $x_{34} <= 2-2 = 0$ and resolve.  The new solution provides the tours 1-4-7-1, 1-3-5-1, and 1-2-6-1.  We note that demand on route 1-4-7-1 exceeds the truck capacity.  We add the subtour elminiation constraint $x_{47} <= 2-2 = 0$.  We note that tour 1-2-6-1 is 100 miles in length.  We note that $h(U) = 1$ for tour 1-2-6-1, so we add the constraint $x_{26} <= 2-1-1 =0$ and resolve.  The new solution provides the tours 1-3-7-1, 1-2-5-1, and 1-4-6-1.  We note that demand on route 1-3-7-1 exceeds the truck capacity.  We add the subtour elimination constraint $x_{37} <= 2-2 = 0$ and resolve.  We now find that the solution is infeasible.  This means the company must either:  relax the travel distance requirement, increase the carrying capacity of their trucks, or add another delivery vehicle.
+\end{enumerate}
+
+{\bf Not to be handed in.}
+
+\medskip
+
+\begin{enumerate}
+
+\item 4.17: Note that, currently, the constraint
+\[
+\Sum_{j | i < j} x_{ij} + \Sum_{j | j < i} x_{ji} = 2, \mbox{ for } i
+= 2,\ldots, 7,
+\]
+ensures that each node has two edges connected to it. In particular, a
+node could not be visited from the depot and then have the route
+return immediately to the depot. Here are two ways to deal with this
+(only one needs to be performed):
+\begin{enumerate}
+\item (the clever way) Allow the edge variables which touch the depot
+  to be zero, one, or two, i.e., modify the binary constraints so that $x_{0j} \in \{0,1,2\}$ for all $(0,j) \in \cE$.
+\item (the longer, but still correct way) Node split so that each node now has a copy with the same exact
+  neighbors. Between each node and its copy introduce an arc with zero
+  cost. 
+\end{enumerate}
+\end{enumerate}
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

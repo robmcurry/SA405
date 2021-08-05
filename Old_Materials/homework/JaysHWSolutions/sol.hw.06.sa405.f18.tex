@@ -1,0 +1,118 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 6 -- solutions}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+\begin{enumerate} 
+\item 4.4: This is the Set Covering Location Model (Integer Program 4.2 in the book).
+
+\begin{tabbing}
+\noindent{\bf Indices and Sets}\\[0.2cm]
+\hspace*{.5cm} \= $i\in I$ \hspace{2.8cm} \= customers, $I=\{1,2,...,10\}$ \\
+\> $j\in J$ \> possible facility locations, $J=\{3,5,6,7,8\}$\\[0.2cm]
+\noindent{\bf Data}\\[0.2cm] 
+\> $d_{ij}$ \> the length of the shortest path between nodes $i$ and $j$ \\
+\> $D$ \> maximum allowable distance between a customer and the facility it utilizes\\
+\> $N_i = \{ j \in J: d_{ij} \le D \}$ \> set of facilities $j$ that can serve node $i$ \\[0.2cm]
+\noindent{\bf Decision Variables [units]}\\[0.2cm] 
+\> $x_j$ \> 1 if node $j$ is the location of a facility, 0 otherwise  [binary] \\[0.2cm] 
+\noindent{\bf Formulation}
+\end{tabbing}
+%The alignat environment in the amsmath package provides a way of aligning multiple equation (like the align
+% environment) but allows the user to control the widths of the columns instead of the default equal spacing in align.
+% the odd-numbered & symbols separate a right-aligned column from a left-aligned column, and the even-numbered ones
+% separate columns of equations, so we sometimes need two & in a row to get the pieces we want in a math 
+% programming formulation to stay left-justified in their columns
+\begin{alignat}{3}
+\min_{ \tiny{\it x}} \quad & \sum_{j\in J} x_j \\
+\mbox{s.t.} \quad & \sum_{j\in N_i} x_j \ge 1 &\qquad&  \forall i \in I &\qquad& \\
+ & x_j \in \{0,1\} && \forall j\in J
+\end{alignat}
+
+\noindent{\bf Discussion}
+
+Objective (1) minimizes the number of facilities.  Constraint (2) is a covering constraint which ensures at least one of the facilities in the neighborhood $N_i$ must be selected.  Note that $D=4$ in this particular problem.  We find that 2 facilities are necessary.    Facility 5 can service customers $\{1, 2, 4, 5, 8, 10\}$, and facility 6 can service customers $\{1, 2, 3, 6, 7, 8, 9, 10\}$.  Another solution is facility 7 can service customers $\{1, 3, 4, 6, 7, 9\}$, and facility 8 can service customers $\{2, 4, 5, 6, 8, 9, 10\}$.
+
+\newpage
+
+\item 4.5: This is the Maximal Covering Location Model (Integer Program 4.3 in the book).
+
+\begin{tabbing}
+\noindent{\bf Indices and Sets}\\[0.2cm]
+\hspace*{.5cm} \= $i\in I$ \hspace{2.8cm} \= customers, $I=\{1,2,...,10\}$ \\
+\> $j\in J$ \> possible facility locations, $J=\{3,5,6,7,8\}$\\[0.2cm]
+\noindent{\bf Data}\\[0.2cm] 
+\> $d_{ij}$ \> the length of the shortest path between nodes $i$ and $j$ \\
+\> $D$ \> maximum allowable distance between a customer and the facility it utilizes\\
+\> $N_i = \{ j \in J: d_{ij} \le D \}$ \> set of facilities $j$ that can serve node $i$ \\
+\> $h_i$ \> customer demand at node $i$ \\
+\> $p$  \> number of facilities we can afford to use\\[0.2cm]
+\noindent{\bf Decision Variables [units]}\\
+\> $x_j$ \> 1 if node $j$ is the location of a facility, 0 otherwise  [binary] \\
+\> $y_i$ \> 1 if node $i$ has its demand satisfied by some facility, 0 otherwise  [binary] \\[0.2cm] 
+\noindent{\bf Formulation}
+\end{tabbing}
+%The alignat environment in the amsmath package provides a way of aligning multiple equation (like the align
+% environment) but allows the user to control the widths of the columns instead of the default equal spacing in align.
+% the odd-numbered & symbols separate a right-aligned column from a left-aligned column, and the even-numbered ones
+% separate columns of equations, so we sometimes need two & in a row to get the pieces we want in a math 
+% programming formulation to stay left-justified in their columns
+\begin{alignat}{3}
+\max_{ \tiny{\it x, y}} \quad & \sum_{i\in I} h_i y_i \\
+\mbox{s.t.} \quad & \sum_{j\in N_i} x_j \ge y_i &\qquad&  \forall i \in I &\qquad& \\
+& \sum_{j \in J} x_j = p &&  \\
+& x_j \in \{0,1\} && \forall j\in J \\
+ & y_i \in \{0,1\} && \forall i\in I
+\end{alignat}
+
+\noindent{\bf Discussion}
+
+Objective (4) maximizes the demand covered by open facilities.  Constraint (5) ensures node $i$ can only have its demand satisfied if one of the facilities in its neighborhood, $N_i$, is open.  Constraint (6) ensures that the total number of open facilities is equal to $p$.  Note that in this particular problem $D=4$ and $p=1$.  We find that the one facility should be located at 6, which leaves customers $\{4, 5\}$ unsatisfied and 790 units of demand satisfied.
+
+\end{enumerate}
+
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

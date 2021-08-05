@@ -1,0 +1,47 @@
+#  index sets
+set ingredients := 
+Oats 
+Corn 
+Alfalfa
+;
+
+set types := 
+Protein 
+Fat 
+Fiber
+;
+
+# parameters
+param COST :=
+Oats 80
+Corn 110
+Alfalfa 90
+;
+
+param RDA_UPPER :=
+Protein 100
+Fat 16
+Fiber 50
+;
+
+param RDA_LOWER :=
+Protein 8
+Fat 12
+Fiber 0
+;
+
+param MAX_AMOUNT :=
+1
+;
+
+param RDA_AMOUNT :=
+Oats Protein 13
+Oats Fat 22
+Oats Fiber 40
+Corn Protein 7
+Corn Fat 10
+Corn Fiber 30
+Alfalfa Protein 4
+Alfalfa Fat 15
+Alfalfa Fiber 60
+;

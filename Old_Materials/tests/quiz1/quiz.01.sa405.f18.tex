@@ -1,0 +1,116 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx}
+\usepackage{enumerate,color}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{August 30, 2017}
+\chead{Quiz 1}
+\lhead{SA405, Fall 2017}
+%\rfoot{Page \thepage}
+
+
+\input{preface}
+
+%\addtolength{\oddsidemargin}{-2.0cm}
+%\addtolength{\evensidemargin}{-2.0cm}
+%\addtolength{\textwidth}{3.0cm}
+%\addtolength{\topmargin}{-2.5cm}
+%\addtolength{\textheight}{4.5cm}
+
+
+
+\begin{document}
+
+\begin{enumerate}
+\item ({\bf 10 points}) Convert the following linear program into canonical form.
+\[
+\begin{array}{ll}
+  \max & 4 x_1 + 2x_2 - 7 x_3 \\
+  \mbox{s.t.} & 2 x_1 -  x_2 + 4 x_3 \leq 18 \\
+  &  4 x_1 + 2 x_2 + 5 x_3 \geq 10 \\
+  & x_1 , x_2 \geq 0, x_3 \leq 0.
+\end{array}
+\]
+
+  \vfill
+
+\item ({\bf 6 points}) Consider a canonical form LP with constraints $Ax=b$ and $x \geq 0$, where 
+\[ 
+A = \left[
+\begin{array}{rrrrrrrrrr}
+2 & 3 & 1 & 0 & 0\\
+-1 & 1 & 0 & 2 & 1\\
+0 & 6 & 1 & 0 & 3
+\end{array}
+\right],~
+\mathbf{x} = \left[
+\begin{array}{r}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+x_5
+\end{array}
+\right],
+\rm{~and~}
+\mathbf{b} = \left[
+\begin{array}{r}
+1\\
+1\\
+4
+\end{array}
+\right].
+\]
+Provide justification that $\{x_3,~x_4,~x_5\}$ is a valid basis for this linear program.  Find the basic solution that corresponds to this basis.  
+  \vfill
+
+\newpage
+
+\item ({\bf 2 points}) You are running the simplex method on a linear program whose objective function requires maximization.  You correctly calculate the reduced costs for the nonbasic variables and find that they are given by the following:  $\bar c_x = -6,~ \bar c_y = 7,$ and $\bar c_z = -1$.  Based on these results you should (circle one):  
+\begin{enumerate}
+\item continue with the simplex method
+\item stop the simplex method
+\end{enumerate}
+because (circle one):
+\begin{enumerate}
+\item your current solution is a global optimal solution to the linear program
+\item the linear program is unbounded
+\item your current solution is not a global optimal solution to the linear program
+\end{enumerate}
+  \vfill
+
+\item ({\bf 2 points}) You are running the simplex method on a linear program whose objective function requires maximization.  You correctly compute an improving simplex direction, $\mathbf{d} = (-1/4, 1, 0, -11/4, -5/4)$.  If the current iterate is given by $\mathbf{x} = (6, 0, 0, 18, 5)$, then the maximum step size as determined by the ratio test is (circle one):  
+\begin{enumerate}
+\item 0
+\item 24
+\item 72/11
+\item 4
+\item There is no maximum step size because this linear program is unbounded.
+\end{enumerate}
+
+
+\vfill
+\end{enumerate}
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

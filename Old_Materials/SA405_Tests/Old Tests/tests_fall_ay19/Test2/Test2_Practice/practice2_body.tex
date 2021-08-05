@@ -1,0 +1,354 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsthm, amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate}
+\usepackage{gastex,color}
+\usepackage{multirow}
+\usepackage{tikz}
+%% TikZ settings
+
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+\usetikzlibrary{arrows,calc,shapes,decorations,backgrounds,positioning,plotmarks}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Sample Problems -- Test 2}
+\lhead{SA405}
+\rfoot{Page \thepage}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\input{preface}
+
+
+\begin{document}
+\begin{enumerate}
+
+\item You have been tasked to work with Naval Supply Systems Command to analyze a proposed supply chain management plan.  The commander has asked for your assistance in deciding where to place {\bf exactly} four supply facilities.  The figure below will be used to help make the decision, where each of the $n=10$ nodes $I = \{1,2,...,10\}$ correspond to the fleet units who need supplies and the nodes $J=\{3, 5, 6, 7, 8\}$ in dashed boxes are the possible supply facility locations.  The weight on each edge $(i,j)$ corresponds to direct distances between $i$ and $j$.  Let the distance $d_{ij}$ be the length of the shortest path in this graph between nodes $i$ and $j$.  
+\begin{center}
+  \begin{tikzpicture}
+    [font=\scriptsize,
+    %    node/.style={shape=circle,draw=blue!60,fill=blue!20,minimum width=0.5cm,thick},
+    node/.style={shape=circle,draw=black,minimum width=0.5cm,thick},
+    node1/.style={shape=rectangle,draw=black,minimum width=0.75cm,minimum height=0.75cm,dashed},
+    arc/.style={->,>=stealth,thick},
+    edge/.style={thick}]
+
+    \node (1) [node] at (-2,2) {1};
+    \node (2) [node] at (0,2) {2}; 
+    \node (3) [node] at (-1,0.75) {3};
+    \node (3) [node1] at (-1,0.75){};      
+    \node (4) [node] at (2,0.75) {4};
+    \node (5) [node1] at (4,2){};     
+    \node (5) [node] at (4,2) {5};
+    \node (6) [node] at (-2,-0.5) {6};
+    \node (6) [node1] at (-2,-0.5){};      
+    \node (7) [node] at (2,-1) {7};
+    \node (7) [node1] at (2,-1){};     
+    \node (8) [node1] at (4,0){};    
+    \node (8) [node] at (4,0) {8};
+    \node (9) [node] at (0,-2) {9};
+    \node (10) [node] at (4,-2) {10};
+          
+   \draw [edge] (1) to node [auto] {3} (2);
+    \draw [edge] (1) to node [auto] {4} (3);
+    \draw [edge] (1) to node [auto] {1} (6);
+    \draw [edge] (2) to node [auto] {5} (3);
+    \draw [edge] (2) to node [auto] {1} (4);
+    \draw [edge] (2) to node [auto] {1} (5);
+    \draw [edge] (3) to node [auto] {5} (4);
+    \draw [edge] (3) to node [auto] {3} (6);
+    \draw [edge] (3) to node [auto] {3} (7);
+    \draw [edge] (4) to node [auto] {3} (5);
+    \draw [edge] (4) to node [auto] {4} (7);
+    \draw [edge] (4) to node [auto] {2} (8);
+    \draw [edge] (5) to node [auto] {3} (8);
+    \draw [edge] (6) to node [auto] {2} (7);
+    \draw [edge] (6) to node [auto] {1} (9);
+    \draw [edge] (7) to node [above] {4} (9);
+    \draw [edge] (7) to node [auto] {5} (10);
+    \draw [edge] (8) to node [auto] {1} (10);
+    \draw [edge] (9) to node [auto] {2} (10);
+  \end{tikzpicture}
+\end{center}
+
+\noindent
+Based on historical order data, the demand (in thousands) $h_i$ for the different fleet units have been projected for future orders.  In addition, the estimated capacity (in thousands) $C_j$ of each supply facility has been determined.  Finally, the fixed charge $f_j$ associated with opening a facility at location $j \in J$ has been calculated.  The data are summarized in the table below.
+
+\vspace{0.3 cm}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|}
+Fleet Unit &  1	&	2	&	3	&	4	&
+5	&	6	&	7	&	8	&        9         &    10
+\\
+\hline
+$h_i$ & 45	&	90	&	110	&	35	&	60	&	105	&	80	&	100	&  75    &    55 \\
+\hline
+$C_j$ & -	&	-	&	150	&	-	&	250	&	200	&	350	&	100	&  -    &    - \\
+\hline
+$f_j$ & -	&	-	&	400	&	-	&	300	&	500	&	200	&	350	&  -    &    -
+\end{tabular}
+\vspace{0.3 cm}
+
+\noindent
+In what follows, use the binary decision variables
+\[
+X_j = \binvar{if node $j$ is the location of a supply facility}, j =\{3,5,6,7,8\}.
+\]
+and 
+\[
+Y_{ij} = \binvar{if node $i$ is served by supply facility $j$}, i \in I,~ j \in J
+\]
+
+\newpage
+
+\begin{enumerate}
+    \item Write an objective function which minimizes the TOTAL cost of opening facilities AND supplying the required materials to fleet units.  You may assume a cost of \$15 per thousand units of demand per unit distance when including the supply costs.
+    
+    \vfill
+    
+    \item Write a set of constraints which ensures each fleet unit's demand is met by exactly one supply facility.
+
+    \vfill
+
+    \item Write a single constraint which ensures exactly four supply facilities are opened.
+
+    \vfill
+
+    \item Write a single constraint which ensures supply facility 7 provides NO supplies if it is closed, while allowing it to supply fleet units with as much as its upper bound if it is open.
+
+\vfill
+
+%\newpage
+%
+%\pts{3} How could you modify the decision variable $Y_{ij}$ to allow fleet units to receive their supply from more than one facility?  Assuming you want the total demand received by every fleet unit to be 100 percent of their requirements from some collection of supply facilities, would you need to modify your answer to part (b) above in conjunction with your changes to $Y_{ij}$?
+
+%\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+\item
+
+You are employed by the Speedy Package Delivery Company.  They want to figure out the best way to deliver packages to eight customer locations numbered $1,\ldots, 8$. The owner of the company seeks routes for the drivers that minimize the total distance traveled. There are three drivers that will be used to deliver packages on a daily basis to the customers. The drivers always start and end their deliveries at the depot, designated as node 0.  Each delivery truck can carry a maximum of 4 packages at a time. The daily package delivery requirements for each customer location is given in the table below.
+
+\vspace{0.2 cm}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|}
+Customer Location &  1	&	2	&	3	&	4	&
+5	&	6	&	7	&	8	
+\\
+\hline
+Number of Packages to Deliver &   2	&	3	&	2	&	1	&	1	&	1	&	1	&	1	
+\end{tabular}
+\vspace{0.2 cm}
+
+You have determined that the distances between the depot and the customers are given by a symmetric matrix.  An entry in this matrix $d_{ij}$ 
+gives the distance between location $i$ and location $j$, where $i$ and $j$ range from $0$ to $8$.
+
+You copied down part of the model for the Vehicle Routing problem from a copy of the course text:
+\[
+\begin{array}{llllr}
+  \min & \Sum_{(i,j) \in \cE} d_{ij} X_{ij} & \\
+\mbox{s.t.} & \Sum_{j | i < j} X_{ij} + \Sum_{j|j<i} X_{ji} & = 2 & i =
+1,\ldots,8 & (\rm{a}) \\
+&  \Sum_{j=1}^{8} X_{0j}  = 2m & & & (\rm{b}) \\
+& X_{ij} \in \{0,1\} & & \forall (i,j) \in \cE. &
+\end{array}
+\]
+You have figured out that the graph should be $\cG = (\cV,\cE)$ where $\cV
+= \{0,1,\ldots,8\}$ and $\cE = \{ (i,j) | i < j, i,j \in \cV\}$.  
+
+\vspace{0.5cm}
+
+\begin{enumerate}
+  \item Explain in complete sentences what behavior constraints (a) and (b) enforce in the solution.
+
+  \vfill
+
+\newpage
+
+  \item You use an integer programming solver to find a solution to the formulation as described. The solver provides the following solution: $X_{01}=X_{02}=X_{03}=X_{06}=X_{07}=X_{08}=X_{12}=X_{34}=X_{48}=X_{56}=X_{57}=1$.  Draw the vehicle routes that this solution describes.
+
+\vspace{2.3cm}
+
+  \vfill
+
+  \item Is the solution provided by the solver in part (b) above feasible?  Explain why or why not.
+
+  \vfill
+  
+  \item Suppose the solver returns the routes 0-1-8-0, 0-2-7-0, and 0-3-4-5-6-0.  Write any route-splitting constraints 
+that you would add to the model based on this collection of vehicle routes.
+
+  \vfill
+
+\item If you added multiple constraints in part (d), choose one (indicate your choice).  Explain the behavior that this constraint enforces on the next collection of routes obtained by the solver.  
+
+\vfill
+\newpage
+
+\item You and your friends decided to take a BIG trip to see all 30 of the Major League Baseball (MLB) stadiums. We assume that you all are only taking a single car, and you must start and finish in St. Louis (Go Cardinals!). Since you are an OR major, the other midshipmen ask you to plan the trip so as to minimize the total distance traveled to visit every single MLB stadium. We assume that each stadium is only visited once. Present an integer programming model for solving this problem. Clearly define and explain all sets, variables, and parameters needed to do so. Additionally, briefly explain all constraints included in your model.
+\end{enumerate}
+
+\newpage
+
+
+\item Textbook Problems:
+\begin{itemize}
+\item 3.22 (Concrete and Abstract)
+\item 4.8 and 4.9 (Concrete and Abstract)
+\end{itemize}
+\end{enumerate}
+
+\end{document}
+
+%\newpage
+%
+%\ques{16}
+%Consider the following graph:
+%\begin{center}
+%  \begin{tikzpicture}
+%    [font=\scriptsize,
+%    %    node/.style={shape=circle,draw=blue!60,fill=blue!20,minimum width=0.5cm,thick},
+%    node/.style={shape=circle,draw=black,minimum width=0.5cm,thick},
+%    arc/.style={->,>=stealth,thick},
+%    edge/.style={thick}]
+%          
+%    \node (1) [node] at (-3,0) {1};
+%    \node (2) [node] at (0,2) {2};
+%    \node (3) [node] at (0,-2) {3};
+%    \node (4) [node] at (3,2) {4};
+%    \node (5) [node] at (3,-2) {5};
+%
+%    \draw [edge] (1) -- (2) node[pos=0.5,above] {$4$};
+%    \draw [edge] (1) -- (3) node[pos=0.5,above] {$3$};          
+%    \draw [edge] (2) -- (3) node[pos=0.5,left] {$2$};
+%    \draw [edge] (2) -- (4) node[pos=0.5,above] {$1$};
+%    \draw [edge] (2) -- (5) node[pos=0.5,right] {$3$};
+%    \draw [edge] (3) -- (5) node[pos=0.5,above] {$1$};
+%    \draw [edge] (4) -- (5) node[pos=0.5,above,right] {$3$};
+%
+%  \end{tikzpicture}
+%\end{center}
+%The numbers adjacent to the edges give the costs $c_{ij}$.  You are told to run Prim's algorithm starting at node 1.
+%
+%\vspace{0.5cm}
+%
+%\begin{parts}
+%\pts{2} After the first step in Prim's algorithm, which edge would you add to your solution?
+%
+%\vfill
+%
+%\pts{2}  After the second step in Prim's algorithm, which edge would you add to your solution?
+%
+%\vfill
+%
+%\pts{2}  After the third step in Prim's algorithm, which edge would you add to your solution?
+%
+%\vfill
+%
+%\pts{2}  After the fourth step in Prim's algorithm, which edge would you add to your solution?
+%
+%\vfill
+%
+%\pts{2} What is the total cost of the solution at this point in Prim's algorithm?
+%
+%\newpage
+%
+%  \pts{6} Prim's algorithm is (circle one):  
+%\begin{enumerate}
+%\item an exact algorithm
+%\item a heuristic algorithm
+%\end{enumerate} 
+%which uses a (circle one):
+%\begin{enumerate}
+%\item constructive approach
+%\item local search approach
+%\end{enumerate}
+%so it will (circle one):
+%\begin{enumerate}
+%\item find the guaranteed optimal solution to the problem no matter how long it takes
+%\item attempt to find a near-optimal solution quickly, with no guarantee of optimality
+%\end{enumerate}
+%
+%
+% \vspace{2cm}
+%
+%You may find the following information useful.
+%\vspace{0.5cm}
+%
+%\underline{\bf Prim's Algorithm}
+%\vspace{0.25cm}
+%
+%$S = \{1\}$
+%
+%$T = \emptyset$
+%
+%{\bf while} $S \neq V$ {\bf do}
+%
+%\hspace{0.5cm} Find an edge $(i,j)$ of minimum cost where $i \in S$, $j \notin S$
+%
+%\hspace{0.5cm} $T \leftarrow T \union \{ (i,j) \}, ~ S \leftarrow S \union \{j\}$.
+%
+%{\bf end while}
+%
+%\end{parts}
+
+
+%\newpage
+
+%%bonus question
+
+%\bques{8} Telecommunication companies are often concerned with the design of local access and transport area (LATA) networks that provide special access service through a local exchange facility.  Suppose we have 8 possible hub locations that are to be connected to 10 customers.  The company requires that between 3 and 6 hubs be used; the additional cost associated with opening the hubs depends on their quantity and is not linear, as seen in the following table.
+
+%\begin{center}
+%\begin{tabular}{ccccc}
+% & \multicolumn{4}{c}{Number of Hubs Used} \\ \hline
+% &  3 	&	4	&	5	&	6	\\ \hline
+%Cost (\$) & 40,000 & 60,000 & 70,000 & 75,000 \\ 
+%\hline
+%\end{tabular}
+%\end{center}
+
+%\noindent Using the following indices, sets, data, and decision variables write an objective function and the necessary constraints to ensure that between 3 and 6 hubs are used and the appropriate cost is paid for using that number of hubs.
+
+%\begin{tabbing}
+%\noindent{\bf Indices and Sets}\\[0.2cm]
+%\hspace*{.5cm} \= $i\in I$ \hspace{2.8cm} \= customers, $I=\{1,2,...,10\}$ \\
+%\> $j\in J$ \> possible hub locations, $J=\{1,2,...,8\}$\\
+%\> $k\in K$ \> possible total number of hubs used, $K=\{3,4,5,6\}$\\[0.2cm]
+%\noindent{\bf Data}\\[0.2cm] 
+%\> $cHubs_k$ \> cost of  opening $k$ hubs\\[0.2cm]
+%\noindent{\bf Decision Variables}\\
+%\> $y_j$ \> 1 if node $j$ is the location of a hub, 0 otherwise\\
+%\> $w_{k}$ \> 1 if $k$ hubs are used, 0 otherwise\\[0.2cm]
+%\end{tabbing}

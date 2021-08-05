@@ -1,0 +1,901 @@
+
+
+%struts
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+
+%hard names
+\def\lovasz{Lov\'{a}sz}
+
+% MATH SUMBOLS AND RELATED MACROS
+\def\ba{{\bf a}}
+\def\bb{{\bf b}}
+\def\bc{{\bf c}}
+\def\bd{{\bf d}}
+\def\be{{\bf e}}
+\def\bff{{\bf f}}
+\def\bg{{\bf g}}
+\def\bh{{\bf h}}
+\def\bi{{\bf i}}
+\def\bj{{\bf j}}
+\def\bk{{\bf k}}
+\def\bl{{\bf l}}
+\def\bell{{\bf \ell}}
+\def\bm{{\bf m}}
+\def\bn{{\bf n}}
+\def\bp{{\bf p}}
+\def\bq{{\bf q}}
+\def\br{{\bf r}}
+\def\bs{{\bf s}}
+\def\bt{{\bf t}}
+\def\bu{{\bf u}}
+\def\bv{{\bf v}}
+\def\bw{{\bf w}}
+\def\bx{{\bf x}}  %{\mbox{\boldmath $\lambda$}}
+\def\by{{\bf y}}
+\def\bz{{\bf z}}
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bC{{\bf C}}
+\def\bD{{\bf D}}
+\def\bE{{\bf E}}
+\def\bF{{\bf F}}
+\def\bG{{\bf G}}
+\def\bH{{\bf H}}
+\def\bI{{\bf I}}
+\def\bJ{{\bf J}}
+\def\bK{{\bf K}}
+\def\bL{{\bf L}}
+\def\bM{{\bf M}}
+\def\bN{{\bf N}}
+\def\bO{{\bf O}}     
+\def\bP{{\bf P}}
+\def\bQ{{\bf Q}}
+\def\bR{{\bf R}}
+\def\bS{{\bf S}}
+\def\bU{{\bf U}}
+\def\bT{{\bf T}}
+\def\bX{{\bf X}}
+\def\bV{{\bf V}}
+\def\bW{{\bf W}}
+\def\bY{{\bf Y}}
+\def\bZ{{\bf Z}}
+\def\bzero{{\bf 0}}
+
+% MATH SUMBOLS AND RELATED MACROS
+\def\ca{{\cal a}}
+\def\cb{{\cal b}}
+\def\cc{{\cal c}}
+\def\cd{{\cal d}}
+\def\ce{{\cal e}}
+\def\cf{{\cal f}}
+\def\cg{{\cal g}}
+\def\ch{{\cal h}}
+\def\ci{{\cal i}}
+\def\cj{{\cal j}}
+\def\ck{{\cal k}}
+\def\cll{{\cal l}}
+\def\cm{{\cal m}}
+\def\cn{{\cal n}}
+\def\cp{{\cal p}}
+\def\cq{{\cal q}}
+\def\crr{{\cal r}}
+\def\cs{{\cal s}}
+\def\ct{{\cal t}}
+\def\cu{{\cal u}}
+\def\cv{{\cal v}}
+\def\cw{{\cal w}}
+\def\cx{{\cal x}}  %{\mbox{\coldmath $\lambda$}}
+\def\cy{{\cal y}}
+\def\cz{{\cal z}}
+\def\cA{{\cal A}}
+\def\cB{{\cal B}}
+\def\cC{{\cal C}}
+\def\cD{{\cal D}}
+\def\cE{{\cal E}}
+\def\cF{{\cal F}}
+\def\cG{{\cal G}}
+\def\cH{{\cal H}}
+\def\cI{{\cal I}}
+\def\cJ{{\cal J}}
+\def\cK{{\cal K}}
+\def\cL{{\cal L}}
+\def\cM{{\cal M}}
+\def\cN{{\cal N}}
+\def\cO{{\cal O}}     
+\def\cP{{\cal P}}
+\def\cQ{{\cal Q}}
+\def\cR{{\cal R}}
+\def\cS{{\cal S}}
+\def\cU{{\cal U}}
+\def\cT{{\cal T}}
+\def\cX{{\cal X}}
+\def\cV{{\cal V}}
+\def\cW{{\cal W}}
+\def\cY{{\cal Y}}
+\def\cZ{{\cal Z}}
+\def\czero{{\cal 0}}
+
+\def\cGbar{{\cal \Gbar}}
+\def\cVbar{{\cal \Vbar}}
+\def\cEbar{{\cal \Ebar}}
+
+%tildes
+\newcommand{\ta}{\ensuremath \tilde{a}}
+\newcommand{\tb}{\ensuremath \tilde{b}}
+\newcommand{\tc}{\ensuremath \tilde{c}}
+\newcommand{\td}{\ensuremath \tilde{d}}
+\newcommand{\te}{\ensuremath \tilde{e}}
+\newcommand{\tff}{\ensuremath \tilde{f}}
+\newcommand{\tg}{\ensuremath \tilde{g}}
+%\newcommand{\th}{\ensuremath \tilde{h}}
+\newcommand{\ti}{\ensuremath \tilde{i}}
+\newcommand{\tj}{\ensuremath \tilde{j}}
+\newcommand{\tk}{\ensuremath \tilde{k}}
+\newcommand{\tl}{\ensuremath \tilde{l}}
+\newcommand{\tm}{\ensuremath \tilde{m}}
+\newcommand{\tn}{\ensuremath \tilde{n}}
+\newcommand{\tp}{\ensuremath \tilde{p}}
+\newcommand{\tq}{\ensuremath \tilde{q}}
+\newcommand{\tr}{\ensuremath \tilde{r}}
+\newcommand{\ts}{\ensuremath \tilde{s}}
+%\newcommand{\tt}{\ensuremath \tilde{t}}
+\newcommand{\tu}{\ensuremath \tilde{u}}
+\newcommand{\tv}{\ensuremath \tilde{v}}
+\newcommand{\tw}{\ensuremath \tilde{w}}
+\newcommand{\tx}{\ensuremath \tilde{x}}  %{\mbox{\boldmath $\lambda$}}
+\newcommand{\ty}{\ensuremath \tilde{y}}
+\newcommand{\tz}{\ensuremath \tilde{z}}
+\newcommand{\tA}{\ensuremath \tilde{A}}
+\newcommand{\tB}{\ensuremath \tilde{B}}
+\newcommand{\tC}{\ensuremath \tilde{C}}
+\newcommand{\tD}{\ensuremath \tilde{D}}
+\newcommand{\tE}{\ensuremath \tilde{E}}
+\newcommand{\tF}{\ensuremath \tilde{F}}
+\newcommand{\tG}{\ensuremath \tilde{G}}
+\newcommand{\tH}{\ensuremath \tilde{H}}
+\newcommand{\tI}{\ensuremath \tilde{I}}
+\newcommand{\tJ}{\ensuremath \tilde{J}}
+\newcommand{\tK}{\ensuremath \tilde{K}}
+\newcommand{\tL}{\ensuremath \tilde{L}}
+\newcommand{\tM}{\ensuremath \tilde{M}}
+\newcommand{\tN}{\ensuremath \tilde{N}}
+\newcommand{\ctO}{\ensuremath \tilde{\cO}}
+\newcommand{\tO}{\ensuremath \tilde{O}}
+\newcommand{\tP}{\ensuremath \tilde{P}}
+\newcommand{\tQ}{\ensuremath \tilde{Q}}
+\newcommand{\tR}{\ensuremath \tilde{R}}
+\newcommand{\tS}{\ensuremath \tilde{S}}
+\newcommand{\tU}{\ensuremath \tilde{U}}
+\newcommand{\tT}{\ensuremath \tilde{T}}
+\newcommand{\tX}{\ensuremath \tilde{X}}
+\newcommand{\tV}{\ensuremath \tilde{V}}
+\newcommand{\tW}{\ensuremath \tilde{W}}
+\newcommand{\tY}{\ensuremath \tilde{Y}}
+\newcommand{\tZ}{\ensuremath \tilde{Z}}
+\newcommand{\tzero}{\ensuremath \tilde{0}}
+
+%bolded tildes
+\newcommand{\bta}{\ensuremath \tilde{\ba}}
+\newcommand{\btb}{\ensuremath \tilde{\bb}}
+\newcommand{\btc}{\ensuremath \tilde{\bc}}
+\newcommand{\btd}{\ensuremath \tilde{\bd}}
+\newcommand{\bte}{\ensuremath \tilde{\be}}
+\newcommand{\btff}{\ensuremath \tilde{\bff}}
+\newcommand{\btg}{\ensuremath \tilde{\bg}}
+%\newcommand{\th}{\ensuremath \tilde{\bh}}
+\newcommand{\bti}{\ensuremath \tilde{\bi}}
+\newcommand{\btj}{\ensuremath \tilde{\bj}}
+\newcommand{\btk}{\ensuremath \tilde{\bk}}
+\newcommand{\btl}{\ensuremath \tilde{\bl}}
+\newcommand{\btm}{\ensuremath \tilde{\bm}}
+\newcommand{\btn}{\ensuremath \tilde{\bn}}
+\newcommand{\btp}{\ensuremath \tilde{\bp}}
+\newcommand{\btq}{\ensuremath \tilde{\bq}}
+\newcommand{\btr}{\ensuremath \tilde{\br}}
+\newcommand{\bts}{\ensuremath \tilde{\bs}}
+%\newcommand{\btt}{\ensuremath \tilde{\bt}}
+\newcommand{\btu}{\ensuremath \tilde{\bu}}
+\newcommand{\btv}{\ensuremath \tilde{\bv}}
+\newcommand{\btw}{\ensuremath \tilde{\bw}}
+\newcommand{\btx}{\ensuremath \tilde{\bx}}  %{\mbox{\boldmath $\lambda$}}
+\newcommand{\bty}{\ensuremath \tilde{\by}}
+\newcommand{\btz}{\ensuremath \tilde{\bz}}
+\newcommand{\btA}{\ensuremath \tilde{\bA}}
+\newcommand{\btB}{\ensuremath \tilde{\bB}}
+\newcommand{\btC}{\ensuremath \tilde{\bC}}
+\newcommand{\btD}{\ensuremath \tilde{\bD}}
+\newcommand{\btE}{\ensuremath \tilde{\bE}}
+\newcommand{\btF}{\ensuremath \tilde{\bF}}
+\newcommand{\btG}{\ensuremath \tilde{\bG}}
+\newcommand{\btH}{\ensuremath \tilde{\bH}}
+\newcommand{\btI}{\ensuremath \tilde{\bI}}
+\newcommand{\btJ}{\ensuremath \tilde{\bJ}}
+\newcommand{\btK}{\ensuremath \tilde{\bK}}
+\newcommand{\btL}{\ensuremath \tilde{\bL}}
+\newcommand{\btM}{\ensuremath \tilde{\bM}}
+\newcommand{\btN}{\ensuremath \tilde{\bN}}
+\newcommand{\btO}{\ensuremath \tilde{\bO}}
+\newcommand{\btP}{\ensuremath \tilde{\bP}}
+\newcommand{\btQ}{\ensuremath \tilde{\bQ}}
+\newcommand{\btR}{\ensuremath \tilde{\bR}}
+\newcommand{\btS}{\ensuremath \tilde{\bS}}
+\newcommand{\btU}{\ensuremath \tilde{\bU}}
+\newcommand{\btT}{\ensuremath \tilde{\bT}}
+\newcommand{\btX}{\ensuremath \tilde{\bX}}
+\newcommand{\btV}{\ensuremath \tilde{\bV}}
+\newcommand{\btW}{\ensuremath \tilde{\bW}}
+\newcommand{\btY}{\ensuremath \tilde{\bY}}
+\newcommand{\btZ}{\ensuremath \tilde{\bZ}}
+\newcommand{\btzero}{\ensuremath \tilde{\b0}}
+
+
+%greek bolds
+\newcommand{\bDelta}{\mathbf{\Delta}} %bold delta 
+\newcommand{\bsigma}{\mathbf{\sigma}} %bold sigma
+\newcommand{\bmu}{\mbox{\boldmath $\mu$}} %bold mu
+\newcommand{\bbeta}{\mbox{\boldmath $\beta$}} %bold mu
+\newcommand{\btau}{\mathbf{\tau}} %vector z 
+\newcommand{\bpi}{\mathbf{\pi}}
+\newcommand{\balpha}{\mathbf{\alpha}}
+\newcommand{\bomega}{\mathbf{\omega}}
+\newcommand{\blambda}{\mathbf{\lambda}}
+
+%added to have bars
+
+\def\babar{\overline{\bf a}}
+\def\bbbar{\overline{\bf b}}
+\def\bcbar{\overline{\bf c}}
+\def\bdbar{\overline{\bf d}}
+\def\bebar{\overline{\bf e}}
+\def\bffbar{\overline{\bf f}}
+\def\bgbar{\overline{\bf g}}
+\def\bhbar{\overline{\bf h}}
+\def\bibar{\overline{\bf i}}
+\def\bjbar{\overline{\bf j}}
+\def\bkbar{\overline{\bf k}}
+\def\blbar{\overline{\bf l}}
+\def\bellbar{\overline{\bf \ell}}
+\def\bmbar{\overline{\bf m}}
+\def\bnbar{\overline{\bf n}}
+\def\bpbar{\overline{\bf p}}
+\def\bqbar{\overline{\bf q}}
+\def\brbar{\overline{\bf r}}
+\def\bsbar{\overline{\bf s}}
+\def\btbar{\overline{\bf t}}
+\def\bubar{\overline{\bf u}}
+\def\bvbar{\overline{\bf v}}
+\def\bwbar{\overline{\bf w}}
+\def\bxbar{\overline{\bf x}}  %{\mbox{\boldmath $\lambda$}}
+\def\bybar{\overline{\bf y}}
+\def\bzbar{\overline{\bf z}}
+\def\bAbar{\overline{\bf A}}
+\def\bBbar{\overline{\bf B}}
+\def\bCbar{\overline{\bf C}}
+\def\bDbar{\overline{\bf D}}
+\def\bEbar{\overline{\bf E}}
+\def\bFbar{\overline{\bf F}}
+\def\bGbar{\overline{\bf G}}
+\def\bHbar{\overline{\bf H}}
+\def\bIbar{\overline{\bf I}}
+\def\bJbar{\overline{\bf J}}
+\def\bKbar{\overline{\bf K}}
+\def\bLbar{\overline{\bf L}}
+\def\bMbar{\overline{\bf M}}
+\def\bNbar{\overline{\bf N}}
+\def\bObar{\overline{\bf O}}
+\def\bPbar{\overline{\bf P}}
+\def\bQbar{\overline{\bf Q}}
+\def\bRbar{\overline{\bf R}}
+\def\bSbar{\overline{\bf S}}
+\def\bUbar{\overline{\bf U}}
+\def\bTbar{\overline{\bf T}}
+\def\bXbar{\overline{\bf X}}
+\def\bVbar{\overline{\bf V}}
+\def\bWbar{\overline{\bf W}}
+\def\bYbar{\overline{\bf Y}}
+\def\bZbar{\overline{\bf Z}}
+
+%added to have bars on normal letters
+\def\abar{\overline{a}}
+\def\bbar{\overline{b}}
+\def\cbar{\overline{c}}
+\def\dbar{\overline{d}}
+\def\ebar{\overline{e}}
+\def\ffbar{\overline{f}}
+\def\gbar{\overline{g}}
+\def\hbar{\overline{h}}
+\def\ibar{\overline{i}}
+\def\jbar{\overline{j}}
+\def\kbar{\overline{k}}
+\def\lbar{\overline{l}}
+\def\ellbar{\overline{\ell}}
+\def\mbar{\overline{m}}
+\def\nbar{\overline{n}}
+\def\pbar{\overline{p}}
+\def\qbar{\overline{q}}
+\def\rbar{\overline{r}}
+\def\sbar{\overline{s}}
+\def\tbar{\overline{t}}
+\def\ubar{\overline{u}}
+\def\vbar{\overline{v}}
+\def\wbar{\overline{w}}
+\def\xbar{\overline{x}}  
+\def\ybar{\overline{y}}
+\def\zbar{\overline{z}}
+\def\Abar{\overline{A}}
+\def\Bbar{\overline{B}}
+\def\Cbar{\overline{C}}
+\def\Dbar{\overline{D}}
+\def\Ebar{\overline{E}}
+\def\Fbar{\overline{F}}
+\def\Gbar{\overline{G}}
+\def\Hbar{\overline{H}}
+\def\Ibar{\overline{I}}
+\def\Jbar{\overline{J}}
+\def\Kbar{\overline{K}}
+\def\Lbar{\overline{L}}
+\def\Mbar{\overline{M}}
+\def\Nbar{\overline{N}}
+\def\Obar{\overline{O}}
+\def\Pbar{\overline{P}}
+\def\Qbar{\overline{Q}}
+\def\Rbar{\overline{R}}
+\def\Sbar{\overline{S}}
+\def\Ubar{\overline{U}}
+\def\Tbar{\overline{T}}
+\def\Xbar{\overline{X}}
+\def\Vbar{\overline{V}}
+\def\Wbar{\overline{W}}
+\def\Ybar{\overline{Y}}
+\def\Zbar{\overline{Z}}
+
+\def\phibar{\overline{\phi}}
+
+\def\e{{\mbox{\boldmath $\epsilon$}}}
+\def\l{{\mbox{\boldmath $\lambda$}}}
+\def\g{{\mbox{\boldmath $\gamma$}}}
+\def\G{{\mbox{\boldmath $\Gamma$}}}
+\def\L{{\mbox{\boldmath $\Lambda$}}}
+\def\d{{\mbox{\boldmath $\delta$}}}
+\def\D{{\mbox{\boldmath $\Delta$}}}
+\def\a{{\mbox{\boldmath $\alpha$}}}
+\def\m{{\mbox{\boldmath $\mu$}}}
+\def\n{{\mbox{\boldmath $\nu$}}}
+%\def\S{{\mbox{\boldmath $\Sigma$}}}
+\def\bSigma{{\mbox{\boldmath $\Sigma$}}}
+\def\bLambda{{\mbox{\boldmath $\Lambda$}}}
+\def\p{{\mbox{\boldmath $\pi$}}}
+\def\P{{\mbox{\boldmath $\Pi$}}}
+\def\th{{\mbox{\boldmath $\theta$}}}
+\def\Th{{\mbox{\boldmath $\Theta$}}}
+\def\x{{\mbox{\boldmath $\xi$}}}
+\def\b{{\mbox{\boldmath $\beta$}}}
+\def\r{{\mbox{\boldmath $\rho$}}}
+\def\z{{\mbox{\boldmath $\zeta$}}}
+\def\ph{{\mbox{\boldmath $\phi$}}}
+\def\ps{{\mbox{\boldmath $\psi$}}}
+\def\o{{\mbox{\boldmath $\omega$}}}
+\def\s{{\mbox{\boldmath $\sigma$}}}
+\def\t{{\mbox{\boldmath $\tau$}}}
+\def\pis{\pi^{\star}}
+
+
+
+\def\eq{$$}
+\def\en{$$}
+
+\def\smskip{\smallskip}
+\def\sep#1{ \hskip -5pt & #1 & \hskip -5 pt} 
+\def\texitem#1{\par\smskip\noindent\hangindent 25pt
+               \hbox to 25pt {\hss #1 ~}\ignorespaces}
+
+% mathematical constructs
+\def\abs#1{\left|#1\right|}
+\def\norm#1{\left\|#1\right\|}
+\def\vec#1{\left(\!\begin{array}{c}#1\end{array}\!\right)}
+\def\bmat#1{\left[\begin{array}{cc}#1\end{array}\right]}
+
+\def\noi{\noindent}
+
+
+%%I like lowercase - DP
+%%\newcommand{\beq}{\begin{equation}}
+
+% display nice
+\newcommand{\deq}[1]{$\displaystyle #1$} 
+
+
+%new \beq is a little more fancy:
+\newenvironment{beqhelp}[1]{\begin{equation} \label{#1}}{\end{equation}}
+\newcommand{\beq}{\begin{beqhelp}}
+\newcommand{\eeq}{\end{beqhelp}}
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\newcommand{\eolnn}{\nonumber\\}
+
+
+%some set operators
+\newcommand{\intersect}{\cap}
+\newcommand{\union}{\cup}
+
+% arash added these two
+\newcommand{\BA}{\begin{array}}
+\newcommand{\EA}{\end{array}}
+\newcommand{\ST}{\mbox{subject to}}
+
+% text abbrevs
+%\newcommand{\cf}{{\it cf.}}
+\newcommand{\eg}{{\it e.g.}}
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\etc}{{\it etc.}}
+
+\newcommand{\ones}{\mathbf 1}
+
+% std math stuff
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\reals}{{\mathbb R}}
+\newcommand{\ints}{{\mathbb Z}}
+\newcommand{\rationals}{{\mathbb Q}}
+\newcommand{\eqbydef}{\mathrel{\stackrel{\Delta}{=}}}
+\newcommand{\complex}{{\mbox{\bf C}}}
+
+% Re & Im
+\renewcommand{\Re}{\mathop{\bf Re}}
+\renewcommand{\Im}{\mathop{\bf Im}}
+
+% lin alg stuff
+\newcommand{\Span}{\mbox{\textrm{span}}}
+\newcommand{\Range}{\mbox{\textrm{range}}}
+\newcommand{\nullspace}{{\mathcal N}}
+\newcommand{\range}{{\mathcal R}}
+\newcommand{\Nullspace}{\mbox{\textrm{nullspace}}}
+\newcommand{\Rank}{\mathop{\bf rank}}
+\newcommand{\Tr}{\mathop{\bf Tr}}
+\newcommand{\sgn}{\mathop{\bf sgn}}
+\newcommand{\detr}{\mathop{\bf det}}
+\newcommand{\diag}{\mathop{\bf diag}}
+\newcommand{\lambdamax}{{\lambda_{\rm max}}}
+\newcommand{\lambdamin}{\lambda_{\rm min}}
+\newcommand{\kron}{\otimes} %kronocker product
+
+
+% probability stuff
+\newcommand{\Expect}{{\mathbb E}}
+\newcommand{\Prob}{{\mathbb P}}
+\newcommand{\dProb}{{\rm d \Prob}}
+\newcommand{\erf}{\mathop{\bf erf}}
+
+% convexity & optimization stuff
+\def\co#1{{\mathop {\bf cone}}\left(#1\right)}
+\def\conv#1{\mathop {\bf conv}\left(#1\right)}
+\def\var#1{\mathop{\bf Var}\left[#1\right]}
+\newcommand{\dist}{\mathop{\bf dist{}}}
+\newcommand{\Ltwo}{{\bf L}_2}
+
+%\newcommand{\QED}{~~\rule[-1pt]{8pt}{8pt}}\def\qed{\QED}
+%\newcommand{\approxleq}{\mathrel{\smash{\makebox[0pt][l]{\raisebox{-3.4pt}{\small$\sim$}}}{\raisebox{1.1pt}{$<$}}}}
+\newcommand{\argmin}{\mathop{\rm argmin}}
+\newcommand{\argmax}{\mathop{\rm argmax}}
+\newcommand{\epi}{\mathop{\bf epi}}
+\newcommand{\hypo}{\mathop{\bf hypo}}
+\newcommand{\ri}{\mathop{\bf ri}}
+\newcommand{\vol}{\mathop{\bf vol}}
+\newcommand{\Vol}{\mathop{\bf vol}}
+\newcommand{\rank}{\mathop{\rm rank}}
+
+\newcommand{\dom}{\mathop{\bf dom}}
+\newcommand{\aff}{\mathop{\bf aff}}
+\newcommand{\cl}{\mathop{\bf cl}}
+\newcommand{\Angle}{\mathop{\bf angle}}
+\newcommand{\intr}{\mathop{\bf int}}
+\newcommand{\relint}{\mathop{\bf rel int}}
+\newcommand{\bdry}{\mathop{\bf bd}}
+\newcommand{\vect}{\mathop{\bf vec}}
+\newcommand{\mat}{\mathop{\bf mat}}
+\newcommand{\TSP}{\mbox{\small\sc atsp}}
+\newcommand{\MLP}{\mbox{\small\sc amlp}}
+\newcommand{\LN}{\mbox{LN}}
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\foequal}{\simeq}
+\newcommand{\VOL}{{\mbox{\bf vol}}}
+
+%the following ones seem way too specialized to be here...
+\newcommand{\xopt}{x^{\rm opt}}
+\newcommand{\Xb}{{\mbox{\bf X}}}
+\newcommand{\xst}{x^\star}
+\newcommand{\varphist}{\varphi^\star}
+\newcommand{\lambdast}{\lambda^\star}
+\newcommand{\Zst}{Z^\star}
+\newcommand{\fstar}{f^\star}
+\newcommand{\xstar}{x^\star}
+\newcommand{\xc}{x^\star}
+\newcommand{\lambdac}{\lambda^\star}
+\newcommand{\lambdaopt}{\lambda^{\rm opt}}
+
+%psd inequalities
+\newcommand{\spdef}{\succeq}% sdp inequality for Jordan algebras
+\newcommand{\pdef}{\succ}
+
+
+%%calculus
+\newcommand{\PD}[2]{\frac{\partial #1}{\partial #2}}
+
+%generalized inequalities for cvx book
+\newcommand{\geqK}{\mathrel{\succeq_K}}
+\newcommand{\gK}{\mathrel{\succ_K}}
+\newcommand{\leqK}{\mathrel{\preceq_K}}
+\newcommand{\lK}{\mathrel{\prec_K}}
+\newcommand{\geqKst}{\mathrel{\succeq_{K^*}}}
+\newcommand{\gKst}{\mathrel{\succ_{K^*}}}
+\newcommand{\leqKst}{\mathrel{\preceq_{K^*}}}
+\newcommand{\lKst}{\mathrel{\prec_{K^*}}}
+\newcommand{\geqL}{\mathrel{\succeq_L}}
+\newcommand{\gL}{\mathrel{\succ_L}}
+\newcommand{\leqL}{\mathrel{\preceq_L}}
+\newcommand{\lL}{\mathrel{\prec_L}}
+\newcommand{\geqLst}{\mathrel{\succeq_{L^*}}}
+\newcommand{\gLst}{\mathrel{\succ_{L^*}}}
+\newcommand{\leqLst}{\mathrel{\preceq_{L^*}}}
+\newcommand{\lLst}{\mathrel{\prec_{L^*}}}
+%\newcommand{\fprod}{\bullet}
+\newcommand{\fprod}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+%\newcommand{\fprod}[1]{\ensuremath{\Big\langle #1 \Big\rangle}}
+\newcommand{\smfprod}[1]{\ensuremath{\langle #1 \rangle}}
+
+\def\join{\vee}
+\def\meet{\wedge}
+
+%new theorems from David
+\newcommand{\mnote}[1]{{\tiny\marginpar[#1]{#1}}}
+\newsavebox{\theorembox}
+\newsavebox{\lemmabox}
+\newsavebox{\claimbox}
+\newsavebox{\factbox}
+\newsavebox{\defnbox}
+\newsavebox{\corollarybox}
+\newsavebox{\propositionbox}
+\newsavebox{\examplebox}
+\newsavebox{\exercisebox}
+\newsavebox{\problembox}
+\newsavebox{\conjecturebox}
+\newsavebox{\oqbox}
+\newsavebox{\remarkbox}
+\newsavebox{\assbox}
+\savebox{\theorembox}{\noindent\bf Theorem}
+\savebox{\lemmabox}{\noindent\bf Lemma}
+\savebox{\claimbox}{\noindent\bf Claim}
+\savebox{\factbox}{\noindent\bf Fact}
+\savebox{\defnbox}{\noindent\bf Definition}
+\savebox{\corollarybox}{\noindent\bf Corollary}
+\savebox{\propositionbox}{\noindent\bf Proposition}
+\savebox{\examplebox}{\noindent\bf Example}
+\savebox{\exercisebox}{\noindent\bf Exercise}
+\savebox{\problembox}{\noindent\bf Problem}
+\savebox{\conjecturebox}{\noindent\bf Conjecture}
+\savebox{\remarkbox}{\noindent\bf Remark}
+\savebox{\oqbox}{\noindent\bf Open Question}
+\savebox{\assbox}{\noindent\bf Assumption}
+\newtheorem{assumption}{\usebox{\assbox}}
+\newtheorem{theorem}{\usebox{\theorembox}}
+\newtheorem{lemma}{\usebox{\lemmabox}}
+\newtheorem{claim}{\usebox{\claimbox}}
+\newtheorem{fact}{\usebox{\factbox}}
+\newtheorem{remark}{\usebox{\remarkbox}}
+\newtheorem{corollary}{\usebox{\corollarybox}}
+\newtheorem{proposition}[theorem]{\usebox{\propositionbox}}
+\newtheorem{exercise}{\usebox{\exercisebox}}
+\newtheorem{conjecture}{\usebox{\conjecturebox}}
+\newtheorem{oq}{\usebox{\oqbox}}
+\newtheorem{defn}{\usebox{\defnbox}}
+\def\blackslug{\hbox{\hskip 1pt \vrule width 4pt height 8pt depth 1.5pt
+\hskip 1pt}} 
+\newtheorem{definition}{Definition}
+\newtheorem{exprime}{Example}%[section]
+\newenvironment{example}{\noindent\exprime\em {\vspace{-0.05 in}}}{
+\hfill $\blackslug$ \par \addvspace{\bigskipamount}{\vspace{0in}}}
+\newtheorem{observation}{Observation}
+\newtheorem{property}{Property}
+
+
+%Miscellaneous commands for proofs
+%%don't need qed for amsthm
+%\newcommand{\qed}{\mbox{}\hspace*{\fill}\nolinebreak\mbox{$\rule{0.7em}{0.7em}$}}
+%\newenvironment{proof}{\par{\noi \bf Proof: }}{\(\qed\) \par}
+\newenvironment{proofsketch}{\par{\bf Proof Sketch:}}{\(\qed\) \par}
+\newenvironment{solutionsketch}{\par{\bf Solution Sketch:}}{\(\qed\) \par}
+\newenvironment{defproof}[1]{\par{\bf Proof #1:}}{\(\qed\) \par}
+\newcommand{\case}[1]{{\small \sc Case #1:}}
+\newcommand{\subcase}[1]{{\em Case #1:}\/}
+
+\renewcommand{\hat}[1]{\widehat{#1}}
+\newcommand{\opt}{\mbox{\footnotesize\sc opt}}
+%\newcommand{\tr}{\mbox{{\bf Tr}}}
+\newcommand{\parent}{\mbox{\sc parent}}
+\newcommand{\precstar}
+{\stackrel{\mbox{\raisebox{-0.5ex}[0pt][0pt]{\tiny$\star$}}}{\prec}}     
+
+
+%problem definitions
+\newtheorem{prob}{Problem}
+\newenvironment{problem}[2]{\noindent 
+\begin{prob}[#1] \label{#2}  \em}{\hfill $\blackslug$\end{prob}}  
+
+
+
+%%new commands
+%some names:
+\newcommand{\eyjo}{E. \'{A}sgeirsson}
+
+%added to have bars
+\def\deltahat{\hat{\delta}}
+
+\def\bahat{\hat{\bf a}}
+\def\bbhat{\hat{\bf b}}
+\def\bchat{\hat{\bf c}}
+\def\bdhat{\hat{\bf d}}
+\def\behat{\hat{\bf e}}
+\def\bffhat{\hat{\bf f}}
+\def\bghat{\hat{\bf g}}
+\def\bhhat{\hat{\bf h}}
+\def\bihat{\hat{\bf i}}
+\def\bjhat{\hat{\bf j}}
+\def\bkhat{\hat{\bf k}}
+\def\blhat{\hat{\bf l}}
+\def\bmhat{\hat{\bf m}}
+\def\bnhat{\hat{\bf n}}
+\def\bphat{\hat{\bf p}}
+\def\bqhat{\hat{\bf q}}
+\def\brhat{\hat{\bf r}}
+\def\bshat{\hat{\bf s}}
+\def\bthat{\hat{\bf t}}
+\def\buhat{\hat{\bf u}}
+\def\bvhat{\hat{\bf v}}
+\def\bwhat{\hat{\bf w}}
+\def\bxhat{\hat{\bf x}}  %{\mbox{\boldmath $\lambda$}}
+\def\byhat{\hat{\bf y}}
+\def\bzhat{\hat{\bf z}}
+\def\bAhat{\hat{\bf A}}
+\def\bBhat{\hat{\bf B}}
+\def\bChat{\hat{\bf C}}
+\def\bDhat{\hat{\bf D}}
+\def\bEhat{\hat{\bf E}}
+\def\bFhat{\hat{\bf F}}
+\def\bGhat{\hat{\bf G}}
+\def\bHhat{\hat{\bf H}}
+\def\bIhat{\hat{\bf I}}
+\def\bJhat{\hat{\bf J}}
+\def\bKhat{\hat{\bf K}}
+\def\bLhat{\hat{\bf L}}
+\def\bMhat{\hat{\bf M}}
+\def\bNhat{\hat{\bf N}}
+\def\bOhat{\hat{\bf O}}
+\def\bPhat{\hat{\bf P}}
+\def\bQhat{\hat{\bf Q}}
+\def\bRhat{\hat{\bf R}}
+\def\bShat{\hat{\bf S}}
+\def\bUhat{\hat{\bf U}}
+\def\bThat{\hat{\bf T}}
+\def\bXhat{\hat{\bf X}}
+\def\bVhat{\hat{\bf V}}
+\def\bWhat{\hat{\bf W}}
+\def\bYhat{\hat{\bf Y}}
+\def\bZhat{\hat{\bf Z}}
+
+%added to have hats on normal letters
+\def\ahat{\hat{a}}
+\def\bhat{\hat{b}}
+\def\chat{\hat{c}}
+\def\dhat{\hat{d}}
+\def\ehat{\hat{e}}
+\def\ffhat{\hat{f}}
+\def\ghat{\hat{g}}
+\def\hhat{\hat{h}}
+\def\ihat{\hat{i}}
+\def\jhat{\hat{j}}
+\def\khat{\hat{k}}
+\def\lhat{\hat{l}}
+\def\mhat{\hat{m}}
+\def\nhat{\hat{n}}
+\def\phat{\hat{p}}
+\def\qhat{\hat{q}}
+\def\rhat{\hat{r}}
+\def\shat{\hat{s}}
+\def\that{\hat{t}}
+\def\uhat{\hat{u}}
+\def\vhat{\hat{v}}
+\def\what{\hat{w}}
+\def\xhat{\hat{x}}  
+\def\yhat{\hat{y}}
+\def\zhat{\hat{z}}
+\def\Ahat{\hat{A}}
+\def\Bhat{\hat{B}}
+\def\cBhat{\hat{\cB}}
+\def\Chat{\hat{C}}
+\def\Dhat{\hat{D}}
+\def\Ehat{\hat{E}}
+\def\Fhat{\hat{F}}
+\def\Ghat{\hat{G}}
+\def\Hhat{\hat{H}}
+\def\Ihat{\hat{I}}
+\def\Jhat{\hat{J}}
+\def\Khat{\hat{K}}
+\def\Lhat{\hat{L}}
+\def\Mhat{\hat{M}}
+\def\Nhat{\hat{N}}
+\def\Ohat{\hat{O}}
+\def\Phat{\hat{P}}
+\def\Qhat{\hat{Q}}
+\def\Rhat{\hat{R}}
+\def\Shat{\hat{S}}
+\def\Uhat{\hat{U}}
+\def\That{\hat{T}}
+\def\Xhat{\hat{X}}
+\def\Vhat{\hat{V}}
+\def\What{\hat{W}}
+\def\Yhat{\hat{Y}}
+\def\Zhat{\hat{Z}}
+
+
+
+%%%misc
+\def\red#1{\textcolor{red}{#1}}
+\def\blue#1{\textcolor{blue}{#1}}
+\def\institute#1{\gdef\@institute{#1}}
+\newcommand{\grad}{\nabla}  %who remembers nabla?
+%\newcommand{\email}[1]{{\tt #1}}
+\newcommand{\wmm}[1]{Mathematics Department, The College of William \&
+  Mary, \email{#1@math.wm.edu}}
+\newcommand{\addcolumbia}{Department of IEOR, Columbia University,
+  New York, NY.\ }
+
+%%% too lazy to type epsilon
+\newcommand{\eps}{\epsilon}
+
+%%%% frequently appearing constants
+\newcommand{\failp}{\frac{2\theta n}{\rho^2}}
+
+
+%%addons for Pantex
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\st}{\mbox{such that}}
+
+%%%%%Pantex specific macros
+
+% objective value variable in alphapoint
+%variables for the tech and facility objectives
+\newcommand{\tfobj}{\nu_{\mbox{tech}}(\alpha) }
+\newcommand{\ffobj}{\nu_{\mbox{fac}}(\alpha) }
+\newcommand{\tfvobj}{\overline{\nu}_{\mbox{tech}}(\alpha) }
+\newcommand{\ffvobj}{\overline{\nu}_{\mbox{fac}}(\alpha) }
+
+\newcommand{\tis}{x}   %start time indexed variable
+\newcommand{\tif}{\overline{x}}   %comp. time indexed variable
+\newcommand{\apoint}{\overline{t}^{\alpha}_j}  %generic alpha point
+\newcommand{\apointv}{t^{\alpha}_j} %generic start time alphapoint
+\newcommand{\apointp}{t^{\alpha}_{j^{'}}} %generic start time alphapoint
+
+\newcommand{\facset}{K(j)} 
+\newcommand{\jobnum}{m} 
+\newcommand{\sinputs}{\mbox{scheduling parameters}} 
+\newcommand{\alphaset}{S} 
+\newcommand{\heuristic}{\mbox{GB-$\alpha$} } 
+\newcommand{\LP}{\mbox{the linear program} } 
+\newcommand{\techind}{w }
+\newcommand{\certset}{C(j)}
+\newcommand{\earliest}{\tau_1} 
+\newcommand{\latest}{\tau_2} 
+\newcommand{\techbusy}{B(\techind)}
+\newcommand{\freetechs}{\cW}
+\newcommand{\start}{\sigma}
+\newcommand{\crewsize}{s}
+\newcommand{\ghosttechs}{G}
+\newcommand{\ghostfacs}{F}
+\newcommand{\facbusy}{B}
+\newcommand{\slotlength}{q_1}
+
+\def\Sum{\sum\limits}
+\def\Prod{\prod\limits}
+\def\Union{\bigcup\limits}
+\def\Inter{\bigcap\limits}
+\def\Lor{\bigvee\limits}
+\def\Land{\bigwedge\limits}
+\def\Lim{\lim\limits}
+\def\Max{\max\limits}
+\def\Min{\min\limits}
+
+\newfont{\programfont}{pcrr scaled 900}
+
+\newcommand{\step}[1]{\item[{\programfont #1}]}  %macro for steps
+
+
+% Boxing command (especially for algorithms)
+\long\gdef\boxit#1{\vspace{5mm}\begingroup\vbox{\hrule\hbox{\vrule\kern3pt
+      \vbox{\kern3pt#1\kern3pt}\kern3pt\vrule}\hrule}\endgroup}
+
+  %Rajeev's environment for outermost block in an algorithm
+\newenvironment{algorithm}[3]%
+  { \begin{flushleft}%
+   \begin{minipage}[b]{0.95\textwidth}%   %minipage keeps algorithm on same page
+      %To allow it to break, use \leftmargin and \rightmargin below.
+   \noindent{\programfont The #1 Algorithm\/}: \vspace*{-0.1in}%
+   \begin{description}
+    {\setlength{\listparindent}{-2.5mm}%
+     %\addtolength{\leftmargin}{0.1in}%
+     \setlength{\parskip}{0ex}%
+     \setlength{\itemsep}{0in}
+     \setlength{\parsep}{\parskip}%
+     \setlength{\topsep}{-0.45in}%
+     \setlength{\partopsep}{0in}}%
+     \item[{\programfont  Input:}] #2 \vspace*{-0.1in}
+     \item[{\programfont  Output:}] #3 \vspace*{-0.1in}
+   \end{description}
+   \begin{description}{}%
+    {\setlength{\listparindent}{-2.5mm}%
+     %\addtolength{\leftmargin}{0.1in}%
+     \setlength{\parskip}{0ex}%
+%     \setlength{\itemsep}{-0.1in}
+     \setlength{\parsep}{\parskip}%
+     \setlength{\topsep}{-0.45in}%
+     \setlength{\partopsep}{0in}}%
+   %\item[]%
+  }%
+  {\end{description}%
+   \end{minipage}%
+   \end{flushleft}%
+  }
+
+  %Rajeev's environment for outermost block in a procedure
+\newenvironment{procedure}[3]%
+  { \begin{flushleft}%
+   \begin{minipage}[b]{0.95\textwidth}%   %minipage keeps algorithm on same page
+      %To allow it to break, use \leftmargin and \rightmargin below.
+   \noindent {\programfont The #1 Procedure\/}: %\vspace*{-0.1in}%
+   \begin{description}
+    {%\setlength{\listparindent}{-2.5mm}%
+     %\addtolength{\leftmargin}{0.1in}%
+     \setlength{\parskip}{0ex}%
+     \setlength{\itemsep}{0in}
+     \setlength{\parsep}{\parskip}%
+     \setlength{\topsep}{-0.45in}%
+     \setlength{\partopsep}{0in}}%
+     \item[{\programfont  Input:}] {\programfont #2} %\vspace*{-0.1in}
+     \item[{\programfont  Output:}] {\programfont #3} %\vspace*{-0.1in}
+   \end{description}
+   \begin{description}{}%
+    { %\setlength{\listparindent}{-2.5mm}%
+     %\addtolength{\leftmargin}{0.1in}%
+     \setlength{\parskip}{0ex}%
+ %    \setlength{\itemsep}{-0.1in}
+     \setlength{\parsep}{\parskip}%
+     \setlength{\topsep}{-0.45in}%
+     \setlength{\partopsep}{0in}}%
+   %\item[]%
+  }%
+  {\end{description}%
+   \end{minipage}%
+   \end{flushleft}%
+  }
+
+  %Rajeev's environment for indented block in an algorithm
+\newenvironment{block}%
+  {\begin{list}{}%
+     {\addtolength{\leftmargin}{0.1in}%
+     \setlength{\listparindent}{-2.5mm}%
+     \setlength{\parskip}{0ex}%
+     \setlength{\parsep}{\parskip}%
+     \setlength{\itemsep}{0in}%
+     \setlength{\partopsep}{0in}%
+     \setlength{\topsep}{-0.1in}}%
+%     \vspace*{-0.03in}
+     \item[]%
+  }%
+  {\end{list}%\vspace*{-0.1in}%
+  }
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,186 @@
+% This is a Latex 2e document.
+% This is Test 1 for sa405
+% Written by David Phillips
+
+\documentclass[12pt]{article}
+
+\usepackage{amsthm, amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate}
+\usepackage{gastex,color}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Test 1 - 27 September 2017}
+\lhead{SA405, Fall 2018}
+\rfoot{}
+
+\input{preface}
+
+%\addtolength{\oddsidemargin}{-2.0cm}
+%\addtolength{\evensidemargin}{-2.0cm}
+%\addtolength{\textwidth}{3.0cm}
+%\addtolength{\topmargin}{-2.5cm}
+%\addtolength{\textheight}{4.5cm}
+
+\newcommand{\sfrac}[2]{\textrm{\footnotesize $\frac{#1}{#2}$}}
+
+\newcommand{\hangpara}{
+ %\setlength{\parindent}{0cm} % don't indent new paragraphs
+ \hangindent=3.6cm % indent all subsequent lines
+}
+
+
+
+\newcommand{\fib}{\hangpara\rule{2cm}{1pt} $\quad$} %{\line(1,0){2cm}}
+
+
+%\pagestyle{myheadings} \markright{\large Name:}
+\newtoks\scores
+\newcounter{sumscore}
+\newcounter{quesno}
+\newcounter{inquesno}
+\newcounter{partno}
+\setcounter{inquesno}{1}
+\newcounter{bonuspoints}
+\setcounter{bonuspoints}{0}
+
+\newcommand{\bques}[1]{
+    \noindent
+    \addtocounter{bonuspoints}{#1}
+    %\stepcounter{quesno}
+    %\expandafter\scores\expandafter{\the\scores
+    % \theinquesno\stepcounter{inquesno}&#1&\\ \hline}
+    % \par\noindent\thequesno.}
+    \par\noindent {\bf Bonus (#1 bonus points)}}
+
+
+\newcommand{\ques}[1]{
+    \noindent
+    \addtocounter{sumscore}{#1}
+    \stepcounter{quesno}
+    \expandafter\scores\expandafter{\the\scores
+    \theinquesno\stepcounter{inquesno}&#1&\\ \hline}
+%    \par\noindent\thequesno.}
+    \par\noindent\thequesno. (#1 points)}
+
+\newenvironment{parts}{\setcounter{partno}{1}}{\vspace{.2cm}}
+
+\newcommand{\pt}{
+    \noindent (\alph{partno})
+    \stepcounter{partno}
+    \noindent
+ %  \hspace{.01cm}
+}
+
+\newcommand{\pts}[1]{
+%    \noindent (\alph{partno})
+    \noindent (\alph{partno}) ({\it #1 points})
+    \stepcounter{partno}
+    \noindent
+ %  \hspace{.01cm}
+}
+
+\newcommand{\dfdx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dfdxtwo}[2]{\frac{\partial^2 #1}{\partial #2}}
+
+\newcommand{\tfl}{\item[] \underline{\phantom{truefalsetruefalse}}}
+
+
+
+\begin{document}
+
+\input{testbody.01.sa405.ay19}
+
+\newpage
+
+ \pagestyle{empty}
+
+
+%\addtolength{\topmargin}{cm}
+
+\noindent
+%\begin{flushright}  First {\Huge L}etter of {\Huge F}amily name: \end{flushright}
+
+%\vspace{0.5cm}
+
+
+\noindent {\Large SA405, \hfill Test 1 \hfill
+September 26, 2017} \\
+
+\smskip
+
+\noindent
+{\sc Instructor:  Asst. Prof. Skipper}
+
+\vspace{1.0cm}
+\noindent
+Name (please print): \ \ \rule{6cm}{.1mm}  \quad  
+\vspace{1cm}
+
+
+\noindent
+{\bf Instructions:}
+\\
+\begin{itemize}
+\item Do {\bf not} write your name on each page, only write your name above.
+
+\item No books or notes % or calculators
+% that do symbolic manipulation (such as TI-89 or TI-92) 
+ are allowed. %{\bf One} 8.5 by 11 inch formula/note sheet is allowed.
+
+\item You may use your calculator on this test.
+
+\item Show all work clearly. (Little or no credit will be given for a numerical
+answer without the correct accompanying work.
+Partial credit is given where appropriate.) 
+
+\item If you need more space than is provided, use the back of the previous page. 
+
+\item Please read the question carefully.
+If you are not sure what a question is
+asking, ask for clarification.
+
+\item If you start over on a problem, please CLEARLY indicate what your final
+  answer is, along with its accompanying work.
+
+\item All formulations must have descriptions of any indices, parameters, and decision variables used. All constraints must be described. 
+\end{itemize}
+
+
+\vspace{0.2cm}
+
+
+
+\begin{small}
+
+
+\begin{center}
+% The next line puts vertical space in the array
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|c|c|c|} \hline
+\hspace{0.8cm}Problem\hspace*{0.8cm}&\hspace{0.8cm}Points
+\hspace*{0.8cm}&\hspace{0.8cm}Score\hspace*{1cm}\\ \hline
+\the\scores
+Total & \thesumscore & \\ \hline %\hline 
+%Bonus & \thebonuspoints & \\ \hline
+\end{tabular}
+\end{center}
+
+\end{small}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,352 @@
+\documentclass[12pt]{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+
+\newcommand{\class}{SA 405}
+\newcommand{\term}{Fall 2018}
+\newcommand{\examnum}{Exam 1}
+\newcommand{\examdate}{27 Sept 2018}
+\newcommand{\timelimit}{60 Minutes}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+
+\begin{document}
+
+\noindent
+\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} r}
+\textbf{\class} &&\textbf{\examnum}\\
+\textbf{\term} &&\textbf{\examdate}\\
+ && \\
+ && \\
+Midshipmen are persons of integrity.& \textbf{Name:} & \makebox[2.2in]{\hrulefill}\\\\
+%\textbf{Time Limit: \timelimit} & Teaching Assistant & \makebox[2in]{\hrulefill}
+\end{tabular*}
+
+\noindent
+\rule[2ex]{\textwidth}{2pt}
+
+%This exam contains \numpages\ pages (including this cover page) and \numquestions\ questions.\\
+%Total of points is \numpoints.
+
+\begin{itemize}
+\item Do {\bf not} write your name on each page, only write your name above.
+
+\item No books or notes % or calculators
+% that do symbolic manipulation (such as TI-89 or TI-92) 
+ are allowed. %{\bf One} 8.5 by 11 inch formula/note sheet is allowed.
+
+%\item You may use your calculator on this test.
+
+\item Show all work clearly. (Little or no credit will be given for a numerical
+answer without the correct accompanying work.
+Partial credit is given where appropriate.) 
+
+%\item If you need more space than is provided, use the back of the previous page. 
+
+\item Please read the question carefully.
+If you are not sure what a question is
+asking, ask for clarification.
+
+\item If you start over on a problem, please CLEARLY indicate what your final
+  answer is, along with its accompanying work.
+
+\item All formulations must have descriptions of any indices, parameters, and decision variables used. All constraints must be described. 
+\end{itemize}
+
+
+\begin{center}
+Grade Table (for teacher use only)\\
+\addpoints
+\gradetable[v][questions]
+\end{center}
+
+\noindent
+\rule[2ex]{\textwidth}{2pt}
+
+\newpage %%%%%%%
+\begin{questions}
+
+\question A hospital ER needs to keep doctors on call, so that a qualified individual is available to perform any medical operation that might be required (there is an official list of such procedures). For each of the five doctors available for on-call duty, the additional salary they need to be paid (in thousands of \$), and which procedures they can perform, is known and provided below. The goal is to choose which doctors should be on call so that each procedure is covered, at a minimum cost.
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+    \hline
+    & Doc 1 (\$1) & Doc 2 (\$3) & Doc 3 (\$2)& Doc 4 (\$3) & Doc 5 (\$4) & Doc 6 (\$2) \\ 
+    \hline
+    Proc 1  & \checkmark  &  &  &  \checkmark &  &  \\ 
+    \hline
+    Proc 2 &  \checkmark &  &  &  &  \checkmark &  \\ 
+    \hline
+    Proc 3 &  &  \checkmark &  \checkmark &  &  &  \\ 
+    \hline
+    Proc 4 &  \checkmark  &  &  &  &  &  \checkmark \\ 
+    \hline
+    Proc 5 &  & \checkmark  &  \checkmark &  &  &  \checkmark \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{parts}
+\part[14] Let binary variable $x_i$ equal 1 if doctor $i$ is on call, and 0, otherwise.  Formulate a concrete integer programming model for the minimum cost problem.
+\vfill
+\vfill
+
+\part[6] Let $D = \{d1,d2,d3,d4,d5,d6\}$ represent the set of doctors.  Let $\mathscr{P} = \{P1,P2,P3,P4,P5\}$ represent the subsets of doctors that are capable of performing each of the 5 procedures.  For example, $P1 := \{d1, d4\}$ is the set of doctors who are capable of performing procedure 1.  Express the constraints from your concrete model in abstract form.
+\vfill
+
+\end{parts}
+
+
+%%%%%%%
+\newpage
+\question Vance Refrigeration has factories located in Dallas, Texas and Little Rock, Arkansa.  Their factories produce refrigerators bound for their outlet store in Baltimore. All refrigerators are shipped from the factories via train. The table below shows the cost (in dollars) of shipping a single refrigerator via train from one city to another. If a ``--'' is contained within a cell below, refrigerators cannot be shipped along that arc.
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c| } 
+    \hline
+    & \multicolumn{4}{c|}{ \textbf{To} }\\
+    \hline
+    \textbf{From} & Little Rock (2) & Richmond (3) & Atlanta (4) & Baltimore (5) \\ 
+    \hline
+    Dallas (1)  & 60 & -- & 30 & --  \\ 
+    \hline
+    Little Rock (2) & --  & 50 & 40 &-- \\ 
+    \hline
+    Richmond (3) &  -- & -- & 20 & 40    \\ 
+    \hline
+    Atlanta (4) & -- & 30 & --  & 50 \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+
+\begin{parts}
+
+\part[4] Draw a picture of this network with the nodes labeled with the number of each city and the directed arcs labeled with the unit shipping cost between the associated pair of cities.
+
+
+\newpage
+\part[12] Suppose there are 15 refrigerators in Dallas and 5 refrigerators in Little Rock. Write a concrete model to minimize the cost of shipping all 20 refrigerators to Baltimore. Clearly define your decision variables.
+\vfill  
+
+\part[4] The CEO of Vance Refrigeration told you that, if you send refrigerators from Dallas to Little Rock, then you must send at least 10 units but no more than 20 units. Thus, you can send either 0 refrigerators or you must send at least $10$ units and no more than $20$ units. What variable(s) and constraint(s) should you add to your concrete model to enforce this constraint? Clearly define your decision variable(s).
+\vspace{3in}
+
+\end{parts}
+
+
+\newpage
+
+\question Trader Bill's Clothing Company is capable of manufacturing three types of attire: shirts, pants, and jackets. The manufacture of each type of clothing also requires the amounts of cloth and labor shown in the table below. Additionally, the table includes the demand for each type of clothing, maximum number of each type of clothing that Trader Bill's can manufacture, and the unit profit of each type of clothing. Each week,350 hours of labor and 460 sq yd of cloth are available. 
+
+As an incentive, Trader Bill provides a bonus if his crew makes a combined total of at least 50 jackets and shirts.  The bonus reduces Trader Bill's overall profit by \$250.  
+
+
+\begin{center} \label{table2}
+
+\begin{tabular}{ |c|c|c|c|c|c| } 
+    \hline
+    Clothing Type & Labor in Hours & Cloth in Sq. Yards & Demand & Max Allowable & Profit (\$) \\ 
+    \hline
+    shirt & 3 & 4 & 15& 100 & 6 \\
+    \hline
+    pants & 2 & 3 & 30& 220 & 4 \\
+    \hline
+    jacket & 6 & 4 & 25& 180 & 7\\
+    \hline
+\end{tabular}
+\end{center}
+
+
+Sets:
+\begin{itemize}
+\item $C$ := types of clothing
+\item $R$ := types of resources
+\end{itemize}
+
+Parameters:
+\begin{itemize}
+\item  $p_{c}$ := per item profit for clothing type $c$, for all $c \in C$
+\item  $B$ := cost of ``Bonus'' to Trader Bill
+\item  $a_{c,r}$ := the number of units of resource $r$ required for one item of clothing type $c$, for all $c \in C, r \in R$
+\item  $m_{c}$ := maximum number of $c$ items that can be produced, for all $c\in C$
+\item  $b_{r}$ := units of resource $r$ available, for all $r \in R$
+\end{itemize}
+
+Decision variables:
+
+\answerboxone{c}{2in}
+
+\newpage
+(3 cont.) Formulate an \textbf{abstract} model to maximize Trader Bill's weekly profits.  
+\begin{parts}
+\part[4] Carefully define any decision variables you require in the space provided.
+\part[3] Include an objective function. 
+\part[8] Include constraints related to use of resources and bounds.
+\part[2] Include constraint related to the ``Bonus''.  This constraint may be included in concrete form.
+\part[3] Briefly explain the purpose of each set of constraints. 
+\end{parts}
+
+%\vspace{8cm}
+
+
+
+\end{questions}
+%\newpage
+
+%\noindent I'm not exactly sure how to say this, but I think it would be cool to ask a question that would require them to add a supersource and supersink. Maybe we could give them a graph having a nodes $a, \ b, \ c, \ d, \ e,$ and $f$, and then ask them to modify the given network so that it can be modeled as maximum flow problem. I think this would be a good stretch problem, but they've seen dummy nodes and things like that before. 
+
+%Let $\mathcal{V}$ be the set of all nodes in the network, and let $\mathcal{A}$ be the set of all arcs in the network.
+%Maximum-flow Formulation for a given source/origin node $s$ and a termination/destination node $t$.
+%\begin{align}
+%\textrm{max } & f \\
+%\textrm{s.t. } & \sum_{i:(s,i) \in \mathcal{A}x_{si} = f \\
+%& \sum_{j:(i,j) \in \mathcal{A}}x_{ij} - \sum{h:(h,i) \in \mathcal{A}}x_{hi} = 0 \\
+%& -\sum_{j:(j,t) \in \mathcal{A}}x_{jt} = -f
+%d\end{align}
+
+
+
+
+
+\end{document}
+
+
+%\newpage
+\question The Superintendent asks his most trusted Ops Research majors (you all) to give him directions from the Yard to Los Angeles, CA. Of course, he wants to find the path the minimizes his total travel time. Assume that he can travel through a set of cities $\mathcal{C}$ along a set of roads $\mathcal{A}$ between each city. He assumes that traveling along some arc $(i,j) \in \mathcal{A}$ will require $t_{ij} > 0$ minutes.  
+
+
+\begin{parts}
+
+\part Define your starting node $s$ and your destination/termination node $t$. Using these definitions, formulate an abstract mathematical programming model to help the superintendent solve his problem.
+
+%\vspace{11cm}
+
+\part The superintendent now wants to consider traffic delays in each city. To account for this added time it takes to travel through each city, he assumes that it will take $d_i > 0$ extra units of time to travel through city $i \in \mathcal{C}$. Modify your mathematical programming model above to account for the extra traffic-related time delays.
+\end{parts}
+
+
+
+\question[1] Calculate 2+2.
+\addpoints
+
+\question[20] Consider the function $f(x)=3x^3+2x^2+x+1$.
+\noaddpoints % to omit double points count
+\begin{parts}
+\part[10] Calculate $f'(x)$.
+\part[10] Calculate $f''(x)$.
+\end{parts}
+\addpoints
+
+\question[2] One of these things is not like the others; one of these
+things is not the same. Which one is different?
+\begin{choices}
+\choice John
+\choice Paul
+\choice George
+\choice Ringo
+\choice Socrates
+\end{choices}
+
+\question[2] One of these things is not like the others; one of these
+things is not the same. Which one is different?
+\begin{oneparchoices}
+\choice John
+\choice Paul
+\choice George
+\choice Ringo
+\choice Socrates
+\end{oneparchoices}
+
+\question[3] Mark box if true.
+\addpoints
+\begin{checkboxes}
+\choice 2+2=4
+\choice $\frac{d}{dx} (x^2+1) = 2x+1$
+\choice The Moon is made of cheese.
+\end{checkboxes}
+
+{%
+\checkboxchar{$\Box$} % changing checkbox style locally
+\question[3] Mark box if true.
+\addpoints
+\begin{checkboxes}
+\choice 2+2=4
+\choice $\frac{d}{dx} (x^2+1) = 2x+1$
+\choice The Moon is made of cheese.
+\end{checkboxes}
+}%
+
+{%
+% changing choice items style locally
+\renewcommand*\thechoice{\arabic{choice}} 
+\renewcommand*\choicelabel{\thechoice)}
+%
+\question[2] Element with $Z=92$ is:
+\begin{multicols}{2}
+\begin{choices}
+\choice H
+\choice O
+\choice F
+\choice S
+\choice Ba
+\choice Pb
+\choice U
+\choice Pu
+\end{choices}
+\end{multicols}
+}%
+
+\question[10]
+In no more than one paragraph, explain why the earth is round.
+\makeemptybox{2in}
+
+\question[20]
+Explain blah, blah\ldots
+\makeemptybox{\fill}
+
+\newpage
+
+\question[20]
+Explain blah, blah\ldots
+\fillwithlines{\fill}
+
+\newpage
+
+\question[20]
+Explain blah, blah\ldots
+\fillwithdottedlines{8em}
+
+\end{questions}
+
+\end{document}

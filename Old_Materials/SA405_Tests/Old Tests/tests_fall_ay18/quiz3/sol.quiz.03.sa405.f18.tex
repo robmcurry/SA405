@@ -1,0 +1,122 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Quiz 3 - 14 September 2017}
+\lhead{SA405, Fall 2018}
+\rfoot{Page \thepage}
+
+\input{preface}
+
+%\addtolength{\oddsidemargin}{-2.0cm}
+%\addtolength{\evensidemargin}{-2.0cm}
+%\addtolength{\textwidth}{3.0cm}
+%\addtolength{\topmargin}{-2.5cm}
+%\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Quiz 3 - Solutions}\\
+  {\sc Instructor: Foraker}
+\end{center}
+
+The Pear Computer Company is trying to decide where to manufacture its upcoming phone.  The phone will be available in three varieties, the jPhone 8, the jPhone 8 Plus, and the jPhone X.  The phones can be manufactured at one of three different facilities:  Closistan, Nearistan, and Faristan.  There is an initial setup cost associated with using each facility.  The cost for shipping the phones also varies by location.  The following table summarizes the relevant data:
+
+\begin{center}
+\begin{tabular}{l|c|c|c}
+   & Closistan  & Nearistan & Faristan \\
+  \hline 
+  Setup cost & \$400,000 & \$300,000 & \$200,000 \\
+  \hline 
+  Shipping Cost/jPhone 8 & \$2 & \$4 & \$5 \\
+  \hline
+  Shipping Cost/jPhone 8 Plus & \$3 & \$6 & \$9 \\
+  \hline
+  Shipping Cost/jPhone X & \$7 & \$8 & \$10 \\
+  \hline
+\end{tabular}
+\end{center}
+
+Each month the Pear Computer Company predicts that 85,000 of the jPhone 8, 105,000 of the jPhone 8 Plus, and 150,000 of the jPhone X will need to be shipped from the manufacturing facilities.  The logistics employee that you replaced did not finish the formulation, but did get it started.  The LP formulation was supposed to minimize the monthly costs, while meeting the predicted shipping requirements. The following is what the logistics employee came up with so far:
+
+\noindent\underline{Indices}
+\begin{tabbing}
+\hspace{.5cm} \= $p\in P$ \hspace{2.5cm} \= phones, $P=\{$jPhone 8, jPhone 8 Plus, jPhone X$\}$ \\
+\> $f\in F$ \> Manufacturing Facilities, $F=\{{\rm Closistan,Nearistan,Faristan} \}$\\
+
+\\
+\noindent\underline{Data}\\% [units]\
+\> {\it setup\_cost}$_{f}$ \> setup cost if Manufacturing Facility $f$ is used\\
+\> {\it cost}$_{p,f}$ \> cost to ship phone $p$ from Manufacturing Facility $f$ \\
+\> {\it required}$_{p}$ \> number of phones $p$ that need to be shipped \\
+\\
+
+\noindent\underline{Integer Decision Variables}\\% [units]\\
+\\
+\> {\it SHIP}$_{p,f}$ \> number of phones $p$ shipped from Manufacturing Facility $f$  \\
+\\
+\noindent\underline{Binary Decision Variables}\\% [units]\\
+\\
+\> {\it OPEN}$_{f}$ \> 1 if Manufacturing Facility $f$ is open, 0 otherwise  \\
+\end{tabbing}
+
+Use the start of the logistic employee's formulation to answer the following questions.
+
+\begin{center}
+\begin{enumerate}
+\item {\it (5 points)} Write an objective function that minimizes the {\bf TOTAL} cost of meeting the monthly shipping requirements predicted by the Pear Computer Company.
+
+\[
+    \begin{array}{llll}
+      \displaystyle\min_{ \tiny{\it SHIP, OPEN}} & \displaystyle\sum_{p\in P, f\in F} cost_{p,f} SHIP_{p,f} & + \displaystyle\sum_{f\in F} setup\_cost_f OPEN_f & \\
+    \end{array}
+    \]
+
+\item {\it (5 points)} Write a set of constraints which ensures monthly shipping requirements predicted by the Pear Computer Company are met. 
+
+\[
+    \begin{array}{llll}
+    & \displaystyle\sum_{f\in F} SHIP_{p,f} & \ge required_p & \forall p \in P \\
+    \end{array}
+    \]
+
+\item {\it (5 points)} The employee you relieved attempted to write a set of linear constraints which ensures phones are only manufactured at Facilities that are open.  The employee's work is shown below.  The employee wasn't sure if the set of constraints was correct.  Explain why the set of constraints shown below is NOT correct.
+
+\[
+    \begin{array}{llll}
+    & SHIP_{p,f} OPEN_f & \le required_p & \forall p \in P, \forall f \in F \\
+    \end{array}
+    \]
+
+\red{The set of constraints is not correct because as written it is nonlinear.  Both $SHIP_{p,f}$ and $OPEN_f$ are decision variables, so the product $SHIP_{p,f} OPEN_f$ is nonlinear.}
+
+\end{enumerate}
+
+\end{center}
+
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

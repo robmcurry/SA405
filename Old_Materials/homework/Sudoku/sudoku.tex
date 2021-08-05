@@ -1,0 +1,109 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Sudoku Assignment}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker} \\
+ {\sc Note:  Assignment adapted from Sudoku, by Matt Carlyle, PhD}
+\end{center}
+
+\medskip
+
+\begin{figure}[!h]
+\centering
+\begin{center}
+%\includegraphics[width=0.4\textwidth]{puzzle.png}
+\caption{A (very difficult) Sudoku puzzle of order three.}
+\end{center}
+\end{figure}
+
+\section{Introduction}
+A {\it Sudoku puzzle of order n} consists of an $n^2 \times n^2$ table of squares, each of which is either empty or contains one of the integers one through $n^2$.  The goal of a Sudoku puzzle is to fill in the remaining squares with a number between one and $n^2$ so that each row, each column, and each major $n \times n$ block contains a {\it permutation} of the numbers $\{ 1,\dots ,n^2 \}$.  Figure 1 shows a puzzle of order three; to solve it we must complete each row, column, and major 3x3 block (with bold borders) with a permutation of the numbers $\{1,\dots,9\}$.
+
+The assumption we have to make when we try to {\it solve} a Sudoku puzzle is that there is a unique way to fill in each empty square.  If we are tyring to {\it design} a Sudoku puzzle, we could start with a completely full board and remove values from squares until we get to a point at which removing one more value would yield multiple solutions.  To support us in both of these efforts, we present a formulation for puzzles of order three.
+
+\begin{tabbing}
+\noindent{\bf Sets \{members\}}\\[0.2cm]
+\hspace*{.5cm} \= $i$ \hspace{2.8cm} \= Rows, columns (alias $j$), and values (alias $k$) $\{1,...,9\}$ \\
+\> $p$ \> Row and column (alias $q$) blocks $\{1,2,3\}$\\[0.2cm]
+\noindent{\bf Data [units]}\\[0.2cm] 
+\> $\overline{x}_{ij}$ \> Given value in row $i$, column $j$ [integer 0-9] \\[0.2cm]
+\noindent{\bf Decision Variables [units]}\\
+\> $Y_{i,j,k}$ \> =1 if row $i$ column $j$ has value $k$, 0 otherwise [binary]\\[0.2cm]
+\noindent{\bf Formulation}
+\end{tabbing}
+%The alignat environment in the amsmath package provides a way of aligning multiple equation (like the align
+% environment) but allows the user to control the widths of the columns instead of the default equal spacing in align.
+% the odd-numbered & symbols separate a right-aligned column from a left-aligned column, and the even-numbered ones
+% separate columns of equations, so we sometimes need two & in a row to get the pieces we want in a math 
+% programming formulation to stay left-justified in their columns
+\begin{alignat}{3}
+\max_{ \tiny{\it Y}} \quad & \sum_{i,j,k} Y_{i,j,k} \\
+\mbox{s.t.} \quad & \sum_{j} Y_{i,j,k} = 1 &\qquad&  \forall i,k &\qquad& \\
+& \sum_{i} Y_{i,j,k} = 1 & & \forall j,k \\
+& \sum\limits_{\begin{subarray}{c} 3(p-1) < i \le 3p \\ 3(q-1) < j \le 3q \end{subarray} } Y_{i,j,k} = 1 &\qquad& \forall p,q,k \\
+& \sum_{k} Y_{i,j,k} = 1 &\qquad& \forall i,j \\
+& Y_{i,j,k} = 1 && \forall ~ {\overline x}_{ij} = k > 0 \\
+& Y_{i,j,k} ~ {\rm binary} && \forall i,j,k \nonumber
+\end{alignat}
+
+\noindent{\bf Discussion}
+
+Objective (1) is aribitrary, since we are assuming the solution is unique.  Constraints (2) ensure that each row $i$ uses value $k$ exactly once, while Constraints (3) ensure the same for each column $j$.  Constraints (4) ensure that each major block uses value $k$ exactly once.  Constraints (5) guarantee that each square has exactly one value, and Constraints (6) fix the squares for which values were already provided.  
+
+\section{Homework}  
+
+{\bf Submit your model file, data file, and Excel file via Blackboard by 2200 on 26 October 2017.}
+
+\begin{enumerate}
+
+\item Implement this formulation in GUSEK, and use GLPK to solve the puzzle in Figure 1.
+\item Implement an interface in Excel/VBA:  give a 9x9 grid, and, with one button push, create a GUSEK data file and run GUSEK, and then with a second button push read in the solution.
+
+
+\noindent{\bf Parts 3 and 4 below are OPTIONAL.  To get the BONUS:  Submit your modified model file, data file, and Excel file via Blackboard by 2200 on 26 October 2017.}
+
+
+\item Modify the formulation and GUSEK to determine whether the solution you find is unique. (Hint: modify your objective function to try to {\it change} as many cells as possible from the previous solution.  This will require some extra parameters.)
+
+\item How many filled-in squares can you remove from Figure 1 and keep a unique solution?  This can be done with a macro in VBA (or ``by hand"), using parts 2 and 3 above.
+
+\end{enumerate}
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

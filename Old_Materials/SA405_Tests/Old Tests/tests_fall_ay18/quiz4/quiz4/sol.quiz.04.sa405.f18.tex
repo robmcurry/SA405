@@ -1,0 +1,126 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{gastex}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Quiz 4 - 21 September 2017}
+\lhead{SA405, Fall 2018}
+\rfoot{Page \thepage}
+
+\input{preface}
+
+%\addtolength{\oddsidemargin}{-2.0cm}
+%\addtolength{\evensidemargin}{-2.0cm}
+%\addtolength{\textwidth}{3.0cm}
+%\addtolength{\topmargin}{-2.5cm}
+%\addtolength{\textheight}{4.5cm}
+
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+\begin{document}
+\begin{center}
+  {\sc Quiz 4 - Solutions}\\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\newcommand{\points}[1]{{\it (#1 Points)}}
+
+\begin{enumerate}
+\item A special operations unit is looking to buy new weapons for use in upcoming deployments.  There are four weapons available that can effectively engage targets at different ranges.  The different weapons, their costs, and capabilities are summarized in the table below.  A YES in the column for a weapon means that it can effectively engage targets at that range.
+
+ \begin{center}
+    \begin{tabular}{c||c|c|c|c}
+      Target Range & Weapon 1 & Weapon 2 & Weapon 3 & Weapon 4 \\
+      \hline
+      \hline
+      Short & YES & YES & YES & YES \\
+      \hline
+      Medium & NO & YES & YES & NO \\
+      \hline
+      Long & NO & NO & YES & YES \\
+      \hline
+      \hline
+      Cost & \$ 6300 & \$ 5400 & \$ 4600 & \$ 3100 \\
+     \hline
+    \end{tabular}
+  \end{center}
+
+Use the variable $X_j$ defined below, to answer the following questions.  Remember to define {\bf ANY} other terms you use in your answers to the questions below.
+  \[
+  X_{j} = \binvar{if Weapon $j$ is selected}
+  \]
+
+\begin{enumerate}
+\item \points{5} Write an objective function that finds a minimum cost collection of weapons.
+
+\[
+\min 6300 X_1 + 5400 X_2 + 4600 X_3 + 3100 X_4
+\]
+
+or
+
+\[
+\min \sum_{j \in J} cost_j X_j, ~ J = \{1,2,3,4\} ~ {\rm and}~ cost_j ~ {\rm is~given~in~the~table~above}
+\]
+
+\vfill
+
+\item \points{5} Write the set covering constraints which ensure the unit will have {\bf AT LEAST ONE} weapon that can effectively engage targets at each range.
+
+\begin{eqnarray}
+X_1 + X_2 + X_3 + X_4 &\ge& 1 \nonumber \\
+X_2 + X_3 &\ge& 1 \nonumber \\
+X_3 + X_4 &\ge& 1 \nonumber
+\end{eqnarray}
+
+\vfill
+
+\item \points{5} Write the set partitioning constraints which ensure the unit will have {\bf EXACTLY ONE} weapon that can effectively engage targets at each range.
+
+\begin{eqnarray}
+X_1 + X_2 + X_3 + X_4 &=& 1 \nonumber \\
+X_2 + X_3 &=& 1 \nonumber \\
+X_3 + X_4 &=& 1 \nonumber
+\end{eqnarray}
+
+\vfill
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

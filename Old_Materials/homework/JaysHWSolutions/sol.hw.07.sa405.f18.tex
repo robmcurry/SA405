@@ -1,0 +1,123 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 7 -- solutions}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+\begin{enumerate} 
+
+\item 4.6: This is the $p$-Center Model (Integer Program 4.4 in the book).
+
+\begin{tabbing}
+\noindent{\bf Indices and Sets}\\[0.2cm]
+\hspace*{.5cm} \= $i\in I$ \hspace{2.8cm} \= customers, $I=\{1,2,...,10\}$ \\
+\> $j\in J$ \> possible facility locations, $J=\{3,5,6,7,8\}$\\[0.2cm]
+\noindent{\bf Data}\\[0.2cm] 
+\> $d_{ij}$ \> the length of the shortest path between nodes $i$ and $j$ \\
+\> $p$  \> number of facilities we can afford to use\\[0.2cm]
+\noindent{\bf Decision Variables [units]}\\
+\> $x_j$ \> 1 if node $j$ is the location of a facility, 0 otherwise  [binary] \\
+\> $y_{ij}$ \> 1 if node $i$ has its demand satisfied by facility $j$, 0 otherwise  [binary] \\
+\> $W$ \> maximum distance between a demand node and its assigned facility [miles] \\[0.2cm] 
+\noindent{\bf Formulation}
+\end{tabbing}
+%The alignat environment in the amsmath package provides a way of aligning multiple equation (like the align
+% environment) but allows the user to control the widths of the columns instead of the default equal spacing in align.
+% the odd-numbered & symbols separate a right-aligned column from a left-aligned column, and the even-numbered ones
+% separate columns of equations, so we sometimes need two & in a row to get the pieces we want in a math 
+% programming formulation to stay left-justified in their columns
+\begin{alignat}{3}
+\min_{ \tiny{\it x, y, W}} \quad & W \\
+\mbox{s.t.} \quad & \sum_{j\in J} y_{ij} = 1 &\qquad&  \forall i \in I &\qquad& \\
+& \sum_{j \in J} x_j = p &&  \\
+& y_{ij} \le x_j &\qquad& \forall i \in I, \forall j \in J\\
+& \sum_{j \in J} d_{ij} y_{ij} \le W &\qquad& \forall i \in I \\
+& x_j \in \{0,1\} && \forall j\in J \\
+ & y_{ij} \in \{0,1\} && \forall i\in I, \forall j \in J
+\end{alignat}
+
+\noindent{\bf Discussion}
+
+Objective (9) minimizes the maximum distance $W$.  Constraint (10) ensures each customer's demand is met by exactly one facility.  Constraint (11) ensures that the total number of open facilities is equal to $p$.  Constraint (12) ensures customer $i$'s demand is met by facility $j$ only if facility $j$ is open.  Constraint (13) is a minimax constraint which ensures that $W$ is the maximum distance between a demand node and its assigned facility.  Note that in this particular problem $p=1$.  We find that the smallest maximum distance is 5, which means that every customer could be satisfied by a facility at location 6.
+
+\newpage
+
+\item 4.7: This is the $p$-Median Model (Integer Program 4.5 in the book).
+
+\begin{tabbing}
+\noindent{\bf Indices and Sets}\\[0.2cm]
+\hspace*{.5cm} \= $i\in I$ \hspace{2.8cm} \= customers, $I=\{1,2,...,10\}$ \\
+\> $j\in J$ \> possible facility locations, $J=\{3,5,6,7,8\}$\\[0.2cm]
+\noindent{\bf Data}\\[0.2cm] 
+\> $d_{ij}$ \> the length of the shortest path between nodes $i$ and $j$ \\
+\> $h_i$ \> customer demand at node $i$ \\
+\> $p$  \> number of facilities we can afford to use\\[0.2cm]
+\noindent{\bf Decision Variables [units]}\\
+\> $x_j$ \> 1 if node $j$ is the location of a facility, 0 otherwise  [binary] \\
+\> $y_{ij}$ \> 1 if node $i$ has its demand satisfied by facility $j$, 0 otherwise  [binary] \\[0.2cm] 
+\noindent{\bf Formulation}
+\end{tabbing}
+%The alignat environment in the amsmath package provides a way of aligning multiple equation (like the align
+% environment) but allows the user to control the widths of the columns instead of the default equal spacing in align.
+% the odd-numbered & symbols separate a right-aligned column from a left-aligned column, and the even-numbered ones
+% separate columns of equations, so we sometimes need two & in a row to get the pieces we want in a math 
+% programming formulation to stay left-justified in their columns
+\begin{alignat}{3}
+\min_{ \tiny{\it x, y}} \quad & \sum_{i \in I} \sum_{j \in J} h_i d_{ij} y_{ij} \\
+\mbox{s.t.} \quad & \sum_{j\in J} y_{ij} = 1 &\qquad&  \forall i \in I &\qquad& \\
+& \sum_{j \in J} x_j = p &&  \\
+& y_{ij} \le x_j &\qquad& \forall i \in I, \forall j \in J\\
+& x_j \in \{0,1\} && \forall j\in J \\
+ & y_{ij} \in \{0,1\} && \forall i\in I, \forall j \in J
+\end{alignat}
+
+\noindent{\bf Discussion}
+
+Objective (16) minimizes the weighted distances.  Constraint (17) ensures each customer's demand is met by exactly one facility.  Constraint (18) ensures that the total number of open facilities is equal to $p$.  Constraint (19) ensures customer $i$'s demand is met by facility $j$ only if facility $j$ is open.  Note that in this particular problem $p=1$.  We find that if we locate the facility at location 6, the minimum weighted distance is 2610.
+
+\end{enumerate}
+
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

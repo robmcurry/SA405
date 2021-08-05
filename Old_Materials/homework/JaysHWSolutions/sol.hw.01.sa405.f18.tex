@@ -1,0 +1,176 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 1 -- Solutions}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+{\bf You will receive the most benefit from the homework if you only
+  read the solutions after making a sincere effort to solve the problems.}
+
+\medskip
+
+We assume that the linear program under consideration is
+\[
+\begin{array}{ll}
+  \max & c^\top x \\
+  \mbox{s.t.} & A x = b \\
+  & x \geq 0,
+\end{array}
+\]
+where $A \in \R^{m \times n}$ is full row rank and that $b \in \R^m$
+and $c \in \R^n$. We also assume the column vectors of $A$ are $A_i$
+for $i = 1,\ldots,n$.
+
+\begin{enumerate} 
+
+\item 8.23 ({\it Hint: consider the basis matrix associated with a
+    solution with both $x^+$ and $x^-$.}): Following the hint, we can
+  see that the basic matrix is singular. Suppose the original column
+  for $x$ was the vector $A_x$. Then, after the substitution there will
+  be the columns $A_x$ for $x^+$ and $-A_x$ for $x^-$. But because
+  $A_x + (-A_x) = 0$, if $x^+$ and $x^-$
+  were basic, then the basis would be associated with linearly
+  dependent columns of the constraint matrix, a contradiction.
+
+  \medskip
+
+  \paragraph{Discussion:} This problem highlights the importance of
+  the definition of the basic solution and Lemma 7.1. In particular,
+  the argument requires that the columns are linearly independent.
+
+\item 8.24: As stated, the problem allows for the following
+  assumptions.
+  Suppose in a given simplex iteration, the current basic
+  feasible solution is $x$. Also, suppose that for a
+  nonbasic variable $x_k$, the simplex direction $d^k$ is improving so
+  that $c^\top d^k > 0$. Finally, suppose that the stepsize is
+  calculated according to the min. ratio test so that $x_j$ is the
+  leaving variable, which implies $d^k_j < 0$. After the pivot, let the new basis
+  be denoted by $\cB$. 
+
+  Consider the new basic solution after pivoting in $x_k$ and pivoting
+  out $x_j$. As $x_j$ is now nonbasic, we can construct an associated
+  simplex direction, $d^j$, which will have:
+  \[
+  d^j_j = 1, \quad d^j_i = 0 \mbox{ for all nonbasic components $i\not=j$.}  
+  \]
+  Then, consider the vector $d^k + (-d^k_j) d^j$. The $j$th component
+  is zero. Moreover, if $d^k + (-d^k_j) d^j \not= 0$, then because $A d^k =
+  A d^j = 0$, 
+  \[
+  0 = A d^k + (-d^k_j) A d^j = \sum_i A_i (d^k-d^k_j d^j)_i =
+  \sum_{i \in \cB} A_i (d^k_i - d^k_j d^j_i),
+  \]
+  a contradiction, as the vectors $\{A_i | i \in \cB\}$ are linearly
+  independent. Now, if $d^k + (-d^k_j) d^j = 0$, then 
+  \[
+  c^\top d^k = d^k_j (c^\top d^j) > 0,
+  \]
+which implies $c^\top d^j < 0$ since $d^k_j < 0$. Thus, entering $x_j$ would not be associated with an
+  {\bf improving} simplex direction.
+
+  \medskip
+
+  \paragraph{Discussion:} Note that the definition of the basic
+  solution and Lemma 7.1 is again necessary for this argument, as it relies
+  on the linear independence of the columns of $A$ associated with the
+  basic solution, $x^k$. The argument also requires a knowledge of how
+  the simplex directions are constructed.
+
+
+\item 8.27: We must show that $x + \lambda_{\max} d^k$ is a basic
+  feasible solution and can assume $\lambda_{\max} > 0$ and exists, as
+  $x$ is nondegenerate and $d^k$ is not an unbounded improving
+  direction. Using Lemma 7.1, we must show: (a) $A(x + \lambda_{\max}
+  d^k) = b$, $x + \lambda_{\max} d^k \geq 0$; (b) at least $n-m$
+  components of $x + \lambda_{\max} d^k$ are zero; and (c) there is a basis
+  associated with $x + \lambda_{\max} d^k$ which corresponds to $m$
+  linearly independent columns of $A$.
+
+  To see (a), note that the definition of $d^k$ indicates that $A d^k
+  = 0$. Thus, for all $\lambda \in \R$, 
+  \[
+  A (x + \lambda d^k) = A x + \lambda Ad^k = b + 0 = b.
+  \]
+  Also, as $\lambda_{\max} = \min\{ -x_i/d_i | d_i < 0, x_i \mbox{ basic}\}$, for any component $i \in
+  \{1,\ldots,n\}$,
+  \[
+  x_i + \lambda_{\max} d^k_i \geq x_i - (x_i/d_i) d_i = 0.
+  \]
+  Note that the inequality holds if $d_i > 0$ as $\lambda > 0$ (this
+  is the case when $i = k$. Also, if $x_i$ is nonbasic but $i \not=
+  k$, then $x_i = d_i = 0$. Therefore, (a) is true.
+
+  To see (b), note that $d^k_i = 0$ for all nonbasic components except
+  one, namely $d^k_k = 1$. Also, there is a basic component $i$ such
+  that $-x_i/d^k_i = \lambda_{\max}$, so $x_i + \lambda_{\max} d^k_i =
+  0$. Thus, the number of nonzero components of $x + \lambda_{\max} d^k$
+  is at most the same as $x$. Thus, the number of zero components is
+  at least as many as $x$, namely, at least $n-m$ as $x$ is a basic
+  feasible solution. Thus, (b) is true.
+
+  To see (c), let $\cB$ be the basis associated with $x$ and $\cBhat$
+  the basis associated with $x + \lambda_{\max} d^k$. Note that $k \in
+  \cBhat$ by the definition of $d^k$. Also, let the indice of the
+  leaving variable be $j$, so that $x_j > 0$ but $x_j + \lambda_{\max}
+  d^k_j = 0$ and $j \in \cB$ but $j \not\in \cBhat$. For a
+  contradiction, suppose that the column vectors, $\{A_i | i \in \cBhat\}$ were linearly dependent. Then, there is a
+  nonzero vector $v$ such that $v_i = 0$ for all $i \not\in \cBhat$ and
+  \[
+  A v = \sum_{i \in \cBhat} A_i v_i = 0.
+  \]
+  If $v_k = 0$ then $\sum_{i \in \cB} A_i v_i = 0$, a
+  contradiction. But then, because $d^k_j < 0$ and $v_j = 0$, 
+  we have $d^k - v \not= 0$ and so
+  \[
+  0 = A v + A(-v_k) d^k = \sum_{i \in \cB} A_i (v_i - v_k d_i),
+  \]
+  implying that the vectors $\{A_i | i \in \cB\}$ are linearly
+  dependent, a contradiction.
+
+  \medskip
+
+  \paragraph{Discussion:} The problem emphasizes the importance of
+    linear dependence and independence in the definition of basic
+    solution, as well as the role the min. ratio test plays in
+    maintaining nonnegativity. 
+\end{enumerate}
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

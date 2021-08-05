@@ -1,0 +1,41 @@
+Option Explicit
+Public xbar As Range
+Sub CreateTextFile()
+
+Dim i As Integer, j As Integer
+Dim fs As Object
+Dim dat_file As String
+Dim gus_file As String
+Dim mod_file As String
+Dim wsh As Object
+Dim waitOnReturn As Boolean: waitOnReturn = True
+Dim windowStyle As Integer: windowStyle = 1
+
+'This code sets the location for all the necessary files
+dat_file = Sheets("Input").Range("R6").Value
+gus_file = Sheets("Input").Range("R2").Value
+mod_file = Sheets("Input").Range("R4").Value
+
+'Set the upper right cell of the puzzle to puzzleStart.
+Set puzzleStart = Sheets("Input").Range("B2")
+
+'Write puzzle to file, to be used by GUSEK
+Set fs = CreateObject("Scripting.FileSystemObject")
+Set fs = fs.CreateTextFile(dat_file, True)
+
+'Write code to read the puzzle in from the worksheet and write your .dat file.
+'Loop through the cells of the puzzle using puzzleStart.Cells(i,j).
+'As you loop, write lines into the data file as appropriate using fs.writeline().
+
+
+
+'The code below will call the GUSEK solver if you have the correct file
+'locations filled in on the Input page of the spreadsheet
+'(Remember there is a line of code that must be added to the .mod file!)
+Set wsh = VBA.CreateObject("WScript.Shell")
+
+'Below version uses GUSEK
+wsh.Run "cmd /c " & gus_file & " --cover --clique --gomory --mir -m " & mod_file & " -d " & dat_file & "", windowStyle, waitOnReturn
+
+
+End Sub

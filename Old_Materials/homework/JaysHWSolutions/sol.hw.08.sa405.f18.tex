@@ -1,0 +1,117 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{tikz}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+
+\begin{document}
+\begin{center}
+  {\sc Homework 8 -- solution}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+
+12.2: Solve the shortest path problem (using $s = 1$) given in the figure below using the Bellman-Ford Algorithm discussed in class.
+
+%This latex requires the tikz package
+\begin{center}
+  \begin{tikzpicture}
+    [font=\scriptsize,
+    node/.style={shape=circle,draw=black,minimum width=0.5cm,thick},
+    arc/.style={->,>=stealth,thick},
+    edge/.style={thick}]
+
+    \node (1) [node] at (2,32) {1};
+    \node (2) [node] at (4,34) {2};
+    \node (3) [node] at (4,30) {3};
+    \node (4) [node] at (8,32) {4};
+    \node (5) [node] at (12,34) {5};
+    \node (6) [node] at (12,30) {6};
+
+    \draw [arc] (1) -- (2);
+    \draw [arc] (1) -- (3);
+    \draw [arc] (1) -- (4);
+    \draw [arc] (2) -- (3);
+    \draw [arc] (2) -- (5);
+    \draw [arc] (3) -- (4);
+    \draw [arc] (3) -- (6);
+    \draw [arc] (4) -- (2);
+    \draw [arc] (4) -- (6);
+    \draw [arc] (5) -- (4);
+    \draw [arc] (5) -- (6);
+
+   \draw [arc]  (1) to node [auto] {5} (2);
+   \draw [arc]  (1) to node [auto] {4} (3);
+   \draw [arc]  (1) to node [above left] {7} (4);
+   \draw [arc]  (2) to node [above left] {-2} (3);
+   \draw [arc]  (2) to node [auto] {6} (5);
+   \draw [arc]  (3) to node [auto] {3} (4);
+   \draw [arc]  (3) to node [auto] {-1} (6);
+   \draw [arc]  (4) to node [auto] {-1} (2);
+   \draw [arc]  (4) to node [auto] {3} (6);
+   \draw [arc]  (5) to node [auto] {4} (4);
+   \draw [arc]  (5) to node [auto] {-2} (6);
+  \end{tikzpicture}
+\end{center}
+
+
+
+
+\noindent{\bf Discussion}
+
+We begin with a fixed ordering of the edges.  The ordering used was as follows:  (1,2), (1,3), (1,4), (2,3), (2,5), (3,4), (3,6), (4,2), (4,6), (5,4), and (5,6).  We initialize the distance labels, $d(i)$, to an appropriate ``large" value $M$ for all $i \in \{1,2,3,4,5,6\}$.  In this case $M$ was chosen to be the sum of all the arc costs, which was 26.  We then initialize the predecessor array, $pred(i)$, to 0 for all $i \in \{1,2,3,4,5,6\}$.  The final initialization step is to set $d(s)=0$.
+
+We now begin our first run through the edges in the order given above.  Looking at (1,2), we update $d(2)=5$ and $pred(2)=1$.  Next we consider (1,3), and update $d(3)=4$ and $pred(3)=1$.  Next we look at (1,4), and update $d(4)=7$ and $pred(4)=1$.  Then we consider (2,3), and update $d(3)=3$ and $pred(3)=2$.  Next we look at (2,5), and update $d(5)=11$ and $pred(5)=2$.  Then we consider (3,4), and update $d(4)=6$ and $pred(4)=3$.  Next we look at (3,6), and update $d(6)=2$ and $pred(6)=3$.  Then we consider (4,2), which doesn't result in any updates.  Next we look at (4,6), which doesn't result in any updates.  Then we consider (5,4), which doesn't result in any updates.  Finally we consider (5,6), which doesn't result in any updates.  After this first run through we have the following results:
+
+ \begin{center}
+  \begin{tabular}{c|c|c}
+    $i$ & $d(i)$ & $pred(i)$ \\ \hline
+    1 & 0 & 0  \\ \hline
+    2 & 5 & 1  \\ \hline
+    3 & 3 & 2  \\ \hline
+    4 & 6 & 3  \\ \hline
+    5 & 11 & 2  \\ \hline
+    6 & 2 & 3  \\ \hline
+  \end{tabular}
+  \end{center}
+
+We perform another run through of the edges in the order given above.  This run through does not result in any distance label updates, which means the current distance labels are optimal and we are finished.
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

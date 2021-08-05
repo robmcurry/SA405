@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 3.1 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Guinness Assignment}
+
+\maketitle
+
+%%%
+%\section{The Problem}
+
+The Guinness Brewery Company has two breweries (Dublin-B and Kilarny) and three markets (Dublin-M, Galway, and Cork).   They have two warehouse locations (Kilgore and Sligo), but don't necessarily have to use both.  They have transportation costs (dollars/case) for moving cases of beer from brewery to warehouse, and from warehouse to market (see the table below).  Note that it is possible to transport cases directly from the brewery to the market in Dublin (Dublin-B to Dublin-M).  Otherwise, the cases must visit a warehouse before being transported to a market.  Each warehouse has a monthly operating cost, as well as a maximum capacity.  Each brewery has a monthly supply, and each market has a monthly demand.
+
+
+\begin{center}
+\begin{tabular}{r|ccccc}
+& \multicolumn{5}{c}{Transportation Costs} \\
+& DublinB (B) & Kilarny (B) & Dublin-M (M) & Galway (M) & Cork (M) \\
+\hline
+Kilgore (W) & 15 & 10 & 16 & 12 & 11  \\
+Sligo (W) &  20 & 25 & 21 & 9 & 28  \\
+Dublin-B (B) &  --- & --- & 18 & --- & --- \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begin{tabular}{r|c}
+Brewery & Supply \\
+\hline
+Dublin-B & 400 \\
+Kilarny & 500 \\
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{r|c}
+Market & Demand \\
+\hline
+Dublin-M & 500 \\
+Galway & 200 \\
+Cork & 100 \\
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{r|cc}
+Warehouse & Cost & Capacity \\
+\hline
+Kilgore & 240 & 400 \\
+Sligo & 450 & 800 \\
+\end{tabular}
+
+%\section{The Assignment}
+\section{Minimum-Cost Network Flow Model:}
+\begin{enumerate}[a.]
+\item Draw the network and write a model using only VARIABLES and NUMBERS to minimize Guinness's total monthly transportation cost, ignoring monthly warehouse costs. 
+\item Define sets (Nodes, Breweries, Warehouses, Markets, and Edges) and parameters.  Use these to translate your model from part (a) into set notation.
+\item Implement the sets version of your model in GMPL.  
+\item \emph{Discussion:} Try running your model with and without the ``integer'' requirement on the decision variables.  Do you get the same solution?  Why or why not?
+\end{enumerate}
+
+\section{Fixed-Charge Model:}
+\begin{enumerate}[a.]
+\item Update your VARIABLES and NUMBERS model to incorporate warehouse costs.  Include both the strong and weak forcing constraints for the binary variables (but clearly indicate that we need only one type or the other, not both).  \emph{Hint:  You will need to define a new class of binary variables.}
+\item Update the sets version of your model to incorporate warehouse costs. (You will need to define one more class of parameters.) Again, include both weak and strong forcing constraints, indicating clearly that only one or the other must be included.
+\item Implement the sets version of your model in GMPL.  
+\item \emph{Discussion:}  Run the model using the weak forcing constraints and the appropriate integer/binary requirements on variables.  Record the solution and solve time.  Do the process again using the strong forcing constraints.
+\begin{enumerate}[(i)]
+	\item Do both models yield the same solution?  Does one solve faster?
+	\item Now run both versions again, but remove the integer and binary requirements on the decision variables.  Record the solutions. Do you both versions still yield the same solution?
+\end{enumerate}
+\end{enumerate}
+		
+
+
+\end{document}

@@ -1,0 +1,66 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{../../preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Prim's Assignment}\\
+  {\sc SA405, Fall 2018} \\
+ % {\sc Instructor: Skipper}
+\end{center}
+
+\medskip
+
+\begin{center}
+{\bf To be completed and uploaded to Google Drive by 2200 on Wednesday Nov 8, 2017}
+\end{center}
+
+
+Download the Excel file \verb!prims_student_start.xlsm! from Google Drive.  For this assignment, there is less starter code, but there are still comments to get you going.
+
+Code Prim's algorithm in Visual Basic as a macro in this spreadsheet. You can assume all of the distances are integers. Your code should be linked to the button {\bf Run Prims} that is already in the spreadsheet for both instances of the problem.  If you write your code correctly, you will only need one version of the code that can be linked to the two buttons (one for each instance).  Your code should run when someone clicks the {\bf Run Prims} button on either instance of the problem.  Your code must return a solution, which in this case is a list of edges in the minimum spanning tree.  Also, your code must return the cost of your minimum spanning tree. Clearly label your solution and the cost of your minimum spanning tree.  {\bf Instead of writing the solution to the same sheet as the data, create a new sheet for your solution.} Make sure to name the
+new sheet as given in the instance data, cell {\bf F1}.  Here is the relevant VB code to do this:
+
+\begin{verbatim}
+Dim ws As Worksheet
+
+Set ws = Sheets.Add
+
+ws.Name = "newsheetname" 
+ws.Range("b4").Activate
+Range("b1") = "the new sheet is now active"
+Range("a1").Activate
+
+\end{verbatim}
+
+\noindent {\bf NOTE:  You cannot duplicate a sheet name without crashing VB.  Be careful when naming your solution sheet, or use the code sample provided in .xlsm document to delete the sheet before recreating it.}
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

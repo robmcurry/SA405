@@ -1,0 +1,168 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{gastex}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Quiz 5 - 13 October 2017}
+\lhead{SA405, Fall 2018}
+\rfoot{Page \thepage}
+
+\input{/Users/skipper/Dropbox/usna/courses_usna/SA405/preface}
+
+%\addtolength{\oddsidemargin}{-2.0cm}
+%\addtolength{\evensidemargin}{-2.0cm}
+%\addtolength{\textwidth}{3.0cm}
+%\addtolength{\topmargin}{-2.5cm}
+%\addtolength{\textheight}{4.5cm}
+
+\newcommand{\binvar}[1]{\left\{
+    \begin{array}{ll}
+      1 & \mbox{#1} \\
+      0 & \mbox{otherwise.}
+    \end{array}
+    \right.}
+
+\newcommand{\points}[1]{{\it (#1 Points)}}
+
+\begin{document}
+%\begin{center}
+ % {\sc Quiz 5}\\
+ % {\sc Instructor: Foraker}
+%\end{center}
+
+You are the Operations Officer in charge of a humanitarian relief mission following a natural disaster.  Your assignment is to deliver pallets of food and water to communities (numbered $1,2,\dots, 7$) that were directly in the path of the storm.  You will be provided with some MH-60S Seahawks to deliver the supplies.   The helicopters always start and end their deliveries at the main operating base (MOB), designated as node 0.  You would like to find routes for the helicopters that minimize the total distance traveled. 
+
+Your Supply Officer determines that the distances between the MOB and the communities in the path of the storm are given by the matrix 
+
+\begin{center}
+\begin{tabular}{l|cccccccc}
+ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+\hline
+0 & 0	&	150	&	135	&	45	&	25	&	130  & 95 & 30 \\
+1 & 150	&	0	&	25	&	105	&	135	&	20 & 55 & 140 \\
+2 & 135 & 25	&	0	&	90	&	120	&	35	& 40 & 125 \\
+3& 45	&	105	&	90	&	0	&	30	&	85	& 50 & 35 \\
+4& 25	&	135	&	120	&	30	&	0	&	115	& 80 & 5 \\
+5& 130	&	20	&	35	&	85	&	115	&	0	& 55 & 120 \\
+6& 95	&	55	&	40	&	50	&	80	&	55	& 0 & 85\\
+7& 30	&	140	&	125	&	35	&	5	&	120	& 85 & 0\\
+\end{tabular}
+\end{center}
+
+\noindent where the first row and first column give the MOB and community indices, and the succeeding rows and columns are the distances between those locations.  The matrix is symmetric.
+
+The Supply Officer copies down part of the model for the Vehicle Routing problem from a copy of the course text:
+\[
+\begin{array}{llllr}
+  \min & \Sum_{(i,j) \in \cE} c_{ij} X_{ij} & \\
+\mbox{s.t.} & \Sum_{j | k < j} X_{kj} + \Sum_{i|i<k} X_{ik} & = \ ? & \forall~ k \in \{
+1,\ldots,7\} & (\rm{a}) \\
+&  \Sum_{j=1}^{7} X_{0j}  = 2m & & & (\rm{b}) \\
+& X_{ij} \in \{0,1\} & & \forall~ (i,j) \in \cE. &
+\end{array}
+\]
+The Supply Officer has figured out that the graph should be $\cG = (\cV,\cE)$ where $\cV
+= \{0,1,\ldots,7\}$ and $\cE = \{ (i,j) | i < j, i,j \in \cV\}$. The Supply Officer
+has designated node zero as the MOB. The distances used are from the matrix, and the Supply Officer denotes the $ij$th entry by $c_{ij}$ where $i$ and $j$ range from $0$ to $7$.
+
+\begin{enumerate}
+
+\item \points{3} Your Supply Officer's course text was damaged by all the rain during the storm, so he was unable to read the correct value for the right-hand side of constraint (a).  Provide the correct value that should be used to replace the ? in constraint (a).  You must also provide a short description of what this constraint is enforcing for full credit.
+
+\vspace{1.5cm}
+\vfill
+
+\item \points{3} Your Supply Officer informs you that you will be given {\bf 3} MH-60S helicopters to support this mission.  Based on this information, what is the numerical value of the right-hand side of constraint (b)?  You must also provide a short description of what this constraint is enforcing for full credit.
+
+\vfill
+
+\newpage
+
+\item \points{3} You use an integer programming solver to find a solution to the formulation as described above. The solver provides the following solution: 
+
+\begin{center}
+        \begin{tikzpicture}
+          [font=\scriptsize,
+          node/.style={shape=circle,draw=black,fill=white!20, text=black,minimum width=0.5cm,thick},
+          arc/.style={->,>=stealth,thick},
+          edge/.style={thick}]
+          
+            \node (0) [node] at (8,9.5) {0};
+            \node (1) [node] at (1,5.5) {1};
+            \node (2) [node] at (3,4.5) {2};
+            \node (3) [node] at (6,7)  {3};
+            \node (4) [node] at (8.5,7.5) {4};
+            \node (5) [node] at (1.5,7)  {5};
+            \node (6) [node] at (6,4)  {6};
+            \node (7) [node] at (10,7.5) {7};
+          
+          \draw [edge] (0) to node [auto] { } (2);
+          \draw [edge] (0) to node [auto] { } (3);
+          \draw [edge] (0) to node [auto] { } (4);
+          \draw [edge] (0) to node [auto] { } (5);
+          \draw [edge] (0) to node [auto] { } (6);
+          \draw [edge] (0) to node [auto] { } (7);
+          \draw [edge] (1) to node [auto] { } (2);
+          \draw [edge] (1) to node [auto] { } (5);
+          \draw [edge] (3) to node [auto] { } (6);
+          \draw [edge] (4) to node [auto] { } (7);
+
+        \end{tikzpicture}
+\end{center}
+
+Based on this solution, provide the values for all the decision variables in the model.
+
+  \vfill
+
+\item \points{4} Your Supply Officer informs you that the MH-60S helicopter can carry at most {\bf 4} pallets at any time.  The Supply Officer also provides you with the following demand requirements for the communities you are tasked with serving
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+Community &  1	&	2	&	3	&	4	& 5	&	6   & 7   \\
+\hline
+Number of Pallets Required, $d_i$  & 1	&	2	&	1	&	1	&	2	&	1	&   2
+\end{tabular}
+\end{center}
+
+You notice this solution is infeasible.  Provide the constraint that must be added to ``separate'' this infeasible solution before running the solver again.  For full credit, provide a short description of what the constraint is enforcing.
+%\noindent Based on this data, you notice that one of the planned routes for a helicopter is infeasible.  You remember from class that you need to add a constraint of the form 
+%
+%\[
+%  \sum_{i, j \in S, i < j} X_{ij} \leq |S| - \ell(S) 
+%\]
+%
+%to the model before you attempt to solve it again.  Provide the elements of the set $S$, the cardinality of $S$, and the value of $\ell(S)$.
+
+\vfill
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

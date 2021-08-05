@@ -1,0 +1,89 @@
+%  Guinness Homework Assignment -- SA405 %
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Guinness Assignment}\\
+  {\sc SA405, Fall 2018} \\
+  {\sc Instructor: Foraker}
+\end{center}
+
+\medskip
+
+{\bf Due via Blackboard 9/7 at 2200.}
+
+\medskip
+
+{\it In what follows, replace {\tt YOURLASTNAME} with your last name.
+  For example, the first file MIDN Smith would save would be:}
+
+\begin{verbatim}
+Smith_guinness_mcf.mod
+\end{verbatim}
+
+\medskip
+
+{\bf To be completed for class on Thursday 8/31/17.  DO NOT SUBMIT VIA BLACKBOARD.  Wait until the due date for the overall assignment, and submit all files at that time.}
+\begin{enumerate} 
+\item Obtain the data {\tt Guinness.xlsx} from Blackboard. For the given data, use GUSEK to
+  formulate and solve the minimum cost flow problem, i.e., {\bf do not model the
+    fixed costs for opening warehouses}.
+  Solve the problem to optimality and save the file as {\tt
+    YOURLASTNAME\_guinness\_mcf.mod}.
+\end{enumerate}
+
+{\bf Submit your THREE model files and your text-based answer to number 3 below via Blackboard by the due date.}
+\begin{enumerate}
+\item  Save your previous model file as {\tt YOURLASTNAME\_guinness\_fl\_weak.mod}. Add in
+  the fixed charge constraints and objective sum to the model.
+  Be sure to define your warehouse $OPEN_j$ variables as
+  binary. You will also need to define a new set $W$ for warehouses, and a new parameter $capacity_j$, which specifies the maximum capacity of warehouse $j$.  Also, when adding in the fixed charge constraints, use the
+  formulation:
+  \[
+  \Sum_{\{i | (i,j) \in A\}} X_{ij} \leq capacity_j OPEN_j, \mbox{ for all $j \in \cW$}.
+  \]
+Solve the model. 
+
+\item Save your previous worksheet as {\tt
+    YOURLASTNAME\_guinness\_fl\_strong.mod}. Remove the weak version of the fixed charge constraints you added in Step 1 above.  Be sure to define a new set $\cB$ for breweries.  Add a strong version of the fixed charge
+  constraints as follows
+  \[
+  X_{ij} \leq capacity_j OPEN_j, \mbox{ for all $i \in \cB$ and $j \in \cW$}.
+  \]
+  Solve the model.
+
+\item Compare the solution times for the two models, and describe in complete sentences why you think one model is faster than the other.
+
+%\item Using your strong formulation sheet, write a macro that will determine how expensive Kilgore needs to  be for the solution to change to \red{stop using Kilgore}. The macro  should double the fixed cost of opening Kilgore until the solution  changes. Run the macro to test it.
+
+\end{enumerate}
+  
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

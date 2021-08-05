@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mdwlist}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\title{PracticeTest 1}
+
+\begin{document}
+\begin{comment}
+Topics for test 1:
+\begin{enumerate}
+\item Modeling review.  Converting between concrete and abstract models (both ways).
+	\begin{itemize}
+		\item Clothing manufacturing.
+		\item Convert an abstract constraint to concrete form or vice versa.  Maybe something with a ``such that''.
+		\item (HW:  Furniture)
+	\end{itemize}
+\item Transportation - Min cost network flow, including balance of flow constraints
+	\begin{itemize}
+		\item Provide a concrete model and have the students work backwards to draw the network?
+		\item (HW:  Guinness 1)
+	\end{itemize}
+\item Max flow, including edge capacities and how to model the balance of flows at the end nodes.
+	\begin{itemize}
+		\item Refrigerators on trains problem?
+		\item (HW:  Oil)
+	\end{itemize}
+\item Shortest path, including interpreting results
+	\begin{itemize}
+		\item USNA to LA
+		\item give shortest paths and have students identify the solution
+		\item have the student model a min cost problem, then describe what changes need to solve a shortest path problem instead
+		\item (HW:  2.42 -- find all shortest paths)
+	\end{itemize}
+\item Fixed charge
+	\begin{itemize}
+		\item Furniture
+		\item (HW:  Guinness 2)
+	\end{itemize}
+\item Set covering / packing / partitioning
+	\begin{itemize}
+		\item ER problem.
+		\item (HW:  Sudoku)
+	\end{itemize}
+\item Logical constraints
+	\begin{itemize}
+		\item Furniture
+		\item (HW:  3.2)
+	\end{itemize}	
+\item MST
+	\begin{itemize}
+		\item Save for next test?
+	\end{itemize}
+\end{enumerate}
+
+
+\newpage
+\end{comment}
+\begin{enumerate}
+
+\item A hospital ER needs to keep doctors on call, so that a qualified individual is available to perform every medical operation that might be required (there is an official list of such procedures). For each of the five doctors available for on-call duty, the additional salary they need to be paid (in thousands of \$), and which operations they can perform, is known and provided below. The goal is to choose doctors so that each operation is covered, at a minimum cost.
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+    \hline
+    & Doc 1 (\$1) & Doc 2 (\$3) & Doc 3 (\$2)& Doc 4 (\$3) & Doc 5 (\$4) & Doc 6 (\$2) \\ 
+    \hline
+    Op 1  & \checkmark  &  &  &  \checkmark &  &  \\ 
+    \hline
+    Op 2 &  \checkmark &  &  &  &  \checkmark &  \\ 
+    \hline
+    Op 3 &  &  \checkmark &  \checkmark &  &  &  \\ 
+    \hline
+    Op 4 &  \checkmark  &  &  &  &  &  \checkmark \\ 
+    \hline
+    Op 5 &  & \checkmark  &  \checkmark &  &  &  \checkmark \\ 
+    \hline
+    Op 6 &  & \checkmark  &  &  &  &   \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+
+
+\begin{enumerate}
+
+\item Clearly define all variables, parameters, and the objective function. Formulate the above problem as a concrete integer programming model.
+
+
+\vspace{7cm}
+
+\item Does this integer programming model include set-covering, set-packing, or set-partitioning constraints?
+
+
+\end{enumerate}
+
+
+\newpage
+
+\item Vance Refrigeration has a factory located in Dallas, Texas, producing small refrigerators bound for their outlet store in Baltimore. All refrigerators are shipped from the company to Baltimore via train. The train operates trains daily on the national rail network. The train cars are packed in large boxes, there exists a limit on the number of boxes that can be shipped from one city to another. The table below shows these limits. If a ``--'' is contained within a cell below, then we assume that refrigerators cannot be shipped along that arc.
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c|c| } 
+    \hline
+    & \multicolumn{5}{c|}{ \textbf{To} }\\
+    \hline
+    \textbf{From} & Dallas & Little Rock & Richmond & Atlanta & Baltimore \\ 
+    \hline
+    Dallas  & --  & 20 & -- & 12 & --  \\ 
+    \hline
+    Little Rock & -- & --  & 18 & 16 &-- \\ 
+    \hline
+    Richmond & -- &  -- & -- & 8 & 13    \\ 
+    \hline
+    Atlanta &  -- & -- & 18 & --  & 17 \\ 
+    \hline
+    Baltimore & --  &  -- &  11 &--  &--   \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+
+\begin{enumerate}
+
+\item Draw a picture of this network with the nodes labeled as the name of each city and the arcs labeled with the maximum capacity on that arc.
+
+\newpage
+
+\item Formulate the concrete model for maximizing the number of refrigerators shipped from Dallas to Baltimore. Clearly define your parameters, variables, constraints, and objective function.
+\newpage
+
+\item The CEO of Vance Refrigeration told you that, if you send refrigerators from Dallas to Little Rock, then you must send at least 10 units but no more than 20 units. What variables and constraints should you add to your concrete model to enforce this constraint?
+\vspace{7cm}
+\item The CEO of Vance Refrigeration keeps changing their mind. She realizes that their warehouse in the city of Little Rock must now pay taxes to ship refrigerators out of the city. This warehouse currently has \$20 million for paying these taxes, and these taxes will cost them \$0.5 million and \$1 million to ship a single refrigerator to Richmond and Atlanta, respectively. What parameters and constraints should you add to your concrete model to enforce this constraint?
+\end{enumerate}
+
+
+\newpage
+\item The Superintendent asks his most trusted Ops Research majors (you all) to give him directions from the Yard to Los Angeles, CA. Of course, he wants to find the path the minimizes his total travel time. Assume that he can travel through a set of cities $\mathcal{C}$ along a set of roads $\mathcal{A}$ between each city. He assumes that traveling along some arc $(i,j) \in \mathcal{A}$ will require $t_{ij} > 0$ minutes.
+
+
+\begin{enumerate}
+
+\item Formulate an abstract mathematical programming model to help the superintendent solve his problem.
+
+
+\item The superintendent now wants to consider traffic delays in each city. To account for this added time it takes to travel through each city, he assumes that it will take $d_i > 0$ extra units of time to travel through city $i \in \mathcal{C}$. Modify your mathematical programming model above to account for the extra traffic-related time delays.
+\end{enumerate}
+
+\newpage
+
+\item Trader Bill's Clothing Company is capable of manufacturing three types of attire: shirts, pants, and jackets. The machinery needed to manufacture each type of clothing must be rented at the following rates: shirt machinery, \$200 per week; pants machinery, \$150 per week; and jacket machinery, \$100 per week. The manufacturer of each type of clothing also requires the amounts of cloth and labor shown in Table \ref{table2}. Additionally, Table \ref{table2} includes the maximum number of each type of clothing that Trader Bill's can manufacture. Each week,150 hours of labor and 160 sq yd of cloth are available. The variable unit cost and selling price for each type of clothing are shown in Table \ref{table3}.
+
+
+\begin{center} \label{table2}
+
+\begin{tabular}{ |c|c|c|c| } 
+    \hline
+    Clothing Type & Labor in Hours & Cloth in Sq. Yards & Maximum Allowable  \\ 
+    \hline
+    shirt & 3 & 4 & 100\\
+    \hline
+    pants & 2 & 3 & 220 \\
+    \hline
+    jacket & 6 & 4 & 180 \\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{center} \label{table3}
+\begin{tabular}{ |c|c|c| } 
+    \hline
+    Clothing Type & Sales Price in \$ & Variable Cost in \$  \\ 
+    \hline
+    shirt & 12 & 6\\
+    \hline
+    shorts & 8 & 4\\
+    \hline
+    sweater & 15 & 8 \\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item  Formulate a concrete integer programming model whose solution will maximize Trader Bill's weekly profits.
+
+\vspace{8cm}
+
+\item Trader Bill now tells you that if you are able sell 50 shirts then he will give you an extra bonus of \$100. Modify your integer programming model to include this bonus.
+\end{enumerate}
+
+%\newpage
+
+%\noindent I'm not exactly sure how to say this, but I think it would be cool to ask a question that would require them to add a supersource and supersink. Maybe we could give them a graph having a nodes $a, \ b, \ c, \ d, \ e,$ and $f$, and then ask them to modify the given network so that it can be modeled as maximum flow problem. I think this would be a good stretch problem, but they've seen dummy nodes and things like that before. 
+
+%Let $\mathcal{V}$ be the set of all nodes in the network, and let $\mathcal{A}$ be the set of all arcs in the network.
+Maximum-flow Formulation for a given source/origin node $s$ and a termination/destination node $t$.
+%\begin{align}
+%\textrm{max } & f \\
+%\textrm{s.t. } & \sum_{i:(s,i) \in \mathcal{A}x_{si} = f \\
+%& \sum_{j:(i,j) \in \mathcal{A}}x_{ij} - \sum{h:(h,i) \in \mathcal{A}}x_{hi} = 0 \\
+%& -\sum_{j:(j,t) \in \mathcal{A}}x_{jt} = -f
+%d\end{align}
+
+\end{enumerate}
+
+\end{document}

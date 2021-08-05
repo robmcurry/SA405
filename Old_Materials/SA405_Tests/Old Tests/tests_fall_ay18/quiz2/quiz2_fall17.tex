@@ -1,0 +1,106 @@
+% This is a Latex 2e document.
+% This is Test 1 for sm221
+% Written by David Phillips
+% hi
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+\usepackage{fancyhdr}
+
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{Quiz 2 - 8 September 2017}
+%\lhead{SA405, Fall 2018}
+%\rfoot{Page \thepage}
+
+\input{preface}
+
+%\addtolength{\oddsidemargin}{-1.0cm}
+%\addtolength{\evensidemargin}{-1.0cm}
+%\addtolength{\textwidth}{2.0cm}
+\addtolength{\topmargin}{-2cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc SA405 Quiz 2}\\
+  {\sc 9/8/2017}
+\end{center}
+
+\medskip
+
+Delicious Donuts has two suppliers (donut bakeries) in town: bakery 1 (B1) can ship 500 boxes of donuts per day and bakery 2 (B2) can ship 470 boxes of donuts per day.  The company uses two distribution centers (D1, D2) to deliver their donuts to the three retailers who sell them.  The daily demand for the three retailers (R1, R2, R3) is 200, 400, and 300 cases, respectively.  The network, including the cost (in cents per box) to ship the donuts between locations, is provided below.
+
+\vspace{-.6in}
+\begin{center}
+\includegraphics[width=.6\textwidth]{DDnetwork}
+\end{center}
+%
+%\begin{center}
+%\begin{tabular}{l||c|c|c|c|c}
+%   & Distributor 1 & Distributor 2 & Retailer 1 & Retailer 2 & Retailer 3 \\
+%  \hline 
+%  \hline
+%  Bakery 1 & 15 & 14 & - & - & - \\
+% \hline
+%  Bakery 2 & 12 & 9 & - & - & - \\
+%  \hline
+%  Distributor 1 & - & - & 8 & 7 & 16 \\
+%  \hline 
+%  Distributor 2 & - & - & 10 & 8 & 6 \\
+%  \hline
+%\end{tabular}
+%\end{center}
+\vspace{-.6in}
+Write a model to help Delicious Donuts determine a shipping strategy that minimizes the daily transportation cost of meeting the demand of its retailers, while not exceeding the capacity of its bakeries.  Use the provided notation to express your model using set notation.  \emph{Hint:  There is one class of constraints for each type of node: bakery, distributor, and retailer.}
+
+\bigskip
+Sets:
+\[
+\begin{array}{rl}
+B &:= \text{ the set of bakeries}\\
+D &:= \text{ the set of distributors}\\
+R &:= \text{ the set of retailers}\\
+E &:= \text{ the set of edges $(i,j)$ in the network ($i$ and $j$ are locations in the network)}\\
+\end{array}
+\]
+
+Parameters:
+\[
+\begin{array}{rl}
+c_{i,j} :=& \text{ the cost of shipping a box of donuts from location $i$ to location $j$, for $(i,j) \in E$}\\
+s_b :=& \text{ the daily supply of donuts from bakery $b$, for $b \in B$} \\
+d_r :=& \text{ the daily demand at retailer $r$, for $r \in R$} \\
+\end{array}
+\]
+
+Decision Variables:
+\[
+\begin{array}{rl}
+x_{i,j} :=& \text{ the number of boxes of donuts to be shipped from location $i$ to location $j$,} \\
+& \text{ for any edge $(i,j) \in E$} \\
+\end{array}
+\]
+
+Model:
+
+
+
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

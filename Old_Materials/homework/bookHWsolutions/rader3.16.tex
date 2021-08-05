@@ -1,0 +1,446 @@
+% This is a Latex 2e document.
+% Homework file for sa405
+\documentclass[10pt]{article}
+
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{geometry,xspace}
+\usepackage{graphics,graphicx,psfrag}
+\usepackage{enumerate,color}
+
+\input{preface}
+
+\addtolength{\oddsidemargin}{-2.0cm}
+\addtolength{\evensidemargin}{-2.0cm}
+\addtolength{\textwidth}{3.0cm}
+\addtolength{\topmargin}{-2.5cm}
+\addtolength{\textheight}{4.5cm}
+
+
+\begin{document}
+\begin{center}
+  {\sc Rader 3.16}\\
+  {\sc SA405} \\
+\end{center}
+
+\medskip
+
+% \item 3.6
+% Let $\cZ = \{s,m,\ell\}$ denote the set of oven sizes (where $s$ denotes small, $m$
+% denotes medium, and $\ell$ denotes large). Let $\cM = \{1,2,3,4,5\}$
+% denote the set of months. We use the following decision variables:
+ 
+% \begin{tabular}{ll}
+% $x_t$ & $= \left\{
+%   \begin{array}{ll}
+%     1 & \mbox{if oven type $t$ is purchased} \\ 0 & \mbox{otherwise}
+%   \end{array}
+% \right.$ for $t \in \cZ$; and \\
+% $y_{ti}$ &  $=
+% \begin{array}{ll}
+%     1 & \mbox{if oven type $t$ is purchased in month $i$} \\ 0 & \mbox{otherwise}
+%   \end{array}
+%   i \in \cM$ and $t \in \cZ$.
+% \end{tabular}
+
+% We use the following parameters to represent the data:
+
+% \begin{tabular}{ll}
+%   $d_i$ & $=$ demand in month $i$, for $i \in \cM$;
+%   $m_t$ & $=$ capacity of oven type $t$, for $t \in \cZ$;
+%   $c_t$ & $=$ purchase cost of oven type $t$, for $t \in \cZ$; and
+%   $u_t$ & $=$ monthly usage cost of oven type $t$, for $t \in \cZ$.
+% \end{tabular}
+
+% Here is the integer program:
+
+% \[
+% \begin{array}{llll}
+%   \min & \Sum_{t \in \cZ}\left(c_t x_t + \Sum_{i \in \cM} u_t y_{ti}
+%   \right) & &\\
+%   \mbox{s.t.} & y_{ti} \leq x_t & \forall t \in \cZ, i \in \cM & \mbox{(a)}\\
+%   & \sum_{j < i} y_{tj} \geq y_{ti} & \forall t \in \cZ, \mbox{for } i =
+%   2,3,4,5 & \mbox{(b)} \\
+%   \Sum_{t \in \cM} m_t y_{ti} \geq d_i & i \in \cM & \mbox{(c)} \\
+%   & x_t, y_{ti} \in \{0,1\} & \forall t \in \cZ, \forall i \in \cM & \mbox{(d)}
+% \end{array}
+% \]
+
+% Constraints (a) enforce that the purchase binary variable will be set
+% to one if an oven is purchased. Constraints (b) enforce that ovens are
+% only allowed to be turned on if they were bought in a previous month. 
+% Note that we allow ovens to be bought but not used. Constraints (c)
+% ensure demand is met by ovens that are used. Constraints (d) enforce
+% integrality.
+
+% \item 3.7: The data will be represented by the following parameters.
+
+%   \begin{tabular}{ll}
+%     $c_{ij}$ & $=$ the cost of reactor $i$ at setting $j$, for $i, j =
+%     1,2,3,4$; and
+%     $p_{ij}$ & $=$ the production of reactor $i$ at setting $j$, for $i, j = 1,2,3,4$.
+%   \end{tabular}
+
+%   The following decision variables are needed:
+
+%   \[
+%   x_{ij} = \left\{
+%     \begin{array}{ll}
+%       1 & \mbox{reactor $i$ is at setting $j$} \\
+%       0 & \mbox{otherwise}.
+%     \end{array}
+%   \right.
+%   \]
+
+%   The integer program is:
+%   \[
+%   \begin{array}{llll}
+%     \min & \Sum_{i=1}^4 \Sum_{i=1}^4 c_{ij} x_{ij} & &\\
+%     \mbox{s.t.} & \Sum_{i=1}^4 \Sum_{i=1}^4 p_{ij} x_{ij} \geq 500 & &
+%     \mbox{(a)}\\
+%     & \Sum_{j=1}^4 x_{ij} = 1 & i=1,2,3,4 & \mbox{(b)} \\
+%     & x_{ij} \in \{0,1\} & i, j = 1,2,3,4 & \mbox{(c)}.
+%   \end{array}
+%   \]
+
+%   Constraints (a) enforce the demand requirement. Constraints (b)
+%   enforce that each machine must be run at one setting, and
+%   constraints (c) enforce integrality.
+
+%\item 3.15: We assume we are using a $9 \times 9$ grid and we label the
+ % grid as we would an array. So, the cell in the $(i,j)$th position is in
+ % the $i$th row and $j$th column, for $i, j \in \{1,\ldots,9\}$. Then, the decision variables are
+ % \[
+ % x_{ijk} = \left\{
+ %  \begin{array}{ll}
+ %     1 & \mbox{the number $k$ is in position $(i,j)$;} \\
+ %     0 & \mbox{otherwise},
+ %   \end{array}
+ %   \right.
+ % \]
+ % for $i, j, k \in \{1,\ldots,9\}$.
+ % Also, let $\cF = \{(i,j,k) | \mbox{cell $(i,j)$ starts out with the
+ %  number $k$} \}$. Finally, for $p, q \in \{1,4,7\}$, define
+ % \[
+ % \cB_{pq} = \{(i,j) | p \leq i \leq p+2, q \leq j \leq q+2\}
+ % \]
+ % to help with the constraints for each subgrid.
+ % Then, the formulation is to find a feasible
+ % solution to the following constraints:
+ % \[
+ % \begin{array}{lll}
+ %   \Sum_{j=1}^9 x_{ijk} = 1 & \forall i,k \in \{1,\ldots,9\} & \mbox{(a)} \\[3mm]
+ %   \Sum_{i=1}^9 x_{ijk} = 1 & \forall j,k \in \{1,\ldots,9\} & \mbox{(b)} \\[3mm]
+ %   \Sum_{(i,j) \in \cB_{pq}} x_{ijk} = 1 & \forall p,q \in \{1,4,7\},
+ %   \forall k \in \{1,\ldots,9\} & \mbox{(c)} \\[3mm]
+ %   x_{ijk} = 1 & \forall (i,j,k) \in \cF & \mbox{(d)} \\[3mm]
+ %   x_{ijk} \in \{0,1\} & \forall i, j, k \in \{1,\ldots,9\}.
+ % \end{array}
+ % \]
+ %  Constraints (a) enforce that there is one number from 1 to 9 in
+ %  every row, constraints (b) enforce there is one number from 1 to 9
+ % in every column, and constraints (c) enforce there is one number
+ % from 1 to 9 in every subgrid. Constraints (d) enforce the given
+ % numbers are set correctly. Note the total number of constraints is
+ %  $81+81+|\cF|$.
+
+\noindent \textbf{3.16:} NOTE:  The problem is INFEASIBLE for the data given in the text.  Use due dates of 10, 15, 42, 31, 5, 22, and 32 for jobs 1 through 7, respectively.  Let $\cJ = \{1,\ldots,7\}$ denote the set of jobs. For a job $j \in \cJ$, let $r_j$ denote the release date, $d_j$ the due date, and $p_j$ the duration (or process
+  time).  Finally, let $D = \max_{j} d_j$. We give two formulations
+
+\bigskip
+\noindent
+In this formulation, we use the variables:
+    \[
+    S_j = \mbox{the start time of job $j$, for all $j \in \cJ$ and } \quad \quad
+    z = \mbox{the maximum completion time}.
+    \]
+    We also use the binary variables:
+    \[
+    x_{ij} = \left\{
+      \begin{array}{ll}
+        1 & \mbox{job $i$ starts before job $j$} \\
+        0 & \mbox{otherwise}.
+      \end{array}
+      \right.
+    \]
+    Then, the formulation is:
+    \[
+    \begin{array}{llll}
+      \min & z & & \\
+      \mbox{s.t.}
+      & z \geq S_j + p_j & \forall j \in \cJ & \mbox{(a)} \\
+      & x_{ij} + x_{ji} = 1 & \forall i,j \in \cJ, i \ne j & \mbox{(b)} \\
+      & r_j \leq S_j \leq d_j - p_j & \forall j \in \cJ & \mbox{(c)} \\
+      & S_i + p_i - S_j \leq D(1-x_{ij}) & \forall i,j \in \cJ, i \ne j & \mbox{(d)} \\
+      & x_{ij} \in \{0,1\} & \forall i,j \in \cJ, i \ne j & 
+    \end{array}
+    \]
+    Constraints (a) ensure that $z$ is the maximum completion
+    time. Constraints (b) ensure that either job $i$ completes before
+    job $j$ or vice versa (but not both). Constraints (c) ensure that
+    the start time of a job is between the release date and the due date minus its duration. Constraints (d) ensure that if job $i$
+    starts before job $j$, then the job $j$ does not start until
+    enough time has passed to complete job $i$.
+
+%  \item In this formulation, we use the variables:
+%    \[
+%    x_{jt} = \left\{
+%      \begin{array}{ll}
+%        1 & \mbox{job $j$ completes processing at time $t$} \\
+%        0 & \mbox{otherwise},
+%      \end{array}
+%      \right. \quad \mbox{ and } \quad z = \mbox{the maximum
+%        completion time}.
+%    \]
+%    With these variables, the formulation is:
+%    \[
+%    \begin{array}{llll}
+%      \min & z & & \\[3mm]
+%      \mbox{s.t.} & z \geq \sum_{t=1}^D t x_{jt} & \forall j \in \cJ &
+%      \mbox{(a)} \\[3mm]
+%      & x_{jt} = 0 & \forall j \in \cJ, \forall t \leq r_j + p_j - 1 &
+%      \mbox{(b)} \\[3mm]
+%      & x_{jt} = 0 & \forall j \in \cJ, \forall t \geq d_j + 1 &
+%      \mbox{(c)} \\[3mm]
+%      & \sum_{t=1}^D x_{jt} = 1 & \forall j \in \cJ & \mbox{(d)} \\[3mm]
+%      & \sum_{j \in \cJ} \sum_{s = t}^{t + p_j - 1} x_{js} \leq 1 & t
+%      = 1,\ldots,D & \mbox{(e)} \\[3mm]
+%      & x_{jt} \in \{0,1\}
+%    \end{array}
+%    \]
+%    Constraints (a) ensure the $z$ is the maximum completion
+%    time. Constraints (b) and (c) ensure that the jobs start after the
+%    release date and that the jobs complete by the due date,
+%    respectively.
+%    Constraints (d) ensure that each job completes once on the
+%    machine, and constraints (e) ensure that the jobs do not run
+%    simultaneously on the machine. The interpretation of constraints
+%    (e) is that, for a given time $t$, at most one job, $j$, can
+%    finish from time $t$ to time $t+p_j -1$.
+%  \end{enumerate}
+%
+%\item 3.20: Let $\cC = \{1,\ldots,15\}$. We use the variables 
+%  \[
+%  x_i =  \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{block $i$ is removed} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%    \right.
+%  \]
+%  for all $i \in \cC$. Further, for $i \in \cC$, let 
+%  \[
+%  \cP_i = \{j | \mbox{block $j$ must be removed before $i$ can be
+%    removed} \}.
+%  \]
+%  So, for example, $\cP_8 = \{1,2,3\}$ and $\cP_1 = \emptyset$.
+%  For $i \in \cC$, let $r_i$ and $c_i$ denote the revenue
+%  and cost of block $i$, respectively, and let
+%  \[
+%  p_i = r_i - c_i.
+%  \]
+%  So, $p_4 = 0 - 200$ and $p_{10} = 1000 - 350$.
+%  Then, the formulation is:
+%  \[
+%  \begin{array}{llll}
+%    \max & \sum_{i\in \cC} p_i x_i & & \\[3mm]
+%    \mbox{s.t.} & x_i \leq x_j & \forall i \in \cC, \forall j \in \cP_i & \mbox{(a)} \\[3mm]
+%    & x_i \in \{0,1\} & \forall i \in \cC & 
+%  \end{array}
+%  \]
+%  Constraints (a) impose the condition that if block $i$ is removed,
+%  then all blocks $j$ must be removed for $j \in \cP_i$.
+%
+%\item 3.24: Let $\cP = \{1,\ldots,10\}$ denote the set of planes. For
+%  $i \in \cP$, let $r_i$, $t_i$, and $d_i$ denote the earliest,
+%  target, and latest arrival time, respectively, and let $\alpha_i$
+%  and $\beta_i$ denote the early and late penalties, respectively. Let
+%  $D = \max_i d_i$. For
+%  $i,j \in \cP$, let $s_{ij}$ denote the separation times between
+%  plane landings. Then, for $i,j \in \cP$, let
+%  \[
+%  x_{ij} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{plane $i$ lands before plane $j$} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%    \right.
+%  \]
+%  and let $T_i$ denote the time plane $i$ lands. For $i \in \cP$ let
+%  \[
+%  y_{i} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{plane $i$ is early} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%  \right.
+%  \quad \mbox{ and } \quad
+%  z_{i} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{plane $i$ is late} \\
+%      0 & \mbox{otherwise.}
+%    \end{array}
+%  \right.    
+%  \]
+%
+%  The formulation is
+%  \[
+%  \begin{array}{llll}
+%    \min & \sum_{i \in \cP} (\alpha_i y_i + \beta_i z_i) & & \\[3mm]
+%    \mbox{s.t.} & y_i r_i + (1-y_i) t_i \leq T_i \leq z_i d_i + (1-z_i)
+%    t_i & \forall i \in \cP & \mbox{(a)} \\[3mm]
+%    & x_{ij} + x_{ji} = 1 & \forall i,j \in \cP, i \ne j & \mbox{(b)} \\[3mm]
+%    & T_i + x_{ij} D \geq T_j + s_{ji} & \forall i,j \in \cP, i \ne j & \mbox{(c)} \\[3mm]
+%    & T_i \geq 0, y_i, z_i, x_{ij} \in \{0,1\} & \forall i,j \in \cP, i \ne j & 
+%  \end{array}
+%  \]
+%  Constraints (a) enforce the earliest and latest time
+%  constraints. Note that if the plane is on-time, then $T_i =
+%  d_i$. Constraints (b) ensure that either plane $i$ lands before plane $j$,
+%  or vice versa. Constraints (c) ensure that the planes satisfy the
+%  separation time constraint.
+%
+%\end{enumerate}
+%
+%\newpage
+%
+%{\bf Not to be handed in.}
+%
+%\begin{enumerate}
+%
+%\item 3.27: NOTE:  In Figure 3.8 there is no value given for the edge between nodes 2 and 4.  The weight assigned to this edge should be 1.  Let $F = |\cV| \max_{(i,j) \in \cE} c_{ij} + 10 = 60$ denote an upper bound on the number of
+%  frequencies used. Let $\cF = \{1,\ldots,F\}$ denote the set of
+%  frequencies. For $i \in \cV$ and $f \in \cF$, let
+%  \[
+%  x_{if} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{tower $i$ is assigned frequency $f$} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%  \right.
+%  \]
+%  and let $z$ denote the maximum frequency used.
+%  Then, our formulation is:
+%  \[
+%  \begin{array}{llll}
+%    \min & z & & \\[3mm]
+%    \mbox{s.t.} & \Sum_{f \in \cF} x_{if} = 2 & \forall i \in \cV &
+%    \mbox{(a)} \\[3mm]
+%    & \Sum_{g=f}^{f+9} x_{ig} \leq 1 & \forall i \in \cV, \forall f
+%    \in \cF & \mbox{(b)} \\[3mm]
+%    & \Sum_{g=f}^{f+c_{ij}-1} (x_{ig} + x_{jg}) \leq 1 & \forall (i,j)
+%    \in \cE, \forall f \in \cF & \mbox{(c)} \\[3mm]
+%    & z \geq f x_{if} & \forall f \in \cF, \forall i \in \cV &
+%    \mbox{(d)} \\[3mm]
+%    & x_{if} \in \{0,1\} & \forall i \in \cV, \forall f \in \cF &
+%  \end{array} 
+%  \]
+%  Constraints (a) ensure that each tower is assigned two
+%  frequencies. Constraints (b) ensure that the frequencies assigned to
+%  a tower differ by at least ten. Constraints (c) ensure that towers
+%  connected by an edge have frequencies that differ by at least the
+%  weight assigned to the edge. Constraints (d) ensure that the maximum
+%  frequency is set correctly.
+%
+%\item 3.29: NOTE:  The data given in the book for Time to Switch are in HOURS.  It will be necessary to convert this data to SECONDS when using the formulation below.  Let the set of labels be denoted by $\cL = \{1,2,3\}$ and
+%  the set of production lines by $\cP = \{1,2,3\}$. Denote the set of
+%  shifts by $\cS = \{1,\ldots,14\}$. For $\ell \in \cL$
+%  and $p \in \cP$, let $t_{\ell p}$ and $c_{\ell p}$ denote the time
+%  and cost, respectively, to produce one label of type $\ell$ on production line
+%  $p$. For $\ell \in \cL$ and $p \in \cP$, let $\tau_{\ell p}$
+%  and $\gamma_{\ell p}$
+%  denote the time and cost, respectively, to switch production line $p$ to label $\ell$. Let $d_\ell$ denote the weekly demand for label $\ell$, for
+%  $\ell \in \cL$. For $\ell \in \cL$, $p \in \cP$, and $s \in \cS$, let
+%    \[
+%    x_{\ell p s} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{$\ell$ is produced on production line $p$ in shift $s$} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%  \right.
+%  \]
+%  and
+%  \[
+%  y_{\ell p s} = \left\{
+%    \begin{array}{ll}
+%      1 & \mbox{production line $p$ is switched to label $\ell$ at the
+%        beginning of shift $s$} \\
+%      0 & \mbox{otherwise}
+%    \end{array}
+%  \right.
+%  \]
+%  For $\ell \in \cL$, $p \in \cP$, and $s \in \cS$, let $w_{\ell p s}$ denote the time production line $p$ is spent making
+%  labels of type $\ell$ in shift $s$, and let $a_{\ell p s}$ denote the number of
+%  labels of type $\ell$ made on production line $p$ in shift $s$.
+%  We assume that each line is not set up for any label before the
+%  shift starts. The formulation is:
+%  \[
+%  \begin{array}{llll}
+%    \min & \Sum_{s \in \cS} \Sum_{\ell \in \cL} \Sum_{p \in \cP}
+%    (\gamma_{\ell p} y_{\ell p s} + c_{\ell p} a_{\ell p s}) & & \\[3mm]
+%    \mbox{s.t.} & x_{\ell p s} \leq y_{\ell p s} + x_{\ell p (s-1)} &
+%    \forall \ell \in \cL, \forall p \in \cP, s = 2,\ldots, 14 &
+%    \mbox{(a)} \\[3mm]
+%    & \Sum_{\ell \in \cL} x_{\ell p s} \leq 1 & \forall p \in \cP, \forall s
+%    \in \cS & \mbox{(b)} \\[3mm]
+%    & w_{\ell p s} \leq 12\cdot 3600 - \tau_{\ell p}
+%    y_{\ell p s} & \forall \ell \in \cL, \forall p \in \cP, \forall s \in \cS & \mbox{(c)}
+%    \\[3mm]
+%    & a_{\ell p s} = \frac{w_{\ell p s}}{t_{\ell p}} & \forall \ell \in \cL, \forall p \in \cP, \forall s \in \cS & \mbox{(d)}
+%    \\[3mm]
+%    & w_{\ell p s} \leq 12 \cdot 3600 \cdot x_{\ell p s} & \forall
+%    \ell \in \cL, \forall p \in \cP, \forall s \in \cS & \mbox{(e)} \\[3mm]
+%    & \Sum_{p \in \cP} \Sum_{s \in \cS} a_{\ell p s} \ge d_{\ell} & \forall \ell \in \cL & \mbox{(f)} \\ [3mm]
+%    & x_{\ell p s}, y_{\ell p s} \in \{0,1\} &  \forall
+%    \ell \in \cL, \forall p \in \cP, \forall s \in \cS & \\[3mm]
+%    & w_{\ell p s}, a_{\ell p s} \geq 0 &  \forall
+%    \ell \in \cL, \forall p \in \cP, \forall s \in \cS &
+%  \end{array}
+%  \]
+%  Constraints (a) ensure that a production line only produces a given
+%  label in a shift if it had either switched to that label in that
+%  shift, or had been producing the label in the previous
+%  shift. Constraints (b) ensure a production line produces at most one
+%  label per shift. Constraints (c) calculate the total time that a
+%  production line spends making labels versus having to set up for
+%  making a given label. Constraints (d) calculate the number of labels
+%  produced at a given line during a given shift. Constraints (e)
+%  ensure that a given label can only be made at production lines that are
+%  capable of making the label.  Constraints (f) ensure that we produce enough of each label to satisfy the weekly demands for that label.
+%
+%\item 3.32: As usual, we assume that $\cG = (\cV,\cE)$. The first modification is that both $x_{ij}$ and $x_{ji}$
+%  are required as the arcs are no longer symmetric. Also, each node
+%  must be visited exactly once and cycles must be eliminated. The formulation is
+%  as follows:
+%  \[
+%  \begin{array}{llll}
+%    \min & \Sum_{(i,j) \in \cE} d_{ij} x_{ij} & & \\[3mm]
+%    \mbox{s.t.} & \Sum_{j \in \{j | (i,j) \in \cE\}} x_{ij} = 1 &
+%    \forall i \in \cV & \mbox{(a)} \\[3mm]
+%    & \Sum_{j \in \{j | (j,i) \in \cE\}} x_{ji} = 1 &
+%    \forall i \in \cV & \mbox{(b)} \\[3mm]
+%    & \Sum_{(i,j) \in \{(i,j) \in \cE | i,j \in U\}} x_{ij} \leq |U| -
+%    1 & \forall U \subset V, 3 \leq |U| \leq |V| - 3 & \mbox{(c)} \\[3mm]
+%    & x_{ij} \in \{0,1\} & (i,j) \in \cE & \\[3mm]
+%  \end{array}
+%  \]
+%  Constraints (a) ensures the tour leaves each node exactly
+%  once. Constraints (b) ensure that the tour enters each node exactly
+%  once. Constraints (c) are the same as the symmetric case.
+%
+%\end{enumerate}
+%  
+%
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
