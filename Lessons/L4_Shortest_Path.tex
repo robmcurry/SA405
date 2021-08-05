@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\addtolength{\topmargin}{-1cm}
+\addtolength{\textheight}{2cm}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.7cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.7cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 2.9 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 4.  Shortest Path}
+
+\maketitle
+
+%%%
+\section{Today...}
+
+\begin{itemize}
+	\item  Model a \textbf{shortest path} network flow problem, ``in disguise''.  
+\end{itemize}
+
+\section{Print Shop -- Copier Purchase Plan}
+(Similar to Example 2.13, p. 64) In Scranton, PA, Dunder Mifflin prints high volumes of photocopying to meet their high demand. The office manager, Michael Scott, is interested in determining when to purchase a new high-speed copier over the next 4 years.  During the years that a copier is not purchased, maintenance must be performed.  The maintenance cost depends on the age of the copier.  The table below provides estimated maintenance cost per age of machine.
+
+\begin{center}
+\begin{tabular}{cc}
+\hline
+Age at Beginning of Year & Maintenance Cost for the Coming Year \\
+\hline
+0 & \$2000 \\
+1 & \$3500 \\
+2 & \$6000 \\
+3 & \$9500 \\
+\hline
+\end{tabular}
+\end{center}
+
+The cost (in today's dollars) of purchasing copiers at the beginning of each year is given below.
+
+\begin{center}
+\begin{tabular}{cc}
+\hline
+Year & Purchase Cost \\
+\hline
+1 & \$10,000 \\
+2 & \$13,000 \\
+3 & \$16,500 \\
+4 & \$20,000 \\
+\hline
+\end{tabular}
+\end{center}
+
+Determine the years in which a new copier should be purchased in order to minimize the cost (purchase + maintenance) of having a machine for 4 years.
+
+\medskip
+\section{How is this a network flow problem?}
+
+\begin{itemize}
+\item Draw a node for each year, 1 through 5, from left to right.  Since we want to account for four full years, we need 5 nodes to bring us to the end of year 4 / beginning of year 5.  Draw every possible directed arc from a year to a later year; e.g., $(1,2)$ and $(1,3)$, but not $(3,1)$.  
+
+\answerboxone{c}{2in}
+
+
+\item Arc $(i,j)$ represents  purchasing a copier at the beginning of year $i$ and maintaining it until the beginning of year $j$.  For example, the cost incurred by selecting arc $(1,4)$ (in thousands) is $\$10 + \$2 + \$3.5 + \$6 = \$21.5$: which is the cost of purchasing a new copier in year 1, then maintaining it through years 1, 2, and 3. Add arc costs to the network diagram.
+
+\end{itemize}
+
+\section{How is the printer problem a \textbf{shortest path} problem?}
+
+\begin{tcolorbox}
+A \textbf{path} is an ordered sequence of connected arcs such that any node is ``visited'' at most once.
+\end{tcolorbox}
+
+\begin{itemize}
+\item In this problem, the minimum cost strategy corresponds to the minimum cost \emph{path} from node \letterbox~ to node ~\letterbox.  
+
+\item Therefore, this is a \wordbox \catbox \textbf{network flow} problem.  
+
+\item This kind of problem requires \emph{supplies} and \emph{demands}, like the bakery problem. 
+\begin{itemize}
+\item What should the \emph{supply/demand} be at node 1?  \catbox
+\item What should the \emph{supply/demand} be at node 5?  \catbox
+\item  What are the relay nodes in this network?  \wordbox
+\end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}
+Shortest path is a special case of the \wordbox \catbox network flow problem.
+\end{tcolorbox}
+
+\begin{itemize}
+\item What applications of network flow problems can you imagine? How about specific Naval applications?  Write  at least two ideas.  \emph{(Think about all the types of network flows we have seen: transportation, minimum cost, maximum flow, and shortest path.)}
+
+\answerboxone{c}{1 in}
+\end{itemize}
+
+\newpage
+\section{Concrete and Abstract models.}
+
+Often problems are too large for it to be reasonable to write out an entire concrete model, but it is still good to write out (at least) an \textbf{abbreviated concrete model}, in order to fully understand the logic of the model before writing the abstract version. 
+
+In an abbreviated (shortened) concrete model, it is common to use an ellipsis, ``$\dots$'', to represent repetitive elements of the model that are left out, like terms in a long summation, or constraints in a large class of constraints of the same type.  \emph{Standard practice is to write the first two terms (or constraints), then ($\dots$), then the last term (or constraint).}  This way, the patterns in the model are evident.
+
+%\newpage
+\begin{itemize}
+\item Write an abbreviated concrete model for the copier shortest path problem. \\  \answerboxone{c}{4.5in}
+\newpage
+\item Write an abstract model for the copier problem.  Use the general form for the balance of flow constraints for the nodes of the network.\\  \answerboxone{c}{4.45 in}
+\end{itemize}
+
+
+
+
+\end{document}

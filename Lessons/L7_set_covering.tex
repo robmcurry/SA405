@@ -1,0 +1,329 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 3.2 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 7.  Set Covering, Packing, and Partitioning}
+
+\maketitle
+
+%%%
+\section{Today...}
+
+\begin{itemize}
+	\item  We consider three very common modeling situations and their corresponding constraints.
+\end{itemize}
+
+\section{Covering Students}
+USNA would like for all students to hear a presentation on updated COVID procedures.  They decide to send a representative into classes to present the information.  The presenter, Hannah, who is an Operations Research major, needs to ensure that every student sees the presentation, but would like to visit as few classes as possible.  She develops the following mini-version of the problem in order to help write a model that will solve the large-scale optimization problem.
+
+\bigskip
+\begin{itemize}
+\item Let $S$ be the set of students:
+
+~~~$S := \{$ Kyle, Aaron, Ryan, Jordan, Monika, Brandon, Samnang, Adam, Natalie, Joshua $\}$
+
+\item Let $\mathcal{C}$ be the set of classes:
+
+~~~$\mathcal{C} := \{$ Naval history, Fencing, Sailing, Boxing, Wrestling, AMP $\}$
+
+\item Each element $C$ of $\mathcal{C}$ is itself a set, and $C \subseteq S, \text{ for all } C \in \mathcal{C}$:
+\begin{center}
+\begin{tabular}{ll}
+{\bf N}aval history &$:= \{$ Kyle, Ryan, Monika, Brandon $\}$\\
+{\bf F}encing &$:= \{$ Kyle, Jordan, Samnang, Natalie $\}$\\
+{\bf S}ailing &$:= \{$ Aaron, Monika, Adam $\}$\\
+{\bf B}oxing &$:= \{$ Aaron, Ryan, Jordan, Samnang $\}$\\
+{\bf W}restling &$:= \{$ Brandon, Ryan, Joshua $\}$\\
+{\bf A}MP &$:= \{$ Adam, Natalie, Joshua $\}$\\
+\end{tabular}
+\end{center}
+
+\bigskip
+\item Hannah defines the following set of binary \textbf{decision variables}:
+
+\[
+z_C := \left\{ \begin{array}{ll}
+1 & \text{ if she should visit class $C$ } \\
+0 & \text{ if she should not visit class $C$ } \\
+\end{array} \right. \text{, for $C \in \mathcal{C}$}
+\]
+
+%\item and the following set of \textbf{parameters} (for her abstract model):
+%
+%\[
+%a_{s,C} :=
+%\begin{cases}
+%1 & \text{ if student $s$ is in class $C$ } \\
+%0 & \text{ otherwise } 
+%\end{cases},
+%\text{ for all } s \in S, C \in \mathscr{C}
+%\]
+\end{itemize}
+%%%
+\newpage
+\section{Set Covering}
+
+\begin{problem}  Consider the problem described on the previous page.
+\begin{enumerate}[a.]
+
+\item Write a concrete constraints that ensures that Ryan will see the presentation, and one that ensures that Brandon will see the presentation.
+
+\vfill
+\item Find a feasible solution and illustrate it below:
+\[
+z_{C} :=
+\begin{cases}
+1 & \text{ if } C \in \wordbox \\
+0 & \text{ otherwise } 
+\end{cases}
+\]
+
+\begin{tcolorbox}
+\begin{center}
+\def\arraystretch{1.5}
+\setlength{\tabcolsep}{12pt}
+\begin{tabular}{ccccc}
+Kyle & Aaron~~ & Ryan & Jordan~~ & Monika~~ \\ Brandon~~ & Samnang~~ & ~~Adam~~ & Natalie~~ & Joshua 
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\bigskip
+\item Why are these called {\bf set-covering constraints}? (Think of the set of students.)
+\vfill
+\item Write an abstract model to find a set of classes that covers all students while requiring the fewest possible presentations. 
+\vfill
+\newpage
+\begin{itemize}
+\item How many set covering constraints are required?  
+\vfill
+\item What set should we iterate the constraints over?  
+\vfill
+\item How do we know which classes ($z$-variables) to include in each constraint?
+\end{itemize}
+
+\vfill
+\item How would we write the set of abstract covering constraints in Python?
+\vfill
+\end{enumerate}
+\end{problem}
+
+
+%%%
+\newpage
+\section{Set Packing}
+\begin{problem}
+Eventually Hannah realizes that no student can stand to hear the presentation multiple times, but that she really wants lots of practice with public speaking.  She wants to give the presentation as many times as possible without any student seeing it more than once.
+\begin{enumerate}[a.]
+\item Write a concrete constraint that ensures that Ryan will see the presentation \emph{at most once}.
+
+\vfill
+\item Find a feasible solution and illustrate it below:
+\[
+z_{C} :=
+\begin{cases}
+1 & \text{ if } C \in \wordbox \\
+0 & \text{ otherwise } 
+\end{cases}
+\]
+
+\begin{tcolorbox}
+\begin{center}
+\def\arraystretch{1.5}
+\setlength{\tabcolsep}{12pt}
+\begin{tabular}{ccccc}
+Kyle & Aaron~~ & Ryan & Jordan~~ & Monika~~ \\ Brandon~~ & Samnang~~ & ~~Adam~~ & Natalie~~ & Joshua 
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+\bigskip
+\item Why are these called {\bf set-packing constraints}?  (Think of the set of classes.)
+\vfill
+\item  Write an abstract model to find a collection of classes that maximizes the number of classes Hannah visits, while not seeing any student more than once. 
+\vfill
+\vfill
+\end{enumerate}
+\end{problem}
+
+%%%
+\newpage
+\section{Set Partitioning}
+\begin{problem}
+Hannah receives a message of encouragement from the Chief of Staff and is told to be sure to show the presentation to \emph{every single student}.  But she still knows that no student can possibly sit through it twice, so she must revise her model again.  
+\begin{enumerate}[a.]
+\item Write a concrete constraint that ensures that Samnang will see the presentation \emph{exactly once}.
+
+\vfill
+\item Find a feasible solution and illustrate it below:
+\[
+z_{C} :=
+\begin{cases}
+1 & \text{ if } C \in \wordbox \\
+0 & \text{ otherwise } 
+\end{cases}
+\]
+
+\begin{tcolorbox}
+\begin{center}
+\def\arraystretch{1.5}
+\setlength{\tabcolsep}{12pt}
+\begin{tabular}{ccccc}
+Kyle & Aaron~~ & Ryan & Jordan~~ & Monika~~ \\ Brandon~~ & Samnang~~ & ~~Adam~~ & Natalie~~ & Joshua 
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+\bigskip
+
+\item Why are these called {\bf set-partitioning constraints}?  (Think of the set of students.)
+\vfill
+\item  Write an abstract model to find a collection of classes that minimizes the number of classes Hannah visits, while seeing every student exactly once. 
+\vfill
+\vfill
+\end{enumerate}
+\end{problem}
+
+
+
+
+
+
+\end{document}

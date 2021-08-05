@@ -1,0 +1,169 @@
+% LaTeX Article Template
+\documentclass[12pt]{article}
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{fancybox}
+\usepackage{array}
+\usepackage[shortlabels]{enumitem}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{longtable}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+\newcommand{\menuchoice}[2]{{\ttfamily#1..#2}}
+\newcommand{\dotdot}{..}
+
+\usepackage{graphicx}
+
+% Array vertical and horizontal stretch
+% \def\arraystretch{1.5}%  1 is the default, change whatever you need
+% \setlength{\tabcolsep}{12pt}
+
+%\graphicspath{%
+\graphicspath{{./figs/}}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Shrink section fonts
+\titleformat*{\section}{\large\bf}
+\titleformat*{\subsection}{\normalsize\it}
+\titleformat*{\subsubsection}{\normalsize\bf}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{\textwidth}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.15in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% \graphbox{xmin}{xmax}{ymin}{ymax}{scale}
+\newcommand{\graphbox}[5]%[-5, 5, -5, 5, 0.33]
+{
+\begin{tikzpicture}
+     [>=latex,scale=#5]
+     
+     % Coordinate axes
+     \draw [->,very thick] (#1, 0) -- (#2, 0) node[right] {$x$};
+     \draw [->,very thick] (0, #3) -- (0, #4) node[above] {$y$};
+     
+     % Grid
+     \draw[step=1cm,thick,dotted] (#1,#3) grid (#2,#4);
+   \end{tikzpicture}
+   }
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- Advanced Mathematical Programming \hfill Fall 2021
+
+  \begin{center}\large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+% Set the beginning of a LaTeX document
+\begin{document}
+
+%\graphbox{-10}{3}{-5}{10}
+
+\title{Syllabus}
+
+%\graphbox[10][10]
+
+\maketitle
+
+\noindent \textbf{Course coordinator:}  Asst. Prof. Robert M. Curry  (rcurry@usna.edu)
+
+\noindent \textbf{Textbook:}  \emph{Deterministic Operations Research}, by David Rader.
+
+\noindent \textbf{Course description: }This course covers a range of advanced topics in mathematical programming. Topics include integer programming modeling, branch-and-bound methods, integer programming theory,  and algorithms. Students will also learn to use a set-based modeling language for an advanced integer programming solver. Topics may vary with instructor.
+
+\noindent \textbf{Course objectives:}  By the end of this course, students will be able to
+\vspace{-2mm}
+\begin{enumerate}[(i)]
+\item creatively and critically problem solve;
+\item successfully collaborate in groups;
+\item intuitively identify, creatively model, and solve (using software) a variety of real-world problems that can be formulated as integer linear programs;
+\item use Microsoft Excel and Python to develop a spreadsheet interface for a linked optimization model;
+\item understand the theoretical and computational difficulty of integer linear optimization, along with associated theoretical and algorithmic considerations and algorithms.
+\end{enumerate}
+\noindent \textbf{Approximate weekly course schedule:} 
+
+\renewcommand\arraystretch{1.5}
+\begin{longtable}{ll}
+Week \hspace{.2in} & Topic \\
+\hline 
+1 & Mathematical Optimization Modeling and Software Review.  \\
+2 & Network Models\\
+3 & Shortest Path Models\\ 
+4 & Maximum Flow Models\\
+5 &  Fixed-charge Models, Set-covering, \& Logical Constraints \\
+6 & Review \& \textit{Exam \#1} \\
+7 & Python/Pyomo Resources\\
+8 & Minimum Spanning Tree Problem \\
+9 & Traveling Salesperson Problem (TSP) \\
+10 & Vehicle Routing Problems \& Subtour-elimination Constraints. \\
+11 & Facility Location Models \\
+11 & Review \& \textit{Exam \#2}  \\
+12 & Integrating Python, Pyomo, and Microsoft Excel \& Improving Integer Feasible Region Formulations \\
+13 & IP Formulations\\
+14 & Branch \& Bound \\
+15 & Project owrk\\
+16 & Project Presentations and Review \\
+\end{longtable}
+
+\end{document}

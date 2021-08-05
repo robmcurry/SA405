@@ -1,0 +1,239 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 3.2 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 9.  Logical Constraints}
+
+\maketitle
+
+%%%
+\section{Today...}
+
+\begin{itemize}
+	\item  We introduce logical (either/or) constraints using binary decision variables.  I.e., we either enforce or relax a constraint based on the value of a $\{0,1\}$ variable.
+\end{itemize}
+
+\section{Resource Allocation Revisited}
+Quality Cabinets used an IP to determine how many of each kind of cabinet to make each week in order to maximize profit.  They used decision variables $x_a, x_d,$ and $x_e$ to represent the number of standard, deluxe, and enhanced cabinets, respectively, to produce each week.  Each cabinet requires a certain number of hours of painting time, and there is a limit on the number of painting hours available.  A small part of the model is...
+
+\begin{tcolorbox}
+Maximize ~~$25x_a + 45x_d + 60x_e$
+
+\smallskip
+subject to ~~$2x_a + 4x_d + 5x_e \leq 700$ \hspace{1in} (painting time)
+\end{tcolorbox}
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\begin{enumerate}
+\item Explain the objective function.  What does the ``25'' represent?\\
+\answerboxone{c}{1in}
+
+\item Explain the painting time constraint.  What does the ``2'' represent?  The ``700''?\\
+\answerboxone{c}{1in}
+\end{enumerate}
+
+\section{Model Update Requested}
+Now Quality Cabinets is considering renting better painting equipment and has asked us to update our model to help with this decision.  The equipment will cost \$300 per week, but will reduce the time required to to do the painting by 15 minutes for a standard cabinet, by 30 minutes for a deluxe cabinet, and by 1 hour for an enhanced cabinet.
+
+We decide to add a binary variable $z$.  In the solution, if $z = 1$, then Quality Cabinets rents the equipment.  If $z = 0$, they do not.  
+
+\newpage
+\begin{enumerate}[resume]
+\item Should the objective function change?  If not, explain.  If so, write the updated objective function.\\
+\answerboxone{c}{0.7in}
+
+\item If the equipment is not rented, how does the painting constraint change?  Label it (A).\\
+\answerboxone{c}{0.7in}
+
+\item If the equipment is rented, how does the painting constraint change?  Label it (B).\\
+\answerboxone{c}{0.7in}
+\end{enumerate}
+
+\section{Logical (Either/Or) Constraints}
+There is no place for ``if -- then'' statements in a math programming model, so we have to enforce this logic indirectly using linear constraints and binary variables.
+
+\begin{tcolorbox}
+A constraint is \emph{relaxed} if it has no impact. \emph{You can think of this as ``practically" removing a constraint without actually doing so.}  We can relax a $\leq$-constraint by making the value on the right so large that it will never restrict the values of the variables on the left.
+\end{tcolorbox}
+
+\begin{enumerate}[resume]
+\item Rewrite constraint (A) above \emph{using $z$} so that it is enforced if $z = 0$ (the equipment is not rented), but \emph{relaxed} if $z = 1$ (the equipment is rented). \\ 
+\answerboxone{c}{1in}
+
+\item Rewrite constraint (B) above \emph{using $z$} so that it is enforced if $z = 1$ (the equipment is rented), but \emph{relaxed} if $z = 0$ (the equipment is not rented). \\ 
+\answerboxone{c}{1in}
+
+\item Write the updated version of the partial Quality Cabinets model here.\\
+\answerboxone{c}{2in}
+\end{enumerate}
+
+\section{Logical Constraints Summary}
+
+\begin{tcolorbox}
+Suppose $ax \leq b$ is a linear constraint, $M$ is a number that is bigger than $ax$ could ever be (but not TOO big!--choose $M$ wisely), and $z$ is a binary variable.  
+\bigskip
+
+A constraint that is enforces $ax \leq b$ if $z = 0$ and relaxes $ax \leq b$ if $z=1$ :
+
+\begin{center}
+\answerbox{c}{4in}{0.3in}
+\end{center}
+
+\bigskip
+A constraint that is enforces $ax \leq b$ if $z = 1$ and relaxes $ax \leq b$ if $z=0$:
+
+\begin{center}
+\answerbox{c}{4in}{0.3in}
+\end{center}
+
+\bigskip
+\end{tcolorbox}
+
+\section{Many more possibilities}
+
+There are many ways to creatively use linear constraints to enforce modeling requirements; this is just one such example.  Often this process takes some trial and error.  \textbf{Always be sure to test the logic with various values of the decision variables to make sure the constraint is doing what you want it to do by comparing the value of the function on the left-hand-side with the value of the function on the right-hand-side.}
+
+\end{document}
+
+
+
+
+
+
