@@ -1,0 +1,188 @@
+% LaTeX Article Template
+\documentclass[12pt]{article}
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{fancybox}
+\usepackage{array}
+\usepackage[shortlabels]{enumitem}
+\usepackage{framed}
+\usepackage{hyperref}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+\newcommand{\menuchoice}[2]{{\ttfamily#1..#2}}
+\newcommand{\dotdot}{..}
+
+\usepackage{graphicx}
+
+% Array vertical and horizontal stretch
+% \def\arraystretch{1.5}%  1 is the default, change whatever you need
+% \setlength{\tabcolsep}{12pt}
+
+%\graphicspath{%
+\graphicspath{{./figs/}}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Shrink section fonts
+\titleformat*{\section}{\large\bf}
+\titleformat*{\subsection}{\normalsize\it}
+\titleformat*{\subsubsection}{\normalsize\bf}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{\textwidth}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.15in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% \graphbox{xmin}{xmax}{ymin}{ymax}{scale}
+\newcommand{\graphbox}[5]%[-5, 5, -5, 5, 0.33]
+{
+\begin{tikzpicture}
+     [>=latex,scale=#5]
+     
+     % Coordinate axes
+     \draw [->,very thick] (#1, 0) -- (#2, 0) node[right] {$x$};
+     \draw [->,very thick] (0, #3) -- (0, #4) node[above] {$y$};
+     
+     % Grid
+     \draw[step=1cm,thick,dotted] (#1,#3) grid (#2,#4);
+   \end{tikzpicture}
+   }
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill  Reading: \S 2.1 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+% Set the beginning of a LaTeX document
+\begin{document}
+
+%\graphbox{-10}{3}{-5}{10}
+
+\title{Lesson 1:  Mathematical Modeling Review}
+
+%\graphbox[10][10]
+
+\maketitle
+
+\section{Goals}
+\begin{itemize}
+\item  Write a concrete Linear Programming (LP) model.
+\item  Introduce an integrality requirement on variables.
+\item  Convert the linear program to abstract form.
+\end{itemize}
+
+\section{Concrete Model}
+
+Chelsea is heading out on a camping trip, and she wants to carry only one pack that has 5.3 ft$^3$ of volumetric space. To keep from hurting her back, she needs to make sure that the contents of her backpack weigh no more than 12.5 lbs. You can assume the backpack weight is negligible. See the list of items that she is able to bring:
+
+
+\begin{center}
+\begin{tabular}{|c|c |c| c| c|}
+\hline
+~ID~ & Item & Volume (ft$^3$) & Usefulness Factor & Weight (lbs.)\\ \hline
+1 & Rope & 2 & 1 & 3 \\ \hline
+2 & Matches & 0.01 & 5 & 0.1 \\  \hline
+3 & Tent & 3 & 7 & 10   \\ \hline
+4 & Sleeping bag & 2 & 6 & 4   \\ \hline
+5 & Hammock & 0.4 & 4.5 & 4   \\ \hline
+6 & Granola bars & 0.67 & 8 & 2   \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{problem}  Write a concrete linear program whose solution maximizes the usefulness of the contents of Chelsea's bag given volume and weight requirements.
+
+\begin{enumerate}[a)]
+\item Define decision variables and the describe (in words) the objective function and the role of each constraint. 
+
+\pagebreak
+
+\item Write the concrete model.
+\end{enumerate}
+\end{problem}
+
+\vfill
+
+\section{Understanding Integrality Restrictions}
+\begin{itemize}
+\item \textbf{Continuous Linear Program (LP):}  Suppose that Chelsea is allowed to bring \underline{fractional amounts} of each item, so that \emph{variables can take on any nonnegative values}. Let $z$ be the optimal objective function value to this problem.
+
+\item \textbf{Integer Linear Program (IP):} Suppose that Chelsea can either bring the \underline{entire item or not}, so that \emph{variable values are restricted to  0 or 1}. Let $\bar{z}$ be the optimal objective function value to this problem.
+\end{itemize}
+\begin{problem} How does $z$ compare to $\bar{z}$? Provide justification for your response. \end{problem}
+
+\vfill
+
+\pagebreak
+\section{Convert to Abstract Notation}
+\begin{problem}
+Assuming integrality restrictions, convert your model to abstract notation.  Clearly define all sets, parameters, and decision variables. \\
+\end{problem}
+
+\vskip 15cm
+\section{Next time...}
+In the next lesson we will implement this abstract model in a \texttt{Jupyter} notebook using \texttt{Pyomo}, and solve it using \texttt{GLPK}.  Before the next class, make sure that you have \texttt{Python}, \texttt{Pyomo}, \texttt{GLPK}, and \texttt{Jupyter} on your computer.  You used this set-up for SA305 and/or SM286D.  If you need to install or reinstall any of these, see the instructions provided with Lesson 1.  (\emph{Be careful not to install a second version of} \texttt{Anaconda}\emph{, because this can create problems.}  If you need to reinstall, uninstall everything first.)
+
+
+
+
+\end{document}
