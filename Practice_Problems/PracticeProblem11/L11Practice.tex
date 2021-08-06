@@ -1,0 +1,199 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill\\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Practice Problem \#11}
+
+\maketitle
+
+%%%
+\section{The Sabre Problem}
+In 2015, the printer manufacturer Sabre has set up shop creating printers,
+copiers, and scanners to celebrate its 10th anniversary. Their machinist makes the
+designs each machine out of plastic and metal. To begin manufacturing each machine, Sabre must pay a significant set up cost. All relevant data can be found in the table below.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} \hline
+ & Printers & Copiers & Scanners & Availability\\ \hline
+Machinist Labor (Days) & 2 & 4 & 5 & 100 \\ \hline
+Plastic (pounds) & 1& 1.5 & 1.8 & 30 \\ \hline
+Metal (pounds) & 1& 1.5 & 1.8 & 30 \\ \hline
+Profit (\$ per machine) & 52 & 30 & 20 &-- \\ \hline
+Set-up Costs (\$) & 500 & 400 & 300  & -- \\ \hline
+\end{tabular}
+\end{center}
+\subsection{Concrete Model}
+Formulate Sabre's problem as a \textbf{concrete} integer programming model to maximize the total amount of profit. Define and describe all restrictions, the objective, and all decision variable(s).
+
+\begin{align*}
+\textrm{max } & 52x_p + 30x_c + 20x_s \\
+\textrm{s.t. } & 2x_p + 4x_c + 5s_x \le 100 \\
+& x_p + 1.5x_c + 1.8x_s \le 30 \\
+& x_p + 1.5x_c + 1.8x_s \le 30 \\
+& 30y_p \ge x_p, \ 20y_c \ge x_c, \ 16y_s \ge x_s \\
+& y_p, \ y_c, \ y_s \in \{0,1\} \\
+& x_p, \ x_c, \ x_s \ge 0, \textrm{integer}
+\end{align*}
+
+\newpage
+Consider the following subproblems associated with this problem above. Provide the variables and constraints needed to model these modifications.
+\begin{enumerate}
+\item Suppose that you want to restrict the number of printers you manufacture to be either 4, 8, or 13, if positive. 
+\vskip 3cm
+\item If you make any printers than you must make at least 20 copiers.
+\vskip 3cm
+\item If you make both (any number of) printers and scanners, then you receive a \$250 rebate.
+\vskip 3cm
+\item If you make at least 100 scanners or printers then you cannot make any copiers.
+\end{enumerate}
+
+\newpage
+\section{Definitions}
+\begin{enumerate}
+\item In your own words, define a network \emph{tree}.
+\vskip 3cm
+\item In your own words, define a connected \emph{graph}.
+\vskip3cm
+\item In your own words, define a network \emph{path}.
+\vskip 3cm
+\item In your own words, define a network \emph{cycle}.
+
+
+\end{enumerate}
+\newpage
+\section{Phone Problem in Chauvenet Hall}
+You've been tasked with helping to install ethernet lines in Chauvenet Hall. You want to install lines so that each computer is able to communicate with all other computers in the building. To do so, each computer does not have to directly be able to communicate with each computer; instead, they are able to relay communications through some set of computers. The phone company charges different amounts of money to lay ethernet lines between different pairs of computers. Formal an \emph{\textbf{abstract}} integer programming model to minimize the total cost of laying ethernet cables to solve this problem. Define all sets, parameters, and decision variables for solving this problem.
+
+
+
+\end{document}

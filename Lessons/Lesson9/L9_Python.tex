@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 3.2 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 9 Supplement:  Excel and Multiple Optimal Solutions}
+
+\maketitle
+
+%%%
+\section{Today...}
+
+\begin{itemize}
+	\item  read and write to Excel from Python using pandas, xlrd, xlwrt
+	\item  test for multiple optimal soluitons
+\end{itemize}
+
+\section{Main lesson}
+The main lesson for today is in a Jupyter notebook.  We will just collect some useful ideas here for easy access.
+
+\section{pandas: commonly used commands}
+
+
+
+\begin{itemize}
+\item  Import pandas:  \begin{center} \texttt{import pandas as pd} \end{center}
+\item  Import numpy:  \begin{center} \texttt{import numpy as np} \end{center}
+
+\item Import xlrd: \begin{center} \texttt{import xlrd}  \end{center}
+\item Import xlwrt: \begin{center} \texttt{import xlwrt}  \end{center}
+
+\item Import XlsxWriter: \begin{center} \texttt{import xlsxwriter}  \end{center}
+
+\item  Open an existing Excel file called ``FileName.xlsx'': \begin{center} \texttt{df = pd.read\_excel ('FileName.xlsx')} \end{center}
+\emph{Note: This only works if the Python file (Jupyter notebook) and the Excel file are in the same directory.  Otherwise, we need the full path to the Excel file in quotes.}
+
+\emph{Another Note: pandas will always assign labels to rows and columns, so you that you reference the number row/column or the name of that row/column. It will automatically assign a numeric label of zero. If you have a better way to label columns, then you can set `index\_col=value' to some column value.}
+
+
+%\emph{Quote: By default, pandas will automatically assign a numeric index or row label starting with zero. You may want to leave the default index as such if your data doesn’t have a column with unique values that can serve as a better index. In case there is a column that you feel would serve as a better index, you can override the default behavior by setting index\_col property to a column. It takes a numeric value for setting a single column as index or a list of numeric values for creating a multi-index.}
+
+\item Open a specific sheet: \begin{center} \texttt{df = pd.read\_excel(r'File\_name.xlsx', sheet\_name='Sheet\_Name')}\end{center}
+
+\item Importingonly a subset of columns: \begin{center}\texttt{data = pd.read\_excel ('FileName.xlsx') }
+
+
+\texttt{df = pd.DataFrame(data, columns= ['ColumnName'])}
+\end{center}
+%\item  Open a sheet called ``my\_sheet'' in the Workbook called ``wb''  \begin{center} \texttt{sh = wb.sheets(`my\_sheet')} \end{center}
+%\item  Add a sheet called ``my\_sheet'' in the Workbook called ``wb'' \begin{center} \texttt{sh = wb.sheets.add(`my\_sheet')} \end{center}
+
+%How to add a sheet
+
+%\item  To run the previous two commands without errors, we need to know whether or not the sheet ``my\_sheet'' exists in Workbook ``wb''.  This code allows me to try to add the sheet, and if that doesn't the sheet already exists and I can just open it.
+%\begin{center}
+%\begin{verbatim}
+%try:                                      # try to add sheet
+ %   sh = wb.sheets.add(`my_sheet')   
+%except:                                   # otherwise, open the sheet
+ %   sh = wb.sheets(`my_sheet')     
+%\end{verbatim}
+%\end{center}
+
+\newpage
+
+%Other stuff:
+
+\item If you want to combine multiple sheets of data from 'Sheet\_Name\_1', 'Sheet\_Name\_3', 'Sheet\_Name\_3':
+
+\begin{center}
+\texttt{df = pd.read\_excel(r'File\_name.xlsx', sheet\_name='Sheet\_Name\_1')}
+
+\texttt{df2 = pd.read\_excel(r'File\_name.xlsx', sheet\_name='Sheet\_Name\_2')}
+
+\texttt{df3 = pd.read\_excel(r'File\_name.xlsx', sheet\_name='Sheet\_Name\_3')}
+
+\texttt{combined\_values = pd.concat([df,df2,df3,])}
+\end{center}
+
+
+\item Exporting a DataFrame to Excel:
+
+\begin{center}
+
+\texttt{df.to\_excel('output.xlsx')}
+
+\end{center}
+
+\end{itemize}
+
+\section{Other Python reminders}
+\begin{itemize}
+\item We can use a \texttt{range()} object in \texttt{for} loops.  For example,
+\begin{center} \texttt{for i in range(3):}  \end{center}
+loops over $i = 0, 1, 2$.
+\item  Recall that list indexing always starts at 0.
+\item To index over the list of lists,
+\begin{center} \texttt{mylist = [[a,b,c],[d,e,f]]}, \end{center}
+the item at position 
+\begin{center} \texttt{mylist[0][1]} \end{center}
+is b (list 0, position 1).
+\end{itemize}
+
+
+\section{Multiple Optimal Solutions}
+
+Sometimes we might want to explore different optimal solutions to the same integer or linear program.  This means, a solution that has the same objective value, but different values for the variables.  In order to accomplish this, we can take the following steps:
+\begin{enumerate}
+\item Solve the model the first time
+\item Add a constraint to the model that prevents the same optimal solution from occuring
+\begin{itemize}
+\item We have to be careful not to make the constraint too restrictive, or it may prevent other optimal solutions from occuring.
+\end{itemize}
+\item Solve the model again and see what happens
+\begin{itemize}
+\item If we get another optimal solution with the same objective value, then the model has multiple optimal solutions.  We can add yet another constraint to check for a third optimal solution, etc.
+\item If we get infeasible or an optimal solution with a worse objective value, then there was only the one optimal solution.
+\item Is it possible to add a constraint to the model and get a better better optimal objective value?
+\end{itemize}
+\end{enumerate}
+\end{document}

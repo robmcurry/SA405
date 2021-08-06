@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 14:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -963,11 +963,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
 [4] (./L4_Shortest_Path.aux) ) 
 Here is how much of TeX's memory you used:
- 29146 strings out of 492649
- 715869 string characters out of 6129622
+ 29144 strings out of 492649
+ 715855 string characters out of 6129622
  904129 words of memory out of 5000000
  32495 multiletter control sequences out of 15000+600000
- 9879 words of font info for 50 fonts, out of 8000000 for 9000
+ 9828 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,8n,96p,819b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/p
@@ -977,7 +977,7 @@ lic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmti10.pfb>
-Output written on L4_Shortest_Path.pdf (4 pages, 85620 bytes).
+Output written on L4_Shortest_Path.pdf (4 pages, 85521 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream

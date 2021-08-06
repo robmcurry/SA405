@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 14:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -955,11 +955,11 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
  [4]
 [5] (./L7_set_covering.aux) ) 
 Here is how much of TeX's memory you used:
- 29268 strings out of 492649
- 718316 string characters out of 6129622
+ 29264 strings out of 492649
+ 718284 string characters out of 6129622
  902659 words of memory out of 5000000
  32599 multiletter control sequences out of 15000+600000
- 12003 words of font info for 56 fonts, out of 8000000 for 9000
+ 11901 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,96p,818b,631s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/pu
@@ -971,7 +971,7 @@ c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 msfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti10.pfb>
-Output written on L7_set_covering.pdf (5 pages, 98872 bytes).
+Output written on L7_set_covering.pdf (5 pages, 98915 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  5 AUG 2021 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 14:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,7 +702,7 @@ Package: geometry 2018/03/24 v5.7 Page Geometry
 \c@example=\count147
 \c@mydef=\count148
 
-No file L1--Modeling_Review.aux.
+(./L1--Modeling_Review.aux)
 \openout1 = `L1--Modeling_Review.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
@@ -719,7 +719,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
-ABD: EveryShipout initializing macros
+ ABD: EveryShipout initializing macros
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count149
@@ -764,6 +764,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 117.
 LaTeX Info: Redefining \pageref on input line 117.
 LaTeX Info: Redefining \nameref on input line 117.
+
+(./L1--Modeling_Review.out) (./L1--Modeling_Review.out)
 \@outlinefile=\write5
 \openout5 = `L1--Modeling_Review.out'.
 
@@ -847,22 +849,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 188.
  (./L1--Modeling_Review.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 188.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 188.
-
-
-Package rerunfilecheck Warning: File `L1--Modeling_Review.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `L1--Modeling_Review.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  0FE9AFFB3250C24DBCD5EC198C0E5BF2;272.
+Package rerunfilecheck Info: File `L1--Modeling_Review.out' has not changed.
+(rerunfilecheck)             Checksum: C275B91071EFDD5FB63116C7EF1A7177;277.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
  ) 
 Here is how much of TeX's memory you used:
- 18276 strings out of 492649
- 339329 string characters out of 6129622
- 417196 words of memory out of 5000000
- 21836 multiletter control sequences out of 15000+600000
+ 18288 strings out of 492649
+ 339530 string characters out of 6129622
+ 417300 words of memory out of 5000000
+ 21842 multiletter control sequences out of 15000+600000
  10632 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,7n,58p,634b,541s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -873,10 +868,10 @@ usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
 /local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
 local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/l
 ocal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on L1--Modeling_Review.pdf (3 pages, 78470 bytes).
+Output written on L1--Modeling_Review.pdf (3 pages, 78663 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
  14 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
