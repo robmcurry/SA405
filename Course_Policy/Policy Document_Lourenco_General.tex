@@ -1,0 +1,212 @@
+\documentclass[letterpaper,hidelinks,oneside,11pt]{article}%twocolumn;titlepage(separate title page)
+\usepackage{pslatex}                %Times New Roman Font; Improves on-screen readability; preferred to using times package
+\usepackage[margin=0.5in]{geometry}   %1in 'uniform' margin (with oneside)
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{lscape}
+\setcounter{MaxMatrixCols}{20}
+%\setlength{\headsep}{0in}           %Distance from bottom of header to the body of text on a page.
+\newcommand{\rem}[1]{}
+\renewcommand{\arraystretch}{3}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% **********************************************************************
+% Compact itemize, enumerate and description environments %pkg enumitem
+% **********************************************************************
+\usepackage{enumitem}            % [FAILS w/BEAMER] Lets define enumerate spacing: \begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]
+\newenvironment{compitem}{\begin{itemize}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{itemize}}
+\newenvironment{compenum}{\begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{enumerate}}
+\newenvironment{compdesc}{\begin{description}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{description}}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator*{\proj}{proj}
+
+\newcommand{\blu}{\color{blue}}
+\newcommand{\bla}{\color{black}}
+\begin{document}
+\noindent\fbox{%
+	\parbox{\textwidth}{%
+		\begin{center}
+		\textbf{\large{Department of Mathematics}} \\
+		\textbf{\large{SA 405 - Advanced Mathematical Programming}} \\
+		\textbf{\large{Policy Document - Fall 2021}}
+		\end{center}
+	}%
+}
+\subsection*{Class time \& location} 
+MWF Period 4 (Sections 4001) 5 (Sections 5001), Period 6 (Sections 6001) \\ 
+
+Location: CH 104
+
+
+\subsection*{Instructor - Dr. Chris Lourenco}
+\textit{email}: lourenco@usna.edu \\
+\textit{Office phone}: 410-293-6720 \\
+\textit{Office}: CH 354 \\
+\textit{EI}: Feel free to drop by if I am in my office. It's helpful to send an email to let me know you are coming so I will make sure to be available. Generally, I will be in my office in these times:
+	\begin{itemize}
+	\item Mondays: 1000-1040, 1530-1700
+	\item Tuesdays: 1300-1700
+	\item Wednesdays: 1000-1040, 1530-1700
+	\item Thursdays: 1300-1700
+	\item Fridays: 1530-1700
+	\end{itemize}
+
+If you can't make it during the day, we can also do an evening EI session if needed. Please email or ask after class for an appointment. Evening EI will almost always be done via GoogleMeets.
+
+
+\subsection*{Course Description}
+
+This course covers a range of advanced topics in mathematical programming. Topics include integer programming modeling, network problems, branch-and-bound methods, integer programming theory and several algorithms.
+
+\subsection*{Prerequisites}
+
+SA 305
+
+\subsection*{Textbook} 
+
+Deterministic Operations Research by David Rader (ISBN  978-0470484517)
+
+
+\subsection*{Recommended references}
+\begin{itemize} \itemsep0em 
+	\item Pyomo - Optimization Modeling in Python (2nd ed.), by Hart, et al.
+\end{itemize}
+
+
+\subsection*{Course website}
+The course website will be provided through blackboard. This site will contain announcements and important information regarding the course. In addition, the course website will be used to distribute class materials such as homework assignments, posted course notes, and grades. Finally, this website will be used by students to post quizzes, exams, python assignments and other graded assignments.
+
+\subsection*{Topics to be covered}
+The major topics of this course include linear programming modeling, graphical solution techniques, convexity, the simplex method, duality, sensitivity analysis, and solving large LPs using Python Pyomo.
+\begin{enumerate} \itemsep0em 
+	\item Network flows: formulations and applications
+	\item Integer programming: formulations and applications
+	\item Integer programming theory
+	\item Integer programming solution techniques
+	\item Linear \& Integer programming software: Python Pyomo
+\end{enumerate}
+
+\subsection*{Tentative course schedule} 
+
+There are about 45 total class sessions this semester. Please refer to the syllabus for a tentative schedule of the course broken down weekly.
+
+\subsection*{Important Dates}
+\begin{itemize}
+\item Exam 1: Either Wednesday Sept 29 or Friday October 1
+\item Exam 2: Either Wednesday Nov 3 or Friday Nov 5
+\item Common Final Exam: TBA
+\end{itemize}
+
+\subsection*{Quizzes}
+
+Thoughout the course, there will be 8-10 quizzes assigned. These quizzes are designed to reinforce topics from the previous week. Altogether, quizzes are worth 15\% of your final grade.
+
+
+\subsection*{Homework/Labs}
+
+Throughout the course, several homeworks and Python labs will be assigned to provide extra practice. Homework will be periodically collected and graded. I will post solutions after it is due.
+
+Altogether, homework and labs will be worth 5\% of your final grade.
+
+\subsection*{Projects}
+
+Throughout the course, there will be three python miniprojects. These projects will be focused on modeling real world problems using integer programming and implementing these models in Python Pyomo. Each project will be worth 5\% of your final grade. Thus, altogether, Python Pyomo miniprojects are worth 15\% of your grade.
+
+\subsection*{Grading Policy}
+
+Grades this semester will be posted at the 6 week mark (September 29), 12 week mark (November 10) and at the final. Please refer to the table below for information on how your grade at each point in the semester will be computed.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+  \hline
+ &  \textbf{HW/Labs} & \textbf{Quizzes} & \textbf{Projects} & \textbf{Exam 1} & \textbf{Exam 2} & \textbf{Final Exam} \\ \hline
+6 Week Grade       & 5 \% & 20\% & 15\% & 60\%   & 0\%    & 0\% \\ \hline
+12 Week Grade      & 5 \% & 20\% & 15\% & 30\%   & 30\%   & 0\% \\ \hline
+Grade before Final & 5 \% & 20\% & 15\% & 30\%   & 30\%   & 0\% \\ \hline
+Final Grade        & 5 \% & 15\% & 15\% & 20\%   & 20\%   & 25\% \\
+  \hline
+\end{tabular}\end{center}
+
+To summarize, your final course grade is computed as follows:
+
+\begin{enumerate} \itemsep0em 
+	\item Projects  (15\%)
+	\item Quizzes (15\%)
+	\item Homework/Labs (5\%)
+	\item Exam 1 \& 2 (20\% each)
+	\item Final Exam (25\%)
+\end{enumerate}
+
+Grades at each milestone will be based on the following scale: 
+\textbf{A}: [90-100], \textbf{B}: [80-90), \textbf{C}: [70-80), \textbf{D}: [60-70), \textbf{F}: [0-60)
+
+
+%TODO: Insert info about plus/minus grades?
+
+
+\subsection*{Make-up Policy}
+
+Any assignment that is missed by a legitimate reason must be made up within 1 week.
+
+\subsection*{Re-grading policy}
+Students have \textbf{one week} after grades are posted to submit a \textbf{written regrade request}. This regrade request should be 1 page or less and must clearly indicate the reason(s) why the student wants the work to be regraded. Note that if you request a regrade, the \textbf{entire assignment} will be regraded; thus it may result in further deductions if new errors are discovered.
+ 
+%\subsection*{Extra credit} 
+
+%There will be no extra credit given in the course. Please do not ask me for extra credit as it is unfair to other students.
+
+%\subsection*{Technology policy} 
+
+\subsection*{Statement of Diversity}
+
+In this course and at the USNA, we embrace diversity. Discrimination of any kind including, but not limited to, on the basis of race, sex, religion, sexuality, gender identity, ethnicity, or socioeconomic status will not be tolerated.
+
+
+\subsection*{Academic Integrity}
+
+According to the Honor Concept, Midshipmen do not lie, cheat, or steal. Further guidance regarding academic honesty is available in Policies Concerning Graded Academic Work (USNAINST 1531.53B) and Brigade Honor Program (USNAINST 1610.3J). Violation of the Honor Concept will lead to a zero on the assignment and reporting to the appropriate authorities. 
+\begin{itemize}
+	\item Collaboration of any kind is not allowed on quizzes or exams. A grade of 0 will be assigned on any quiz or exam for which there is evidence of cheating.
+	\item Collaboration in projects/homeworks:
+	\begin{itemize}
+	\item You may discuss the project with classmates, figuring things out together and helping each other to debug code.
+	\item You may look up Pyomo and Python syntax online.
+	\item You must write all of your own code. You may not cut-and-paste code from any resource, either online or from a classmate. The only exception to this rule is if I give you a ``starter'' file.
+	\item You must cite all resources. For example, it is sufficient to write: “Joe from class suggested these variables” or “my roommate helped me understand this constraint” or “Dr.\ Lourenco helped me with the syntax” or “I Googled this and found another way to …”.
+	\item I will assign a grade of zero on any project for which there is evidence that it has been copied in part or entirely from another classmate or any other source.
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Professionalism}
+I expect a high level or professionalism in class. Sleeping, arriving late, using inappropriate technology or engaging in other disruptive activities are unacceptable classroom behavior. Do not use profane or suggestive language in the classroom. Do not belittle ``dumb'' questions.
+
+I am a civilian professor. It is appropriate to refer to me as Dr.\ Lourenco or Professor Lourenco. It is not appropriate to refer to me by my first name. I will usually refer to you by your first name. If you prefer to be addressed in a different manner please let me know.
+
+\subsection*{Strategies for Success}
+
+It would be very helpful if you prepare for each class by reviewing ahead of time the material to be covered during the lecture. Furthermore, it is important to complete all homework assignments and projects with focused intent to learn. Active engagement in classwork and projects will contribute greatly to your understanding and retention of the material.
+
+Seek assistance promptly when needed, either from me or with other Midshipmen who are in (or have taken) the course. Please contact me if you are experiencing difficulties that may affect your academic performance.
+
+%\subsection*{Pandemic Learning}
+
+%We are still in an experimental phase with regards to online and hybrid learning. We already know there are significant challenges associated with both learning and teaching in this environment, and we don't know what the semester has in store, globally or locally. Given these challenging times, we must work extra hard to support each other in learning and growing, both academically and as compassionate leaders. One way we can support the groups efforts is to stay focused and contribute meaningfully during our class meetings, so that we are fully present for each other. In general, it is easier to concentrate during class if other distractions are minimized; I recommend putting away cell phones and closing or minimizing windows on computers that are not related to classwork. This will also reduce distractions for other students who are working nearby. 
+
+%Finally, I reserve the right to make minor changes and adjustments in the class policies if needed with transparency and clarity and in consultation with the class. 
+
+%Lets work together to make this semester successful and fulfilling for everyone.
+
+\end{document}
