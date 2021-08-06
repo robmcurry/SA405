@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**L13_Facility_Location.tex
-(./L13_Facility_Location.tex
+**L10_min_spanning_tree.tex
+(./L10_min_spanning_tree.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -763,65 +763,8 @@ Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup4
 )
-(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2018/04/01 v1.8r multicolumn formatting (FMi)
-\c@tracingmulticols=\count148
-\mult@box=\box52
-\multicol@leftmargin=\dimen272
-\c@unbalance=\count149
-\c@collectmore=\count150
-\doublecol@number=\count151
-\multicoltolerance=\count152
-\multicolpretolerance=\count153
-\full@width=\dimen273
-\page@free=\dimen274
-\premulticols=\dimen275
-\postmulticols=\dimen276
-\multicolsep=\skip60
-\multicolbaselineskip=\skip61
-\partial@page=\box53
-\last@line=\box54
-\maxbalancingoverflow=\dimen277
-\mult@rightbox=\box55
-\mult@grightbox=\box56
-\mult@gfirstbox=\box57
-\mult@firstbox=\box58
-\@tempa=\box59
-\@tempa=\box60
-\@tempa=\box61
-\@tempa=\box62
-\@tempa=\box63
-\@tempa=\box64
-\@tempa=\box65
-\@tempa=\box66
-\@tempa=\box67
-\@tempa=\box68
-\@tempa=\box69
-\@tempa=\box70
-\@tempa=\box71
-\@tempa=\box72
-\@tempa=\box73
-\@tempa=\box74
-\@tempa=\box75
-\c@columnbadness=\count154
-\c@finalcolumnbadness=\count155
-\last@try=\dimen278
-\multicolovershoot=\dimen279
-\multicolundershoot=\dimen280
-\mult@nat@firstbox=\box76
-\colbreak@box=\box77
-\mc@col@check@num=\count156
-)
-(/usr/local/texlive/2018/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip62
-\fb@frw=\dimen281
-\fb@frh=\dimen282
-\FrameRule=\dimen283
-\FrameSep=\dimen284
-)
-\c@problem=\count157
-\c@example=\count158
+\c@problem=\count148
+\c@example=\count149
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypatterns.code.tex
@@ -832,22 +775,22 @@ s.code.tex
 File: pgflibrarypatterns.code.tex 2008/03/03 v3.0.1a (rcs-revision 1.13)
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
-ts.polar.code.tex) (./L13_Facility_Location.aux)
-\openout1 = `L13_Facility_Location.aux'.
+ts.polar.code.tex) (./L10_min_spanning_tree.aux)
+\openout1 = `L10_min_spanning_tree.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Info: Redefining \microtypecontext on input line 149.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Info: Redefining \microtypecontext on input line 141.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -899,16 +842,16 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 ABD: EveryShipout initializing macros
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count159
-\scratchdimen=\dimen285
-\scratchbox=\box78
-\nofMPsegments=\count160
-\nofMParguments=\count161
+\scratchcounter=\count150
+\scratchdimen=\dimen272
+\scratchbox=\box52
+\nofMPsegments=\count151
+\nofMParguments=\count152
 \everyMPshowfont=\toks55
-\MPscratchCnt=\count162
-\MPscratchDim=\dimen286
-\MPnumerator=\count163
-\makeMPintoPDFobject=\count164
+\MPscratchCnt=\count153
+\MPscratchDim=\dimen273
+\MPnumerator=\count154
+\makeMPintoPDFobject=\count155
 \everyMPtoPDFconversion=\toks56
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -966,177 +909,185 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
- on input line 149.
+ on input line 141.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 153.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 145.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--153
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 
  []
 
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 167.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 151.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [1
+)
+<costs.png, id=4, 211.0284pt x 140.2038pt>
+File: costs.png Graphic file (type png)
+<use costs.png>
+Package pdftex.def Info: costs.png  used on input line 170.
+(pdftex.def)             Requested size: 140.92793pt x 93.6344pt.
+ [1
 
-{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<facloc.png, id=14, 410.0118pt x 385.9218pt>
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 228.
-(pdftex.def)             Requested size: 281.85587pt x 265.29703pt.
- [2 <./facloc.png>]
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 278--279
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./costs
+.png>]
+[2] [3]
+<graph5.png, id=24, 598.235pt x 415.5525pt>
+File: graph5.png Graphic file (type png)
+<use graph5.png>
+Package pdftex.def Info: graph5.png  used on input line 252.
+(pdftex.def)             Requested size: 187.89914pt x 130.51927pt.
+
+Overfull \hbox (17.00667pt too wide) in paragraph at lines 258--260
+[][]  []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--260
+
+ []
+
+
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 264--265
+[][] 
+ []
+
+
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 267--268
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--279
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
+[4 <./graph5.png>]
+Overfull \hbox (1.77791pt too wide) in paragraph at lines 285--287
+[]
+ []
 
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 283--284
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--287
+
+ []
+
+<weightedgraph.png, id=29, 592.2125pt x 286.06876pt>
+File: weightedgraph.png Graphic file (type png)
+<use weightedgraph.png>
+Package pdftex.def Info: weightedgraph.png  used on input line 293.
+(pdftex.def)             Requested size: 328.82707pt x 158.84424pt.
+
+Overfull \hbox (1.77791pt too wide) in paragraph at lines 298--299
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
+[5 <./weightedgraph.png>]
+File: costs.png Graphic file (type png)
+<use costs.png>
+Package pdftex.def Info: costs.png  used on input line 317.
+(pdftex.def)             Requested size: 140.92793pt x 93.6344pt.
 
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 287--288
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 327--328
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 327--328
 
  []
 
-[3]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 295.
-(pdftex.def)             Requested size: 328.82707pt x 309.51515pt.
-<distances.jpg, id=28, 858.20625pt x 974.64125pt>
-File: distances.jpg Graphic file (type jpg)
-<use distances.jpg>
-Package pdftex.def Info: distances.jpg  used on input line 298.
-(pdftex.def)             Requested size: 187.89914pt x 213.3807pt.
- [4 <./distances.jpg>] [5]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 367.
-(pdftex.def)             Requested size: 187.89914pt x 176.86075pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 367--378
+[6]
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 332--333
 [][]
  []
 
 
-Overfull \hbox (1.56157pt too wide) in paragraph at lines 367--378
-[]$ 
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
+
  []
 
 
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 381--382
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 336--337
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
 
  []
 
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 385--386
+[7]
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 341--342
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
 
  []
 
-[6] [7]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 455.
-(pdftex.def)             Requested size: 187.89914pt x 176.86075pt.
 
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 459--460
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 345--346
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 459--460
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
-
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 465--466
+[8]
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 350--351
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
+Underfull \hbox (badness 10000) in paragraph at lines 350--351
 
  []
 
 
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 469--470
+Overfull \hbox (1.69002pt too wide) in paragraph at lines 354--355
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--470
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
 
  []
 
-
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 473--474
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 473--474
-
- []
-
-[8] (./L13_Facility_Location.aux) ) 
+[9] (./L10_min_spanning_tree.aux) ) 
 Here is how much of TeX's memory you used:
- 29361 strings out of 492649
- 719451 string characters out of 6129622
- 911293 words of memory out of 5000000
- 32700 multiletter control sequences out of 15000+600000
- 11273 words of font info for 51 fonts, out of 8000000 for 9000
+ 29213 strings out of 492649
+ 717101 string characters out of 6129622
+ 903211 words of memory out of 5000000
+ 32536 multiletter control sequences out of 15000+600000
+ 10736 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,96p,845b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,6n,96p,845b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmti10.pfb>
-Output written on L13_Facility_Location.pdf (8 pages, 237858 bytes).
+/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmti10.pfb>
+Output written on L10_min_spanning_tree.pdf (9 pages, 205396 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 8727 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6684 words of extra memory for PDF output out of 10000 (max. 10000000)
 

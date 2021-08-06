@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  4 AUG 2021 13:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,8 +771,7 @@ s.code.tex
 File: pgflibrarypatterns.code.tex 2008/03/03 v3.0.1a (rcs-revision 1.13)
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
-ts.polar.code.tex)
-No file L9_logical_constraints.aux.
+ts.polar.code.tex) (./L9_logical_constraints.aux)
 \openout1 = `L9_logical_constraints.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
@@ -797,6 +796,7 @@ Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
+
 (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
@@ -1003,8 +1003,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
 [2] [3] (./L9_logical_constraints.aux) ) 
 Here is how much of TeX's memory you used:
- 29140 strings out of 492649
- 715917 string characters out of 6129622
+ 29142 strings out of 492649
+ 715971 string characters out of 6129622
  902123 words of memory out of 5000000
  32501 multiletter control sequences out of 15000+600000
  9510 words of font info for 45 fonts, out of 8000000 for 9000

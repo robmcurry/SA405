@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  6 AUG 2021 09:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**L13_Facility_Location.tex
-(./L13_Facility_Location.tex
+**L16_Branch_and_Bound_Example.tex
+(./L16_Branch_and_Bound_Example.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -144,6 +144,13 @@ Package: amsthm 2017/10/31 v2.20.4
 \thm@postskip=\skip48
 \thm@headsep=\skip49
 \dth@everypar=\toks27
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
@@ -761,7 +768,7 @@ Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
-\symrsfs=\mathgroup4
+\symrsfs=\mathgroup6
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2018/04/01 v1.8r multicolumn formatting (FMi)
@@ -832,22 +839,22 @@ s.code.tex
 File: pgflibrarypatterns.code.tex 2008/03/03 v3.0.1a (rcs-revision 1.13)
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
-ts.polar.code.tex) (./L13_Facility_Location.aux)
-\openout1 = `L13_Facility_Location.aux'.
+ts.polar.code.tex) (./L16_Branch_and_Bound_Example.aux)
+\openout1 = `L16_Branch_and_Bound_Example.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Info: Redefining \microtypecontext on input line 149.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Info: Redefining \microtypecontext on input line 150.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -966,177 +973,74 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
- on input line 149.
+ on input line 150.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 153.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 154.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 154.
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--153
+Underfull \hbox (badness 10000) in paragraph at lines 154--154
 
  []
 
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 167.
+LaTeX Font Info:    Try loading font information for U+msa on input line 159.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 159.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 159.
+
 (/usr/local/texlive/2018/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<facloc.png, id=14, 410.0118pt x 385.9218pt>
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 228.
-(pdftex.def)             Requested size: 281.85587pt x 265.29703pt.
- [2 <./facloc.png>]
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 278--279
-[][]
- []
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<bnb_feasible_regions.png, id=21, 304.0158pt x 689.4558pt>
+File: bnb_feasible_regions.png Graphic file (type png)
+<use bnb_feasible_regions.png>
+Package pdftex.def Info: bnb_feasible_regions.png  used on input line 215.
+(pdftex.def)             Requested size: 304.01505pt x 689.45412pt.
+
+Overfull \vbox (39.02411pt too high) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--279
-
- []
-
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 283--284
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
-
- []
-
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 287--288
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
-
- []
-
-[3]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 295.
-(pdftex.def)             Requested size: 328.82707pt x 309.51515pt.
-<distances.jpg, id=28, 858.20625pt x 974.64125pt>
-File: distances.jpg Graphic file (type jpg)
-<use distances.jpg>
-Package pdftex.def Info: distances.jpg  used on input line 298.
-(pdftex.def)             Requested size: 187.89914pt x 213.3807pt.
- [4 <./distances.jpg>] [5]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 367.
-(pdftex.def)             Requested size: 187.89914pt x 176.86075pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 367--378
-[][]
- []
-
-
-Overfull \hbox (1.56157pt too wide) in paragraph at lines 367--378
-[]$ 
- []
-
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 381--382
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
-
- []
-
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 385--386
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
-
- []
-
-[6] [7]
-File: facloc.png Graphic file (type png)
-<use facloc.png>
-Package pdftex.def Info: facloc.png  used on input line 455.
-(pdftex.def)             Requested size: 187.89914pt x 176.86075pt.
-
-Overfull \hbox (1.69002pt too wide) in paragraph at lines 459--460
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 459--460
-
- []
-
-
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 465--466
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
-
- []
-
-
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 469--470
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 469--470
-
- []
-
-
-Overfull \hbox (11.32626pt too wide) in paragraph at lines 473--474
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 473--474
-
- []
-
-[8] (./L13_Facility_Location.aux) ) 
+[3 <./bnb_feasible_regions.png>] (./L16_Branch_and_Bound_Example.aux) ) 
 Here is how much of TeX's memory you used:
- 29361 strings out of 492649
- 719451 string characters out of 6129622
- 911293 words of memory out of 5000000
- 32700 multiletter control sequences out of 15000+600000
- 11273 words of font info for 51 fonts, out of 8000000 for 9000
+ 29382 strings out of 492649
+ 719952 string characters out of 6129622
+ 908764 words of memory out of 5000000
+ 32725 multiletter control sequences out of 15000+600000
+ 10731 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,96p,845b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmti10.pfb>
-Output written on L13_Facility_Location.pdf (8 pages, 237858 bytes).
+ 62i,10n,96p,852b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/lo
+cal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loc
+al/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/loca
+l/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local
+/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
+/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
+018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on L16_Branch_and_Bound_Example.pdf (3 pages, 193811 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 56 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 8727 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5650 words of extra memory for PDF output out of 10000 (max. 10000000)
 
