@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.6)  6 AUG 2021 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.6)  12 AUG 2021 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"Lecture 1 Handout.tex"
-(./Lecture 1 Handout.tex
+**"Lecture 1 LP Review.tex"
+(./Lecture 1 LP Review.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -687,8 +687,8 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \c@example=\count146
 \c@mydef=\count147
 
-(./Lecture 1 Handout.aux)
-\openout1 = `"Lecture 1 Handout.aux"'.
+No file "Lecture 1 LP Review".aux.
+\openout1 = `"Lecture 1 LP Review.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
@@ -704,7 +704,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
 LaTeX Font Info:    ... okay on input line 117.
- ABD: EveryShipout initializing macros
+ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count148
@@ -749,10 +749,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 117.
 LaTeX Info: Redefining \pageref on input line 117.
 LaTeX Info: Redefining \nameref on input line 117.
-
-(./Lecture 1 Handout.out) (./Lecture 1 Handout.out)
 \@outlinefile=\write5
-\openout5 = `"Lecture 1 Handout.out"'.
+\openout5 = `"Lecture 1 LP Review.out"'.
 
 
 *geometry* driver: auto-detecting
@@ -831,31 +829,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 219--220
 [6]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 238.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 238.
- (./Lecture 1 Handout.aux)
+ (./Lecture 1 LP Review.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 238.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 238.
-Package rerunfilecheck Info: File `"Lecture 1 Handout".out' has not changed.
-(rerunfilecheck)             Checksum: B0631C7F7904AB0616D5C329DDBF3489;291.
+
+
+Package rerunfilecheck Warning: File `"Lecture 1 LP Review".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Lecture 1 LP Review".out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  B0631C7F7904AB0616D5C329DDBF3489;291.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 238.
  ) 
 Here is how much of TeX's memory you used:
- 18329 strings out of 492982
- 338784 string characters out of 6134897
- 410083 words of memory out of 5000000
- 21557 multiletter control sequences out of 15000+600000
+ 18317 strings out of 492982
+ 338609 string characters out of 6134897
+ 409979 words of memory out of 5000000
+ 21551 multiletter control sequences out of 15000+600000
  10463 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,58p,618b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,7n,58p,620b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "Lecture 1 Handout.pdf" (6 pages, 75013 bytes).
+Output written on "Lecture 1 LP Review.pdf" (6 pages, 73730 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  24 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

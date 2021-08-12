@@ -1,0 +1,297 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.7cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.7cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 2.9 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 3: Network Models: Transportation \& Minimum Cost Network Flow Models}
+
+
+\maketitle
+\bigskip
+\vspace{-1cm}
+
+\section{A Transportation Problem:  Bakeries}
+A local baked goods company has two bakeries where they bake their goods, which they then ship to three different area stores to sell.  Each bakery can produce up to 50 truckloads of baked goods per week, and each bakery can supply any of the stores.  The weekly demands (in truckloads) anticipated at each store along with the transportation costs (per truckload) are provided in the tables below.  Note that partial truckloads cost just as much as full truckloads.  How many truckloads should be sent from each bakery to each store in order to minimize total shipping cost?
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ & Demand \\
+\hline
+Store 1 & 35 \\
+\hline
+Store 2 & 25 \\
+\hline
+Store 3 & 40 \\
+\hline
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+& Store 1 & Store 2 & Store 3 \\
+\hline
+Bakery a & \$20 & \$45 & \$35 \\
+\hline
+Bakery b & \$35 & \$35 & \$50 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Graphical representation of the network.}
+\begin{enumerate}
+\item  Draw a directed graph to represent the problem.  Bakeries and stores are represented by \emph{nodes} (or \emph{vertices}).  Directed \emph{arcs} (or \emph{edges}) represent flow of goods. Label each node ($a$, $b$, 1, 2, 3), and beside each node indicate its corresponding supply or demand. \newpage
+\item  Find a feasible (not necessarily optimal) solution.   
+\vspace{2in}
+\item  Define decision variables.  (Hint:  what information must a solution provide?) 
+\vspace{2in}
+\item  Add decision variables to your graphical network diagram. \newpage
+\end{enumerate}
+
+\subsection{Concrete model}
+\begin{problem}
+Using the usual format, write a concrete model to find a feasible transportation.
+\end{problem}
+
+%\textbf{\underline{Parameters}} \vspace{1in}
+
+%\textbf{\underline{Decision Variables}} \vspace{1.5in}
+
+%\textbf{\underline{Objective Function}} \vspace{1.5in}
+
+%\textbf{\underline{Constraints}}
+
+\newpage
+
+\subsection{Parameterized model}
+
+\begin{problem}
+Convert your model to a parameterized model. 
+\end{problem}
+
+%\textbf{\underline{Parameters}} \vspace{1in}
+
+%\textbf{\underline{Decision Variables}} \vspace{1.5in}
+
+%\textbf{\underline{Objective Function}} \vspace{1.5in}
+
+%\textbf{\underline{Constraints}}
+\newpage
+
+\subsection{Assumptions and Special Scenarios}
+
+Notice that the transportation problem has a very important assumption: namely that the total supply is equal to the total demand.
+\begin{itemize}
+\item If the total supply exceeds the total demand or vice versa there's a problem with the network. \vspace{1.5in}
+\end{itemize}
+
+\begin{enumerate}
+\item What if bakery 1 could produce 100 units instead of just 50? How would that modify our network diagram/formulation? \vspace{2.5in}
+\item What if store 1 needed 75 units instead of 35? How would that modify our network diagram/formulation? \newpage
+\end{enumerate}
+
+\section{Minimum Cost Network Flow Models}
+
+Consider the bakery again, only this time there are two warehouses that baked goods must be delivered to before they are taken to their final destinations.  The warehouses ($w1$ and $w2$) have no supply nor demand.  These are the transportation costs:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+& Warehouse 1 & Warehouse 2 \\
+\hline
+Bakery 1 & \$10 & \$15 \\
+\hline
+Bakery 2 & \$20 & \$25 \\
+\hline
+\end{tabular}
+%\hspace{.5in}
+\begin{tabular}{|c|c|c|c|}
+\hline
+& Store 1 & Store 2 & Store 3 \\
+\hline
+Warehouse 1 & \$20 & \$45 & \$35 \\
+\hline
+Warehouse 2 & \$35 & \$35 & \$50 \\
+\hline
+\end{tabular}
+\end{center}
+Also, recall that the store demands are $d_{s1} = 35$, $d_{s2} = 25$, and $d_{s3} = 40$, so that $total~supply = total~demand = 100$.
+\begin{itemize}
+\item The warehouses are called \textbf{transshipment nodes}.   
+\item This is called a \textbf{transshipment problem} or a \textbf{minimum cost network flow problem}.
+\end{itemize}
+
+\begin{problem}
+Draw the new network diagram. What's the major difference this time that doesn't make it a simple transportation problem?
+\end{problem} \newpage
+
+
+\subsection{Concrete model}
+\begin{problem}
+Using the usual format, write a concrete model to find a feasible transportation.
+\end{problem}
+
+\newpage
+
+\subsection{Balance of Flow}
+
+Before writing the parameterized model, it will be helpful to rearrange the constraints so that they all have the same form.  First, verify that you have one constraint per node, and that all of your constraints have one of the following  forms:
+\[
+flow~out ~\leq~ supply  ~~~~~\text{or}~~~~~  demand ~\leq~ flow~in.
+\]
+We can write all of our constraints using the same form by adding these two forms:
+\[
+demand + flow~out~ = ~ supply + flow~in.
+\]
+These are called \textbf{flow balence} constraints.  (Recall this is an assumption)
+
+\begin{itemize}
+\item Why does it make sense for $supply$ at a node to be combinded with $flow~in$ and $demand$ at a node to be combined with flow out?\vspace{2in}
+\item Some like to combine supply and demand into a single parameter, $b = supply - demand$, for each node. Write a general form for the \textbf{balance of flow constraint} using $b$:
+\vspace{2in}
+\end{itemize}
+\newpage
+
+\subsection{Parameterized model}
+
+\begin{problem}
+Convert your model to a parameterized model. 
+\end{problem}
+
+
+
+\end{document}
