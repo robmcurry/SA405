@@ -1,0 +1,240 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb,amsmath,latexsym,color,graphicx,fancyhdr,float}
+\usepackage[obeyspaces]{url}
+%\usepackage{menukeys}
+\usepackage{graphics}
+
+\usepackage[]{hyperref,enumerate}
+\topmargin -0.5in
+ \textheight 8.8in
+ \textwidth 6.5 in
+ \oddsidemargin 0.0in
+ \evensidemargin 0.0in
+\renewcommand{\baselinestretch}{1.0} % open up line spacing
+\definecolor{Mygrey}{gray}{0.75}
+\setlength{\headheight}{15pt}
+%setlength{\parindent}{15pt}
+\setlength{\parskip}{10pt}
+
+\usepackage[utf8]{inputenc}
+ 
+\usepackage{listings}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\newcommand{\menu}[1]{{\bf #1}}
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\link}[1]{{\small\url{#1}}}
+
+\begin{document}
+
+\pagestyle{fancy} \lhead{SA305} \rhead{Assoc. Profs. Phillips and Uhan, Asst. Profs. Svirsko and Lourenco}
+\renewcommand\headrulewidth{2pt}
+
+
+\begin{center}
+{\large {\sc Lab 0: Installing Python/Pyomo}}
+\end{center}
+
+\section{Purpose of this lab}
+
+{\bf IF YOU TOOK OR ARE TAKING SM286D, STOP. YOU HAVE ALREADY INSTALLED PYOMO! PUT THIS DOCUMENT AWAY!!!}
+
+The purpose of this lab is to 
+\begin{enumerate}
+\item Install Anaconda, a software management tool that let us accomplish the remaining tasks.
+\item Install Pyomo, the modeling language we use to encode the linear programs we solve;
+\item Install GLPK, the engine that solves the models we've formulated;
+\end{enumerate}
+
+{\bf AGAIN, IF YOU TOOK OR ARE TAKING SM286D, STOP. YOU HAVE ALREADY INSTALLED PYOMO! GO AWAY. STOP READING THIS NOW.}
+
+\section{Getting Your Computer Ready for Installation}
+
+In order to minimize the potential for issues when installing the required Python software, please go to the USNA Software Center to make sure your computer is current with respect to required software updates.  To get to the Software Center, first click on the Windows icon on the bottom left corner of your PC screen. Then type software. That should bring up a link to the software center program at USNA. Click on the Software Center link.  Once Software Center is open, go to the Updates tab and click Install All at the top right corner (see the image below) to install all required updates.  Once the updates have finished, restart your computer.
+
+\begin{center}
+\includegraphics[scale=0.3]{SoftwareCenterUpdates.png}
+\end{center} 
+
+\section{Installing Anaconda}
+
+In this course, we will use Anaconda3 as the default Python distribution. Follow these instructions carefully.  The instructions that follow are based on the documentation found here:  \url{https://docs.anaconda.com/anaconda/install/windows/}.
+
+\subsection*{Step 1. Download the Anaconda installer}
+
+Go to the following URL to download the installer: \link{https://www.anaconda.com/download/\#windows}.  You should select the 64 bit Python 3.7 version (which is the default if you click on the big green button labeled ``Download'' under the Python 3.7 version heading).
+
+\subsection*{Step 2. Double click on the installer to launch}
+
+\subsection*{Step 3. Click \menu{Next}}
+
+\subsection*{Step 4. Read the licensing terms and click \menu{``I agree''}}
+
+\subsection*{Step 5. Select an install for ``Just Me'' and click \menu{Next}}
+
+\subsection*{Step 6. Use the default destination folder to install Anaconda by clicking \menu{Next}}
+
+
+For Steps 7, 8, and 9, refer to the image below.
+
+\subsection*{Step 7. Choose to NOT add Anaconda to your system PATH environment variable (i.e. leave the first box unchecked).}
+
+Adding Anaconda to the PATH environment variable can interfere with other software.  We will use the Anaconda software by opening Anaconda Navigator or the Anaconda Prompt from the Start Menu.
+
+\subsection*{Step 8. Register Anaconda as your default Python (i.e. leave the second box checked).}
+
+\begin{center}
+\includegraphics[scale=0.5]{install-win-path.png}
+\end{center}
+
+\subsection*{Step 9. Click the \menu{Install} button.}
+
+\subsection*{Step 10. Click \menu{Next}}
+
+\subsection*{Step 11. Click \menu{Skip} to install Anaconda WITHOUT Microsoft VS Code.}
+
+\subsection*{Step 12. After a successful installation you will see the ``Thanks for installing Anaconda'' dialog box shown below.}
+
+\begin{center}
+\includegraphics[scale=0.5]{anaconda-install-win.png}
+\end{center}
+
+\subsection*{Step 13. Uncheck the two boxes and click \menu{Finish} to complete the installation.}
+
+\subsection*{Step 14. Install packages you'll need for SA305}
+
+Now that Anaconda is installed, we will install some additional packages that you will need for SA305 and linear programming examples in this class. From the Windows Start menu, right-click on the shortcut Anaconda Prompt, select More, and then left-click on Run as administrator as shown in the image below.
+
+\begin{center}
+\includegraphics[scale=0.4]{anaconda-prompt.png}
+\end{center} 
+
+That should open a terminal window on your machine. Type the following code and press enter: \begin{center}
+conda install -c conda-forge pyomo
+\end{center}
+You will see the conda package installer solve the environment, and it will then ask you if you want to make the necessary changes (some packages will be installed and some will be updated).  You should type {\tt y} when it asks and hit enter.  This will allow the install process to continue.  The conda package installer will then verify, and complete the installation. 
+
+Once this is complete, type the following code and press enter: \begin{center}
+conda install -c conda-forge pyomo.extras
+\end{center}
+You will see the conda package installer solve the environment, and it will then ask you if you want to make the necessary changes (some packages will be installed and some will be updated).  You should type {\tt y} when it asks and hit enter.  This will allow the install process to continue.  The conda package installer will then verify, and complete the installation. 
+%
+%If you can't install the packages using conda install, you can try using pip instead.  The command to do this is as follows:
+%\begin{center}
+%pip install pyomo
+%\end{center}
+%
+%If you used pip to install Pyomo, then you can install the Pyomo extras using the following command:
+%\begin{center}
+%pyomo install-extras
+%\end{center}
+%
+%Please note, you should NOT install Pyomo using BOTH of these methods.  Start with conda install, and move to pip ONLY if conda install does not work for you.
+
+Once this is complete, type the following code and press enter: \begin{center}
+conda install -c conda-forge glpk 
+\end{center}
+You will see the conda package installer solve the environment, and it will then ask you if you want to make the necessary changes (some packages will be installed and some will be updated).  You should type {\tt y} when it asks and hit enter.  This will allow the install process to continue.  The conda package installer will then verify, and complete the installation. Then you can close the window.
+
+%\section{A sample Python program using Spyder}
+%
+%In order to write our first Python program, we need to open Spyder.  Spyder stands for the {\bf S}cientific {\bf Py}thon {\bf De}velopment Envi{\bf r}onment.  You can open Spyder from the Anaconda Navigator by clicking {\tt Launch} (shown below), or you can open it directly from the Windows Start menu under the Anaconda3 (64-bit) shortcut.
+%
+%\begin{center}
+%\includegraphics[scale=0.4]{navigator-full.png}
+%\end{center}  
+%
+%\begin{itemize}
+%  \item Once Spyder is open, use the menu at the top and click on {\tt File > New file...}
+%  \item Type the command below on the first open line in the left-hand window of Spyder.  This left-hand window is referred to as the Editor.
+%      \begin{quote}
+%      \small\tt print(``Hello World!'')
+%    \end{quote}
+%  \item Click on {\tt File > Save as...} to save your first program.  Pick a folder that you want to use, and click on {\tt Save}.
+%  \item Click on {\tt Run > Run} or hit F5 on your keyboard to run your code.  You should see the output, Hello World!, in the bottom right-hand window of Spyder.  This bottom right-hand window is referred to as the IPython console.
+%  \item Congratulations on writing your first Python program!
+%\end{itemize}
+%
+%\begin{center}
+%\includegraphics[scale=0.4]{HelloWorld.png}
+%\end{center}  
+
+\section{A sample Python program using Jupyter Notebook}
+
+%We will now write the same program we did in Section 4 in the Jupyter Notebook environment.  
+Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and text.  You can read more about how to work with Jupyter Notebook here:  \link{https://www.dataquest.io/blog/jupyter-notebook-tutorial/}.  In order to write the Python program, we need to open Jupyter Notebook.  You can open Jupyter Notebook from the Anaconda Navigator by clicking {\tt Launch} (shown below), or you can open it directly from the Windows Start menu under the Anaconda3 (64-bit) shortcut.
+
+\begin{center}
+\includegraphics[scale=0.4]{navigator-full.png}
+\end{center}  
+
+\begin{itemize}
+  \item Jupyter Notebook will open in your default web browser.  Once it is open, use the menu at the top and click on {\tt New > Python 3} as shown below.
+  \begin{center}
+\includegraphics[scale=0.4]{jupyter-new.png}
+\end{center}  
+  
+  \item Type the command below in the code cell of the untitled Jupyter Notebook.
+      \begin{quote}
+      \small\tt print(``Hello World!'')
+    \end{quote}
+  \item Click on {\tt File > Save as...} to save your first program.  Enter a file name you want to use, and click on {\tt Save}.
+  \item Click on {\tt Run} or use Ctrl + Enter on your keyboard to run your code.  You should see the output, Hello World!, below the code cell.  As shown below. \begin{center}
+\includegraphics[scale=0.4]{jupyter-output.png}
+\end{center}  
+  
+  \item Congratulations on writing your first Python program in Jupyter Notebook!
+\end{itemize}
+
+%\section{Practice Python Problems}
+%
+%\begin{enumerate}
+%
+%\item Work through Chapter 3 of the online Python tutorial at \begin{center} 
+%https://docs.python.org/3/tutorial/introduction.html \end{center}
+%Practice running commands on the command line in Spyder and sending commands from the editor to the command line (by pressing the F9 key). After you've written a few of the commands in the editor, save and run the entire file. Also practice highlighting some of your code and sending that to the editor using F9. 
+%
+%\item (PCC 1-2) Hello World Typos: Open the file that you created after following the installation instructions. Make a typo somewhere in the line and run the program again. Can you make a typo that generates an error? Can you make sense of the error message? Can you
+%make a typo that doesn’t generate an error? Why do you think it didn’t make
+%an error?
+%
+%
+%\item (PCC 1-3) Infinite Skills: If you had infinite programming skills, what would you build?
+%You’re about to learn how to program. If you have an end goal in mind, you’ll
+%have an immediate use for your new skills; now is a great time to draft descriptions
+%of what you’d like to create. It’s a good habit to keep an “ideas” notebook
+%that you can refer to whenever you want to start a new project. Take a few
+%minutes now to describe three programs you’d like to create.
+%
+%
+%\item  (Adapted from a problem due to John Dalbey at CalPoly) The common field cricket chirps in relation to the current tem­perature. Adding 40 to the number of times a cricket chirps in a minute, then dividing by 4, gives us the temperature (in Fahrenheit degrees). If you hear a cricket chirp 50 times in 15 seconds, compute the temperature to the nearest half degree.  
+%
+%\end{enumerate}
+
+\end{document}
