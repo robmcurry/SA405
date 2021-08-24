@@ -1,0 +1,401 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage{optprog}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.7cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.7cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+\newcommand{\blu}{
+	\color{blue}	
+	}
+
+%% ----- Begin document ----- %%
+\begin{document}
+\title{HW1: LP Review and IP Formulation}
+
+
+\maketitle
+
+\textbf{1.} Giapetto’s Woodcarving, Inc., manufactures two types of wooden toys: soldiers and trains. A soldier sells for \$27 and uses \$10 worth of raw materials. Each solder that is manufactured increases Giapetto’s variable labor and overhead costs by \$14. A train sells for \$21 and uses \$9 worth of raw materials. Each train built increases Giapetto’s variable labor and overhead costs by \$10. The manufacture of wooden soldiers and trains requires two types of skilled labor: carpentry and finishing. A soldier requires 2 hours of finishing labor and 1 hour of carpentry labor. A train requires 1 hour of finishing and 1 hour of carpentry labor. Each week, Giapetto can obtain all the needed raw material but only 100 finishing hours and 80 carpentry hours. Demand for trains is unlimited, but at most 40 soldiers are bought each week. Giapetto wants to maximize weekly profit (revenue - costs). Formulate a concrete and parameterized LP model that can be used to maximize Giapetto’s weekly profit.
+
+{\blu
+
+\begin{center}
+Concrete model:
+\end{center}
+
+\textbf{Decision Variables}
+
+Let $x$ be the number of soldiers made
+
+Let $y$ be the number of trains made
+
+\textbf{Objective Function}
+
+\[
+\text{maximize profit: } (27-10-14) x + (21-9-10) y
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & 2x + y & \leq & 100 & \text{(finishing labor)} \\
+   & x + y & \leq & 80 & \text{(carpentry labor)} \\
+   & x & \leq & 40 & \text{(max soldier demand)} \\
+   & x,y & \geq & 0
+\end{optprog*}
+
+\newpage
+
+\begin{center}
+Parameterized Model:
+\end{center}
+
+\textbf{Sets}
+
+Let $S$ be the set of toys to be made $S = \{t, s\}$
+
+Let $R$ be the set of resources available $R = \{\text{carpentry}, \text{finishing}\}$
+
+\textbf{Decision Variables}
+
+Let $x_i$ be the amount of toy $i$ made for all $i \in S$.
+
+\textbf{Parameters}
+
+Let $a_{i,j}$ be the amount of resource $j$ used to make toy $i$ for all $i \in S$ and $j \in R$
+
+Let $u_j$ be the upper bound of resource $j$ for all $j \in R$
+
+Let $d_i$ be the mad demand of toy $i$ for all $i \in S$
+
+Let $p_i$ be the profit of toy $i$ (\emph{Note: You can break this into three parameters if you'd like})
+
+
+\textbf{Objective Function}
+
+\[
+\text{maximize profit: } \sum_{i \in S} p_i x_i
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & \sum_{i \in S} a_{i,j} x_i & \leq & u_j & \text{for all $j \in R$} & \text{(resource restriction)} \\
+   & x_i & \leq & d_i & \text{for all $i \in S$} & \text{(max demand)} \\
+   & x_i & \geq & 0 & \text{for all $i \in S$}
+\end{optprog*}
+
+}
+
+\newpage
+
+\textbf{2.} The Concrete Guys makes two types of (dry) concrete mix using cement, sand, and gravel. The regular mix contains (exactly) 30\% of cement, 15\% of sand, and 55\% of gravel (by weight), and sells for 5 cent/lb. The extra-strong mix must contain at least 50\% of cement, at least 5\% of sand, and at least 20\% of gravel, and sells for 8 cent/lb. The Concrete Guys has 100, 000 lb of cement, 50, 000 lb of sand, and 100, 000 lb of gravel in its warehouse. Formulate an LP to determine the amount of each mix the Concrete Guys should make in order to maximize its revenue.
+
+
+{\blu
+
+\begin{center}
+Concrete model:
+\end{center}
+
+\emph{Note, it can make this formulation prettier to define auxiliary variables which tell the total amount of concrete produced}
+
+\textbf{Decision Variables}
+
+Let $x_{c,r}$ be the amount of cement in regular concrete
+
+Let $x_{s,r}$ be the amount of sand in regular concrete
+
+Let $x_{g,r}$ be the amount of gravel in regular concrete
+
+Let $x_{c,e}$ be the amount of cement in extra strength concrete
+
+Let $x_{s,e}$ be the amount of sand in extra strength concrete
+
+Let $x_{g,e}$ be the amount of gravel in extra strength concrete
+
+
+\textbf{Objective Function}
+
+\[
+\text{maximize revenue: } 5 (x_{c,r} + x_{s,r} + x_{g,r}) + 8 (x_{c,e} + x_{s,e} + x_{g,e})
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & x_{c,r} & = & 0.3 ( x_{c,r} + x_{s,r} + x_{g,r}) & \text{(30\% cement in regular)} \\
+   & x_{s,r} & = & 0.15 ( x_{c,r} + x_{s,r} + x_{g,r}) & \text{(15\% sand in regular)} \\
+   & x_{g,r} & = & 0.3 ( x_{c,r} + x_{s,r} + x_{g,r}) & \text{(55\% gravel in regular)} \\
+   & x_{c,e} & \geq & 0.5 ( x_{c,e} + x_{s,e} + x_{g,e}) & \text{(50\% cement in extra strength)} \\
+   & x_{s,e} & \geq & 0.05 ( x_{c,e} + x_{s,e} + x_{g,e}) & \text{(5\% sand in extra strength)} \\
+   & x_{g,e} & \geq & 0.2 ( x_{c,e} + x_{s,e} + x_{g,e}) & \text{(20\% gravel in extra strength)} \\
+   & x_{c,r} + x_{c,e} & \leq & 100000 & \text{(cement availability)} \\
+   & x_{s,r} + x_{s,e} & \leq & 50000 & \text{(sand availability)} \\
+   & x_{g,r} + x_{g,e} & \leq & 100000 & \text{(gravel availability)} \\
+   & x_{c,r}, x_{s,r}, x_{g,r} , x_{c,e} , x_{s,e}, x_{g,e} & \geq & 0 & \text{(non-negativity)}
+\end{optprog*}
+
+\newpage
+
+\begin{center}
+Parameterized Model:
+\end{center}
+
+\emph{Note: The parameterized model can be difficult if you don't use a trick. The trick to use is that each resource has a lower and upper bound. Otherwise your model can't be parameterized fully.}
+
+
+
+\textbf{Sets}
+
+Let $R$ be the set of raw ingredients $R = \{\text{cement}, \text{sand}, \text{gravel}\}$
+
+Let $C$ be the types of concrete made $C = \{\text{regular},\text{extra strength}\}$
+
+\textbf{Decision Variables}
+
+Let $x_{i,j}$ be the amount of raw ingredient $i$ used to make concrete $j$ for all $i \in R$ and $j \in C$
+
+\textbf{Parameters}
+
+Let $r_j$ be the revenue of concrete $j$ for all $j \in C$
+
+Let $u_{i,j}$ be the upper bound of resource $i$ to be included in concrete $j$ for all $i \in R$ and $j \in C$
+
+Let $l_{i,j}$ be the lower bound of resource $i$ to be included in concrete $j$ for all $i \in R$ and $j \in C$
+
+Let $m_i$ be the maximum amount of resource $i$ for all $i \in R$
+
+\textbf{Objective Function}
+
+\[
+\text{maximize profit: } \sum_{i \in R} \sum_{j \in C} r_j x_{i,j}
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & x_{i,j} & \leq &  u_{i,j} ( \sum_{i \in R} x_{i,j}) & \text{for all $i \in C$ and $j \in R$} & \text{(upper bound of mixing)} \\
+   & x_{i,j} & \geq & l_{i,j} ( \sum_{i \in R} x_{i,j}) & \text{for all $i \in C$ and $j \in R$} & \text{(lower bound of mixing)} \\
+   & \sum_{j \in C} x_{i,j} & \leq & m_i & \text{for all $i \in C$} & \text{(availability)} \\
+   & x_{i,j} & \geq & 0 & \text{for all $i \in C$ and $j \in R$}
+\end{optprog*}
+
+}
+
+
+
+\newpage
+
+\textbf{3.} Funding 'R Us is considering four different investments: Investment 1 yields a net present value (NPV) of \$16,000; investment 2, an NPV of \$22,000; investment 3, an NPV of \$12,000; and investment 4, an NPV of \$8,000. Each investment requires a certain cash outflow at the present time: investment 1, \$5,000; investment 2, \$7,000; investment 3, \$4,000; and investment 4, \$3,000. Currently, \$14,000 is available for investment. Formulate a concrete and parameterized integer programming model whose solution will tell Funding 'R Us how to maximize the NPV obtained from investments 1--4. (\emph{Hint:} You can only decide whether to invest in an investment or not. What type of variable should you use?)  
+
+{\blu
+
+\begin{center}
+Concrete model:
+\end{center}
+
+\emph{This problem is a very famous type of integer-programming model called a knapsack problem}
+
+\textbf{Decision Variables}
+
+Let $x_1 = 1$ if they invest in investment 1 and $0$ otherwise
+
+Let $x_2 = 1$ if they invest in investment 2 and $0$ otherwise
+
+Let $x_3 = 1$ if they invest in investment 3 and $0$ otherwise
+
+Let $x_4 = 1$ if they invest in investment 4 and $0$ otherwise
+
+
+\textbf{Objective Function}
+
+\[
+\text{maximize NPV: } 16 x_1 + 22 x_2 + 12 x_3 + 8 x_4
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & 5 x_1 + 7 x_2 + 4 x_3 + 3 x_3 & \leq & 14 & \text{(budget constraint)} \\
+   & x_1, x_2, x_3, x_4 & \in & \{0,1\}
+\end{optprog*}
+
+\newpage
+
+\begin{center}
+Parameterized Model:
+\end{center}
+
+\textbf{Sets}
+
+Let $I$ be the set of investments to be made $I = \{1,2,3,4\}$
+
+\textbf{Decision Variables}
+
+Let $x_i = 1$ if they invest in investment $i$ and 0 otherwise for all $i \in I$
+
+\textbf{Parameters}
+
+Let $B$ be the maximum budget
+
+Let $n_i$ be the NPV of investment $i$ for all $i \in I$
+
+Let $c_i$ be the current cost of investment $i$ for all $i \in I$
+
+
+\textbf{Objective Function}
+
+\[
+\text{maximize NPV: } \sum_{i \in I} n_i x_i
+\]
+
+\textbf{Constraints}
+
+\begin{optprog*}
+st & \sum_{i \in I} c_i x_i & \leq & B & & \text{(budget)} \\
+   & x_i & \in & \{0,1\} & \text{for all $i \in I$} & \text{(non-negativity)}
+\end{optprog*}
+
+}
+
+
+
+
+
+
+
+\end{document}
