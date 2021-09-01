@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+
+%% MinionPro fonts 
+%\usepackage[lf]{MinionPro}
+%\usepackage{MnSymbol}
+\usepackage{microtype}
+
+%% Margins
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+%% Other packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage{algorithmic}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox}
+
+%% Paragraph style settings
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+
+%% Change itemize bullets
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$\diamond$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+%% Colors
+\definecolor{rred}{RGB}{204,0,0}
+\definecolor{ggreen}{RGB}{0,145,0}
+\definecolor{yyellow}{RGB}{255,185,0}
+\definecolor{bblue}{rgb}{0.2,0.2,0.7}
+\definecolor{ggray}{RGB}{190,190,190}
+\definecolor{ppurple}{RGB}{160,32,240}
+\definecolor{oorange}{RGB}{255,165,0}
+
+%% Shrink section fonts
+\titleformat*{\section}{\normalsize\bf}
+\titleformat*{\subsection}{\normalsize\bf}
+\titleformat*{\subsubsection}{\normalsize\it}
+
+% %% Compress the spacing around section titles
+\titlespacing*{\section}{0pt}{1.5ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{0.5ex}
+
+%% amsthm settings
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{bigthm}{Big Theorem}
+\newtheorem*{biggerthm}{Bigger Theorem}
+\newtheorem*{bigcor1}{Big Corollary 1}
+\newtheorem*{bigcor2}{Big Corollary 2}
+
+%% tikz settings
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations}
+\usepgfplotslibrary{polar}
+
+%% algorithmic setup
+\algsetup{linenodelimiter=}
+\renewcommand{\algorithmiccomment}[1]{\quad// #1}
+\renewcommand{\algorithmicrequire}{\emph{Input:}}
+\renewcommand{\algorithmicensure}{\emph{Output:}}
+
+%% Answer box macros
+%% \answerbox{alignment}{width}{height}
+\newcommand{\answerbox}[3]{%
+  \fbox{%
+    \begin{minipage}[#1]{#2}
+      \hfill\vspace{#3}
+    \end{minipage}
+  }
+}
+
+%% \answerboxfull{alignment}{height}
+\newcommand{\answerboxfull}[2]{%
+  \answerbox{#1}{6.38in}{#2} 
+}
+
+%% \answerboxone{alignment}{height} -- for first-level bullet
+\newcommand{\answerboxone}[2]{%
+  \answerbox{#1}{6.0in}{#2} 
+}
+
+%% \answerboxtwo{alignment}{height} -- for second-level bullet
+\newcommand{\answerboxtwo}[2]{%
+  \answerbox{#1}{5.8in}{#2}
+}
+
+%% special boxes
+\newcommand{\wordbox}{\answerbox{c}{1.2in}{.5cm}}
+\newcommand{\catbox}{\answerbox{c}{.5in}{.7cm}}
+\newcommand{\letterbox}{\answerbox{c}{.7cm}{.5cm}}
+
+%% Miscellaneous macros
+\newcommand{\tstack}[1]{\begin{multlined}[t] #1 \end{multlined}}
+\newcommand{\cstack}[1]{\begin{multlined}[c] #1 \end{multlined}}
+\newcommand{\ccite}[1]{\only<presentation>{{\scriptsize\color{gray} #1}}\only<article>{{\small [#1]}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\ra}{\ensuremath{\rightarrow}~}
+\newcommand{\maximize}{\text{maximize}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\subjectto}{\text{subject to}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bc}{\mathbf{c}}
+\newcommand{\bd}{\mathbf{d}}
+
+%% LP format
+%    \begin{align*}
+%      \maximize \quad & \mathbf{c}^{\trans} \mathbf{x}\\
+%      \subjectto \quad & A \mathbf{x} = \mathbf{b}\\
+%                       & \mathbf{x} \ge \mathbf{0}
+%    \end{align*}
+
+
+%% Redefine maketitle
+\makeatletter
+\renewcommand{\maketitle}{
+  \noindent SA405 -- AMP \hfill Rader \S 3.1 \\
+
+  \begin{center}\Large{\textbf{\@title}}\end{center}
+}
+\makeatother
+
+%% ----- Begin document ----- %%
+\begin{document}
+  
+\title{Lesson 6: Fixed-Charge Facility Location}
+
+\maketitle
+
+%%%
+\section{Today...}
+
+\begin{itemize}
+	\item  We extend a min cost network flow model to a \emph{fixed-charge facility location} model.
+	\item  This will require the use of \emph{binary decision variables}.
+	\item  There are two well-known formulations for modeling the fixed-charge forcing constraints:  the so-called \emph{weak} and \emph{strong} formulations.
+\end{itemize}
+
+\section{Gotit Grocery}
+Gotit Grocery Company is considering 3 locations for new distribution centers to serve its customers in Maryland.  The following table shows the fixed cost (in millions of dollars) of opening each potential center, the number (in thousands) of truckloads forecasted to be demanded at each city over the next 5 years, and the transporation cost (in millions of dollars) per thousand truckloads moved from each center location to each city.  
+
+\begin{center}
+\begin{tabular}{c|c|cccc}
+& Fixed & \multicolumn{4}{c}{Transport Costs} \\
+& Cost & Annapolis & Ocean City & Laurel & Baltimore \\
+\hline
+Distribution Center 1 & 200 & 6 & 5 & 9 & 3  \\
+Distribution Center 2 & 400 & 4 & 3 & 5 & 6 \\
+Distribution Center 3 & 225 & 5 & 8 & 2 & 4 \\
+\hline
+Demand & --- & 11 & 18 & 15 & 25
+\end{tabular}
+\end{center}
+
+According to management, if Gotit does open a new distribution center, that center must send at least 10 thousand truckloads in order to be a worthwhile investment. Gotit seeks a minimum cost distribution system assuming any distribution center can meet any or all demands.
+
+\newpage
+
+\section{Concrete Model}
+
+\emph{Ignoring the facility opening costs/variables} write a concrete model for this transportation problem. For your variables, let $x_{i,j}$ be the number of truckloads sent from distribution center $i$ to city $j$. 
+
+\newpage
+
+
+\section{Binary Decision Variables}
+
+The use of binary $\{0,1\}$ variables to model yes/no decisions is very common.  In this model, we use a binary decision variable for each potential distribution center that indicates whether or not it is opened:
+
+a value of \letterbox indicates that the facility is used, and we must pay the ``fixed-cost'' to open it;
+
+a value of \letterbox indicates that the facility is not used, and therefore we don't have to pay for it.
+
+
+
+Whenever we use binary decision variables, we must include \wordbox that enforce the correct behavior of the variable in the context of the model.  \textbf{This can require some thought, careful logic, and even creativity.}  
+
+\begin{enumerate}
+\item Define three new decision variables, $z_1, z_2, z_3$, which encapsulate the logic described above. \vspace{2in}
+\item Using these new decision variables, modify the objective function of your formulation to incorporate the fixed costs of opening the distribution centers.
+\end{enumerate}
+
+\newpage
+
+
+\section{Fixed-Charge Forcing Constraints}
+
+Explicitly, using the binary variables above, if $z_1 = 1$ then we are opening distribution center 1. However, implicitly, we must force the logic that if $z_1 = 0$ then: \vspace{1cm}
+
+
+Constraints that enforce this logic are called \textbf{forcing constraints}. There are two options for this, single variable OR multiple variable.
+
+
+\begin{enumerate}[resume]
+\item Write a constraint that enforces the logic that if $z_1 = 0$ then $x_{1,1}$ must also be zero. \vspace{2in}
+\end{enumerate}
+
+This type of constraint is often referred to as a \textbf{strong forcing constraint}.
+
+\begin{enumerate}[resume]
+\item Write all of the strong forcing constraints needed for this model. \newpage
+\end{enumerate}
+
+The next type of constraint is generally referred to as \textbf{weak forcing constraints}.
+
+\begin{enumerate}[resume]
+\item Write an inequality that enforces the logic that, if $z_1 = 0$ then $x_{1,1} = x_{1,2} = x_{1,3} = x_{1,4} = 0$. \vspace{2in}
+\item Write all of the weak forcing constraints for this model.
+\end{enumerate}
+
+\vfill
+
+Why are these referred to as weak and strong constraints? \vspace{1in}
+
+
+%%%
+\newpage
+\section{Parameterized Model: Fixed-Charge Facility Location}
+
+	
+    \begin{flalign*}
+      \maximize \quad & \sum_{i \in I} \sum_{j \in J} c_{ij} x_{ij} + \answerbox{c}{2in}{1cm} &\\
+      \\
+      \subjectto \quad & \sum_{i \in I} x_{ij} \geq d_j, \text{ for } j \in J  &\\
+			  & \text{\emph{weak forcing constraints:}  (see next page)} & \\
+      			  & \answerbox{c}{3in}{1cm} &\\
+			 & \text{~~~~~OR} & \\
+			  & \text{\emph{strong forcing constraints:}  (see next page)} & \\
+      			  & \answerbox{c}{3in}{1cm} &\\ \\		 
+      			  & \text{\emph{lower bound constraints:}  } & \\
+      			  & \answerbox{c}{3in}{1cm} &\\ \\		
+                       & x_{ij} \ge 0,  ~\text{ integer,} \ \forall i \in I, j \in J& \\ 
+			  & \answerbox{c}{2in}{1cm} & \\
+    \end{flalign*}
+	
+%%%
+
+	
+\vfill
+
+
+
+\end{document}

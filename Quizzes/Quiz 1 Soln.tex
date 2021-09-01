@@ -1,0 +1,147 @@
+\documentclass[letterpaper,oneside,12pt]{article}%twocolumn;titlepage(separate title page)
+\usepackage{pslatex}                %Times New Roman Font; Improves on-screen readability; preferred to using times package
+\usepackage[margin=0.5in]{geometry}   %1in 'uniform' margin (with oneside)
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{optprog}
+\usepackage{lscape}
+\setcounter{MaxMatrixCols}{20}
+%\setlength{\headsep}{0in}           %Distance from bottom of header to the body of text on a page.
+\newcommand{\rem}[1]{}
+\renewcommand{\arraystretch}{1}
+
+% **********************************************************************
+% Compact itemize, enumerate and description environments %pkg enumitem
+% **********************************************************************
+\usepackage{enumitem}            % [FAILS w/BEAMER] Lets define enumerate spacing: \begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]
+\newenvironment{compitem}{\begin{itemize}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{itemize}}
+\newenvironment{compenum}{\begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{enumerate}}
+\newenvironment{compdesc}{\begin{description}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{description}}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator*{\proj}{proj}
+
+\newcommand{\blu}{\color{blue}}
+\newcommand{\bla}{\color{black}}
+\begin{document}
+\noindent\fbox{%
+	\parbox{\textwidth}{%
+		\begin{center}
+		\textbf{\large{Department of Mathematics}} \\
+		\textbf{\large{SA 405 - Advanced Mathematical Programming}} \\
+		\textbf{\large{Quiz 1}}
+		\end{center}
+	}%
+}
+
+\vspace{3mm} \hspace{\fill} \textbf{Name: \underline{\hspace{6cm}}}
+
+
+A medical company makes small, medium, and large heart valves. Each valve requires a certain amount of superconductors, tissue, and labor as detailed below:
+
+\begin{center}
+\begin{tabular}{lccc} \hline
+Item       & Superconductors (units) & Tissue (g) & Labor (hours)  \\ \hline
+Small      & 3                       & 5          &  3 \\
+Medium     & 4                       & 2          &  6 \\
+Large      & 6                       & 12         &  7 \\
+\end{tabular}
+\end{center}
+
+The company must make at least 10 small, 10 medium, and 5 large valves. Additionally, they have at most 200 superconductors, 300 g of tissue. and 450 hours of labor. Lastly, they make a profit of \$200, \$350, and \$475 for each small, medium, and large valve, respectively. They formulate the following LP to model their situation:
+
+\textbf{Decision Variables:}\\
+
+Let $x_s$ be the number of small valves made \\
+
+Let $x_m$ be the number of medium valves made\\
+
+Let $x_l$ be the number of large valves made\\
+
+\textbf{Objective function:}\\
+\[
+\text{max profit: } 200 x_s + 350 x_m + 475 x_l
+\]
+
+\textbf{Constraints:}
+
+\begin{optprog*}
+& 3 x_s + 4 x_m + 6 x_l & \leq & 200 \\
+& 5 x_s + 2 x_m + 12 x_l & \leq & 300 \\
+& 3 x_s + 6 x_m + 7 x_l & \leq & 450 \\
+& x_s & \geq & 10 \\
+& x_m & \geq & 10 \\
+& x_l & \geq & 5  \\
+& x_s, x_m, x_l & \geq & 0
+\end{optprog*}
+\newpage
+
+\textbf{Part 1:} (80 points) Convert this model into a parameterized model that is \textbf{as compact as possible}. \emph{Hint: Your final model should have 3 total constraints including non-negativity.}
+
+{\blu
+\textbf{\underline{Sets}} \\
+
+Let $V$ be the set of valves $V = \{s,m,l\}$ 
+
+Let $R$ be the set of resource $R = \{ \text{superconductor, tissue, labor} \}$\\
+
+\textbf{\underline{Variables}}  \\
+
+Let $x_i$ be the number of valves of type $i$ made for all $i \in V$\\
+
+\textbf{\underline{Parameters}} \\
+
+Let $p_i$ be the profit of valve $i$ for all $i \in V$
+
+Let $d_i$ be the demand of valve $i$ for all $i \in V$
+
+Let $a_{i,j}$ be the amount of resource $j$ that valve $i$ uses for all $i \in V$ and $j \in R$
+
+Let $u_j$ be the max amount of resource $j$ available for all $j \in R$ \\
+
+\textbf{\underline{Objective}} 
+
+\[
+\text{max profit: } \sum_{i \in V} c_i x_i
+\]
+
+\textbf{\underline{Constraints}} 
+
+\begin{optprog*}
+& \sum_{i \in V} a_{i,j} x_i & \leq & u_j & \text{ for all $j \in R$} \\
+& x_i & \geq & d_i & \text{ for all $i \in V$} \\
+& x_i & \geq & 0 & \text{ for all $i \in V$}
+\end{optprog*}
+
+}
+
+\vfill
+
+Part 2: (20 points) Given sets $I$ and $J$, parameter $u_i$ for all $i \in I$ and variables $x_{i,j}$ for all $i \in I$ and $j \in J$, indicate if the following parameterized constraints are valid or invalid in an LP model.
+\begin{itemize}
+\item $ \sum\limits_{i \in I} \sum\limits_{j \in J} x_{i,j} \leq 10$ for all $j \in J$ \hfill VALID \hspace{1mm} INVALID \hspace{50mm} \phantom{a}
+
+{\blu
+Invalid, $j$ is defined twice
+}
+
+\item $ \sum\limits_{i \in I} x_{i,j} = 4$ for all $j \in J$ \hfill VALID \hspace{1mm} INVALID  \hspace{50mm} \phantom{a}
+
+{\blu
+Valid
+}
+\item $ \sum\limits_{i \in I} \sum\limits_{j \in J} u_i x_{i,j} \leq 1000$ \hfill VALID \hspace{1mm} INVALID  \hspace{50mm} \phantom{a}
+
+{\blu
+Valid
+}
+
+\end{itemize}
+
+
+
+\end{document}
