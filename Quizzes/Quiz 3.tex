@@ -1,0 +1,90 @@
+\documentclass[letterpaper,oneside,12pt]{article}%twocolumn;titlepage(separate title page)
+\usepackage{pslatex}                %Times New Roman Font; Improves on-screen readability; preferred to using times package
+\usepackage[margin=0.5in]{geometry}   %1in 'uniform' margin (with oneside)
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{optprog}
+\usepackage{lscape}
+\setcounter{MaxMatrixCols}{20}
+%\setlength{\headsep}{0in}           %Distance from bottom of header to the body of text on a page.
+\newcommand{\rem}[1]{}
+\renewcommand{\arraystretch}{1}
+
+% **********************************************************************
+% Compact itemize, enumerate and description environments %pkg enumitem
+% **********************************************************************
+\usepackage{enumitem}            % [FAILS w/BEAMER] Lets define enumerate spacing: \begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]
+\newenvironment{compitem}{\begin{itemize}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{itemize}}
+\newenvironment{compenum}{\begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{enumerate}}
+\newenvironment{compdesc}{\begin{description}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{description}}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator*{\proj}{proj}
+
+\newcommand{\blu}{\color{blue}}
+\newcommand{\bla}{\color{black}}
+\begin{document}
+\noindent\fbox{%
+	\parbox{\textwidth}{%
+		\begin{center}
+		\textbf{\large{Department of Mathematics}} \\
+		\textbf{\large{SA 405 - Advanced Mathematical Programming}} \\
+		\textbf{\large{Quiz 3}}
+		\end{center}
+	}%
+}
+
+\vspace{3mm} \hspace{\fill} \textbf{Name: \underline{\hspace{6cm}}}
+
+The Navy is assigning 4 sailors to 4 different jobs. Unfortunately, each sailor is not qualified to do each job. Specifically, a $Q$ in the table below indicates that sailor $i$ is qualified for job $j$.
+
+\begin{center}
+\begin{tabular}{c|cccc} 
+\hline 
+           & Job 1 & Job 2 & Job 3 & Job 4  \\ \hline
+Sailor 1   &  Q    &       & Q     &        \\ 
+Sailor 2   & Q     & Q     & Q     &        \\ 
+Sailor 3   &       &       & Q     & Q      \\
+Sailor 4   & Q     & Q     &       & Q      \\  \hline 
+\end{tabular}
+\end{center}
+
+The goal is to assign sailors to jobs so that as many jobs are done as possible. Each worker can do at most one job. This problem can be formulated as a \textbf{max flow} model.
+
+\textbf{Part 1:}
+
+\begin{enumerate}
+\item (30 points) Draw a max flow network diagram that models this problem. \emph{Hint: Draw a source and sink node. Think of which nodes should be connected to the source and which should be connected to the sink.} \vfill
+
+\item (10 points) Each edge in this network should have the same capacity. What is the capacity of each edge? \vspace{0.5in}
+\item (10 points) What is the value of the flow in the network to ensure every job gets done? \vspace{1in}
+\end{enumerate}
+\newpage
+
+\textbf{Part 2:} For part 2, consider the following sets, decision variables, and parameters.
+
+\noindent \textbf{Sets:}\\
+\noindent Let $N$ be the sets of nodes, $n \in N$\\
+Let $E$ be the set of edges, $(i,j) \in E$\\
+
+
+\noindent \textbf{Decision variables:} \\
+\noindent Let $x_{i,j}$ be the flow on edge $(i,j)$, $\forall (i,j) \in E$\\
+
+\noindent \textbf{Parameters:}\\%
+\noindent Let $c_{i,j}$ be the capacity of edge $(i,j)$, $\forall (i,j) \in E$
+
+
+\begin{enumerate}[resume]
+\item (15 points) Using the sets, variables, and parameters defined above, write the objective function for this max flow model. \vspace{2in}
+\item (15 points) One type of constraint in max flow models is capacity constraints. Using the sets, variables, and parameters above, write the capacity constraints for this model. \vspace{2in}
+\item (20 points) Another constraint that arises in all network models is flow balance. Using the sets, variables, and parameters defined above, write a general flow balance constraint that works for \textbf{any} network flow model. Be sure to clearly define any new parameters used. \vspace{2in}
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[letterpaper,oneside,12pt]{article}%twocolumn;titlepage(separate title page)
+\usepackage{pslatex}                %Times New Roman Font; Improves on-screen readability; preferred to using times package
+\usepackage[margin=0.5in]{geometry}   %1in 'uniform' margin (with oneside)
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{optprog}
+\usepackage{lscape}
+\setcounter{MaxMatrixCols}{20}
+%\setlength{\headsep}{0in}           %Distance from bottom of header to the body of text on a page.
+\newcommand{\rem}[1]{}
+\renewcommand{\arraystretch}{1}
+
+% **********************************************************************
+% Compact itemize, enumerate and description environments %pkg enumitem
+% **********************************************************************
+\usepackage{enumitem}            % [FAILS w/BEAMER] Lets define enumerate spacing: \begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]
+\newenvironment{compitem}{\begin{itemize}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{itemize}}
+\newenvironment{compenum}{\begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{enumerate}}
+\newenvironment{compdesc}{\begin{description}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{description}}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator*{\proj}{proj}
+
+\newcommand{\blu}{\color{blue}}
+\newcommand{\bla}{\color{black}}
+\begin{document}
+\noindent\fbox{%
+	\parbox{\textwidth}{%
+		\begin{center}
+		\textbf{\large{Department of Mathematics}} \\
+		\textbf{\large{SA 405 - Advanced Mathematical Programming}} \\
+		\textbf{\large{Quiz 4}}
+		\end{center}
+	}%
+}
+
+\vspace{3mm} \hspace{\fill} \textbf{Name: \underline{\hspace{6cm}}}
+
+You're going to Six Flags this weekend and are a roller coaster enthusiast. Six Flags has 7 total roller coasters. You label them 1 to 7 and plot out the distance you'd have to walk in order to get to each roller-coaster. The following matrix gives these distances (note it's symmetric):
+\[
+\begin{bmatrix}
+-& 10 & 12 & 7  & 13 & 8  & 9 \\
+ & -  & 10 & 13 & 25 & 6  & 7 \\
+ &    & -  & 21 & 23 & 12 & 10 \\
+ &    &    & -  & 12 & 3  & 9   \\
+ &    &    &    & -  & 20 & 8   \\
+ &    &    &    &    & -  & 3   \\
+ &    &    &    &    &    & -
+\end{bmatrix}
+\]
+
+You decide that you want to walk as little as possible; so you model this problem as a minimum spanning tree (MST) in order to find the path you'd have to take to walk as little as possible.
+
+Suppose you use the variables $x_{i,j} = 1$ if edge $(i,j)$ is part of the tree and 0 otherwise.
+
+\begin{enumerate}
+\item (20 points) When modeling this problem as a MST you need to include a constraint that says you visit each roller coaster. Using the $x_{i,j}$ variables, write a concrete constraint that ensures at least one edge connected to roller coaster 3 is selected. \vspace{1.5in}
+
+\item After implementing this model in python, your solver returns the following solution:
+
+	\verb|The optimal solution is to select edges [1,2], [2,3], [3,5], [4,6], [4,7], [6,7]|
+		\begin{enumerate}
+		\item (15 points) What are the values of the $x_{i,j}$ variables corresponding to this solution? \vfill
+		\item (15 points) What is the total distanced traveled by this solution? \vfill \newpage
+		\item (10 points) Is this solution optimal to your MST problem? \vspace{1in}
+		\item (20 points) If this solution is optimal explain why. If the solution is not optimal, write which constraint(s) you would add to your model to exclude this solution. \vspace{2in}
+		\end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[resume]
+\item (10 points) Given a graph on $n$ nodes, how many edges do I need to choose to form a cycle? \vspace{1in}
+\item (10 points) True or False, when solving a MST problem in python, we should implement \textbf{every} constraint in the model. \vspace{1in}
+\end{enumerate}
+
+
+
+\end{document}

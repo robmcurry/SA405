@@ -1,0 +1,126 @@
+\documentclass[letterpaper,oneside,12pt]{article}%twocolumn;titlepage(separate title page)
+\usepackage{pslatex}                %Times New Roman Font; Improves on-screen readability; preferred to using times package
+\usepackage[margin=0.5in]{geometry}   %1in 'uniform' margin (with oneside)
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{optprog}
+\usepackage{lscape}
+\setcounter{MaxMatrixCols}{20}
+%\setlength{\headsep}{0in}           %Distance from bottom of header to the body of text on a page.
+\newcommand{\rem}[1]{}
+\renewcommand{\arraystretch}{1}
+
+% **********************************************************************
+% Compact itemize, enumerate and description environments %pkg enumitem
+% **********************************************************************
+\usepackage{enumitem}            % [FAILS w/BEAMER] Lets define enumerate spacing: \begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]
+\newenvironment{compitem}{\begin{itemize}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{itemize}}
+\newenvironment{compenum}{\begin{enumerate}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{enumerate}}
+\newenvironment{compdesc}{\begin{description}[topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt]}{\end{description}}
+
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator*{\proj}{proj}
+
+\newcommand{\blu}{\color{blue}}
+\newcommand{\bla}{\color{black}}
+\begin{document}
+\noindent\fbox{%
+	\parbox{\textwidth}{%
+		\begin{center}
+		\textbf{\large{Department of Mathematics}} \\
+		\textbf{\large{SA 405 - Advanced Mathematical Programming}} \\
+		\textbf{\large{Quiz 2}}
+		\end{center}
+	}%
+}
+
+\vspace{3mm} \hspace{\fill} \textbf{Name: \underline{\hspace{6cm}}}
+
+Luxurious Pillows INC has two fulfillment centers in Seattle and Los Angeles. They ship pillows to the DMV area through either a warehouse in Chicago or Dallas for the costs given in the table below.
+
+\begin{center}
+\begin{tabular}{r|ccccc}
+& \multicolumn{5}{c}{Transportation Costs} \\
+             & Chicago & Dallas & Washington DC & Baltimore & Annapolis \\
+\hline
+Seattle      & 15      & 25     &       -       &    -      & -  \\
+Los Angeles  & 20      & 18     & -             & -         & -  \\
+Chicago      & -       & -      & 17            & 15        & 20 \\ 
+Dallas       & -       & -      & 22            & 13        & 12 \\
+\hline
+\end{tabular}
+\end{center}
+
+The fulfillment centers in Seattle and Los Angeles have supplies of 500 and 600 pillows, respectively. Likewise, DC, Baltimore, and Annapolis have demands of 300, 600, and 400; respectively. They want to meet demand at as low of a cost as possible.
+
+\begin{enumerate}
+\item (25 points) Draw the network diagram for this problem. Be sure to indicate the supply/demand of each node. \newpage
+
+\item For the next questions, consider the following sets and variables:
+
+\textbf{\underline{Sets}} 
+
+Let $N$ be the set of nodes \\
+Let $E$ be the set of edges
+
+\textbf{\underline{Variables}} 
+
+Let $x_{i,j}$ be the flow along edge $(i,j)$ for all $(i,j) \in E$.
+
+	\begin{enumerate}
+	\item (20 points) With these sets and decision variables, write the concrete objective function for 
+this model. Be sure to clearly define any new sets, variables, or parameters used. 
+
+{\blu
+
+\[
+\text{min cost: } 15 x_{s,c} + 25 x_{s,d} + \cdots + 12 x_{d,a}
+\]
+
+}
+	
+	\item (15 points) With these decision variables, write the (concrete) flow balance constraint for Dallas. 
+{
+\blu
+\[
+x_{S,D} + x_{LA,D} = x_{D,DC} + x_{D,B} + x_{D,A}
+\]
+}
+	
+	\item (20 points) With these sets and decision variables, write the (parameterized) balance of flow 
+constraints for this model. Be sure to clearly define any new sets, variables, or parameters used.  
+{\blu
+
+Let $b_n$ be the demand$-$ supply of node $n$ for each $n \in N$
+
+\[
+\sum_{(i,n) \in E} x_{i,n} - \sum_{(n,j) \in E} x_{n,j} = b_n
+\]
+
+}
+	
+	\end{enumerate}
+\item (20 points) Suppose that $I = \{1,2,3\}$ and $C = \{A,B\}$. Expand the following set of constraints so that they are written with no index sets (i.e., convert these constraints from parameterized to concrete form).
+
+\[
+\sum_{i \in I} r_c x_{i,c} \geq u_c \text{ for all $c \in C$}
+\]
+
+{\blu
+
+\[
+r_A x_{1,A} + r_A x_{2,A} + r_A x_{3,A} \geq u_A
+\]
+\[
+r_B x_{1,B} + r_B x_{2,B} + r_B x_{3,B} \geq u_B
+\]
+
+}
+
+\end{enumerate}
+
+\end{document}
